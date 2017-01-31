@@ -30,7 +30,11 @@ namespace Speciale_v01
             Console.WriteLine("Stien er: " + path);
             test.CreateFileWatcher(path);
 
-            test.CreateFileWatcher(path + "/test");
+            test.CreateFileWatcher(path + "\\test");
+
+            FileCreator newFileCreator = new FileCreator();
+
+            newFileCreator.CreateFileInEveryFolder(path + "\\test");
 
             Console.ReadLine();
         }
