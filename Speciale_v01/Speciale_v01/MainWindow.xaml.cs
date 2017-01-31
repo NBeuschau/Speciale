@@ -23,6 +23,16 @@ namespace Speciale_v01
         public MainWindow()
         {
             InitializeComponent();
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            Watcher test = new Watcher();
+            Console.WriteLine("Stien er: " + path);
+            test.CreateFileWatcher(path);
+
+            test.CreateFileWatcher(path + "/test");
+
+            Console.ReadLine();
         }
     }
 }
