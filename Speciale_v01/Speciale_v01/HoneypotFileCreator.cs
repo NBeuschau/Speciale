@@ -9,15 +9,23 @@ namespace Speciale_v01
 {
     class FileCreator
     {
+        //This function runs recursively through every subfolder in the given path
         public void CreateFileInEveryFolder(string path)
         {
             Console.WriteLine(path);
+            //Runs the function CreateFile in the path
             CreateFile(path);
 
-            var directories = Directory.GetDirectories(path);
-            foreach (var directory in directories)
+            //Get every subdirectory in the given path
+            var subDirectories = Directory.GetDirectories(path);
+
+            //Iterates though the subdirectories
+            foreach (var directory in subDirectories)
             {
+                //Creates a string with the name of the subdirectory only
                 string dirName = new DirectoryInfo(directory).Name;
+                
+                //Calls the function itself for every subdirectory
                 CreateFileInEveryFolder(path + "\\" + dirName);
             }
         }
