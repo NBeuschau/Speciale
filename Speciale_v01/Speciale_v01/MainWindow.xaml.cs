@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Diagnostics.Tracing;
+using Microsoft.Diagnostics.Tracing.Parsers;
+using Microsoft.Diagnostics.Tracing.Parsers.Kernel;
+using Microsoft.Diagnostics.Tracing.Session;
 
 namespace Speciale_v01
 {
@@ -20,9 +24,15 @@ namespace Speciale_v01
     /// </summary>
     public partial class MainWindow : Window
     {
+        public void addWriteEvent(FileIOReadWriteTraceData writeEvent)
+        {
+            string test = writeEvent.ProcessID.ToString();
+        }
         public MainWindow()
         {
             InitializeComponent();
+
+
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
