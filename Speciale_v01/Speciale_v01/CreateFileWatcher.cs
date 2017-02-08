@@ -17,23 +17,27 @@ namespace Speciale_v01
 
             watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
 
-            watcher.Filter = "*honeypot.*";
+            watcher.Filter = "*test.*";
 
             watcher.Changed += new FileSystemEventHandler(OnChanged);
             watcher.Deleted += new FileSystemEventHandler(OnChanged);
             watcher.Renamed += new RenamedEventHandler(OnRenamed);
 
             watcher.EnableRaisingEvents = true;
+
         }
 
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
             Console.WriteLine("File: " + e.FullPath + " " + e.ChangeType);
+            //Console.WriteLine("Locking process is: {0}", IdentifyLocker.getPID(e.FullPath));
+            IdentifyLocker.getPID(e.FullPath);
         }
 
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
             Console.WriteLine("Flie: {0} renamed to {1}", e.OldFullPath, e.FullPath);
+            IdentifyLocker.getPID(e.FullPath);
         }
 
     }

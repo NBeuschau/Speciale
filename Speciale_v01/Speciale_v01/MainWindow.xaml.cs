@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,18 +27,19 @@ namespace Speciale_v01
             InitializeComponent();
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-
+            string specialePath = "\\SpecialeTest";
             Watcher test = new Watcher();
-            Console.WriteLine("Stien er: " + path);
             test.CreateFileWatcher(path);
+            Console.WriteLine("Stien er: " + path + specialePath);
 
-            test.CreateFileWatcher(path + "\\test");
+            test.CreateFileWatcher(path + specialePath);
 
             FileCreator newFileCreator = new FileCreator();
 
-            newFileCreator.CreateFileInEveryFolder(path + "\\test");
+            newFileCreator.CreateFileInEveryFolder(path + specialePath);
 
-            Console.ReadLine();
+
+
         }
     }
 }

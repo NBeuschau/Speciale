@@ -66,6 +66,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IdentifyLocker.cs" />
     <Compile Include="HoneypotFileCreator.cs" />
     <Compile Include="CreateFileWatcher.cs" />
     <Compile Include="MainWindow.xaml.cs">
