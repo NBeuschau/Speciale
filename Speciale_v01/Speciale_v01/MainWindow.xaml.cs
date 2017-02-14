@@ -24,17 +24,17 @@ namespace Speciale_v01
         {
             InitializeComponent();
 
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string path = @"C:\Speciale\Test";
 
             Watcher test = new Watcher();
             Console.WriteLine("Stien er: " + path);
             test.CreateFileWatcher(path);
 
-            test.CreateFileWatcher(path + "\\test");
+            test.CreateFileWatcher(path);
 
             FileCreator newFileCreator = new FileCreator();
 
-            newFileCreator.CreateFileInEveryFolder(path + "\\test");
+            //newFileCreator.CreateFileInEveryFolder(path + "\\test");
 
             Console.ReadLine();
         }
