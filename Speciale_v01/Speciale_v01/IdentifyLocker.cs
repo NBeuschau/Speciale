@@ -84,9 +84,10 @@ namespace Speciale_v01
         /// 
 
 
-        static public void getPID(string path){
-        Console.WriteLine("Getting PID...");
-            
+        static public void getPID(string path)
+        {
+            Console.WriteLine("Getting PID...");
+
             List<Process> processList = new List<Process>();
             //processList = IdentifyLocker.WhoIsLocking("C:\\Users\\Lappy\\Desktop\\Test.odt");
             processList = IdentifyLocker.WhoIsLocking(path);
@@ -95,7 +96,7 @@ namespace Speciale_v01
             {
                 Console.WriteLine("Process: {0}  ID: {1}", theprocess.ProcessName, theprocess.Id);
             }
-    Console.ReadLine();
+            Console.ReadLine();
             Thread.Sleep(5000);
         }
 

@@ -19,11 +19,11 @@ namespace Speciale_v01
 
             //The NotifyFilters determine what the monitors triggers upon. 
             //It can also be a change in size.
-            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+            watcher.NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.Attributes | NotifyFilters.Size;
 
             //The filter gives the watcher a specific filename to look for
             // "*honeypot.*" monitors every file with honeypot in the ending, and every format.
-            watcher.Filter = "*honeypot.*";
+            watcher.Filter = "*honeypot*";
 
             //This tells the watcher when to react on different changes
             watcher.Changed += new FileSystemEventHandler(OnChanged);
