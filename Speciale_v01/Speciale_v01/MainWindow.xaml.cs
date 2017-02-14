@@ -38,6 +38,12 @@ namespace Speciale_v01
 
             //FileCreator creates a file in every folder in a given directory
             FileCreator newFileCreator = new FileCreator();
+            Procmon newProcmonCreator = new Procmon();
+            int i = 9;
+            string backingName = "backingName" + i;
+            newProcmonCreator.createProcmonBatchFile(path, backingName);
+            
+            newProcmonCreator.convertPMLfileToCSV(path, "backingName3.PML", "convertedCSVfile" + i + ".CSV");
 
             //Recursively creates a .txt file in the directory and every given subdirectory
             //newFileCreator.CreateFileInEveryFolder(path + "\\test");
