@@ -33,21 +33,28 @@ namespace Speciale_v01
             Console.WriteLine("The path is: " + path);
 
             //The file watcher now monitors the directory given and all of the subdirectories.
-            //test.CreateFileWatcher(path + "\\test");
             test.CreateFileWatcher(path);
 
             //FileCreator creates a file in every folder in a given directory
             FileCreator newFileCreator = new FileCreator();
+
+            //Procmon has the ability to convert pml files to csv and to start process monitor
             Procmon newProcmonCreator = new Procmon();
-            int i = 9;
-            string backingName = "backingName" + i;
-            newProcmonCreator.createProcmonBatchFile(path, backingName);
-            
-            newProcmonCreator.convertPMLfileToCSV(path, "backingName3.PML", "convertedCSVfile" + i + ".CSV");
+            // int indexer = 9;
+            // string backingName = "backingName" + indexer;
+            //
+            // //Runs a cmd commando to start procmons backingfile. The file is indexed by the integer
+            // newProcmonCreator.createProcmonBatchFile(path, backingName);
+            // 
+            // //Converts the backingfile from pml to csv
+            // newProcmonCreator.convertPMLfileToCSV(path, "backingName3.PML", "convertedCSVfile" + indexer + ".CSV");
 
             //Recursively creates a .txt file in the directory and every given subdirectory
             //newFileCreator.CreateFileInEveryFolder(path + "\\test");
-            //newFileCreator.CreateFileInEveryFolder(path + "\\test");
+
+            CSVfile newCSVfile = new CSVfile();
+            newCSVfile.CSVparser(@"C:\speciale\test\convertedCSVfile9.CSV");
+
 
             //Instead of shutting down the program it waits for an input.
             Console.ReadLine();
