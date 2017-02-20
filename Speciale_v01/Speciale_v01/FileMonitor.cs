@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Threading;
 
 namespace Speciale_v01
 {
-    class Watcher
+    class FileMonitor
     {
         public static int i = 0;
-        public void CreateFileWatcher(string path)
+        public static int temp = 0;
+        public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
             FileSystemWatcher watcher = new FileSystemWatcher();
@@ -20,11 +22,11 @@ namespace Speciale_v01
 
             //The NotifyFilters determine what the monitors triggers upon. 
             //It can also be a change in size.
-            watcher.NotifyFilter = NotifyFilters.Size;
+            watcher.NotifyFilter = NotifyFilters.Size | NotifyFilters.LastWrite | NotifyFilters.FileName;
 
             //The filter gives the watcher a specific filename to look for
             // "*honeypot.*" monitors every file with honeypot in the ending, and every format.
-            watcher.Filter = "*CSV*";
+            watcher.Filter = "*honeypot*";
 
             //This tells the watcher when to react on different changes
             watcher.Created += new FileSystemEventHandler(OnChanged);
@@ -42,8 +44,13 @@ namespace Speciale_v01
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
-            Console.WriteLine("File: " + e.FullPath + " " + e.ChangeType + " \n This is the " + i + "'th time");
-            i++;
+            if (temp <= 3)
+            {
+                temp++;
+                Console.WriteLine("File: " + e.FullPath + " " + e.ChangeType);
+                Thread.Sleep(5000);
+                MainWindow.honeypotChange(e.FullPath);
+            }
         }
 
         //Event handeler if an object is renamed

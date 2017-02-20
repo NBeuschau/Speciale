@@ -11,11 +11,11 @@ namespace Speciale_v01
 {
     class Procmon
     {
-        public void createProcmonBatchFile(string path, string backingName)
+        private static Process cmd = new Process();
+        public static void createProcmonBackingFile(string path, string backingName)
         {
             string backPath = path + @"\" + backingName;
 
-            Process cmd = new Process();
             cmd.StartInfo.FileName = "cmd.exe";
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = true;
@@ -23,16 +23,17 @@ namespace Speciale_v01
             cmd.StartInfo.UseShellExecute = false;
             cmd.Start();
 
-            cmd.StandardInput.WriteLine(@"start C:\Speciale\Tools\procmon\procmon.exe /quiet /minimized /AcceptEula /backingfile C:\Speciale\Test\" + backingName + ".PML");
+            cmd.StandardInput.WriteLine(@"start C:\Speciale\Tools\procmon\procmon.exe /quiet /minimized /backingfile C:\Speciale\Test\" + backingName + ".PML");
             cmd.StandardInput.Flush();
-            cmd.StandardInput.Close();
-            cmd.WaitForExit();
-            Console.WriteLine(cmd.StandardOutput.ReadToEnd());
-
-
         }
 
-        public void convertPMLfileToCSV(string path, string PMLfile, string CSVfile)
+        public static void procmonTerminator()
+        {
+            cmd.StandardInput.WriteLine(@"C:\Speciale\Tools\procmon\procmon.exe /waitforidle");
+            cmd.StandardInput.WriteLine(@"C:\Speciale\Tools\procmon\procmon.exe /terminate");
+        }
+
+        public static void convertPMLfileToCSV(string path, string PMLfile, string CSVfile)
         {
             path = path + @"\";
             Process cmd = new Process();
@@ -55,7 +56,6 @@ namespace Speciale_v01
                 Thread.Sleep(10);
                 length = new System.IO.FileInfo(path + CSVfile).Length;
             }
-            Console.WriteLine("FÆRDIG! Efter " + i + " lykker");
             cmd.StandardInput.Flush();
             cmd.StandardInput.Close();
             cmd.WaitForExit();

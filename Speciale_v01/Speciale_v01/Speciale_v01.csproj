@@ -68,8 +68,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSVfile.cs" />
-    <Compile Include="HoneypotFileCreator.cs" />
-    <Compile Include="CreateFileWatcher.cs" />
+    <Compile Include="FileCreator.cs" />
+    <Compile Include="FileMonitor.cs" />
     <Compile Include="IdentifyLocker.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

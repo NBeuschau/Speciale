@@ -23,7 +23,7 @@ namespace Speciale_v01
             this.detail = detail;
         }
 
-        public List<CSVfile> CSVparser(string path)
+        public static List<CSVfile> CSVparser(string path)
         {
             List<CSVfile> output = new List<CSVfile>();
 
@@ -31,6 +31,7 @@ namespace Speciale_v01
 
             string line;
             string[] row = new string[7];
+            line = sr.ReadLine();
             while ((line = sr.ReadLine()) != null)
             {
                 row = line.Split(new string[] { "\",\"" }, StringSplitOptions.None);

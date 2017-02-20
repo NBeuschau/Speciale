@@ -10,7 +10,7 @@ namespace Speciale_v01
     class FileCreator
     {
         //This function runs recursively through every subfolder in the given path
-        public void CreateFileInEveryFolder(string path)
+        public static void CreateFileInEveryFolder(string path)
         {
             Console.WriteLine(path);
             //Runs the function CreateFile in the path
@@ -30,7 +30,7 @@ namespace Speciale_v01
             }
         }
 
-        public void CreateFile(string path)
+        public static void CreateFile(string path)
         {
             //Create a number of files based on the size of the folder
             //Create random strings followed by honeypot and then the type of file
