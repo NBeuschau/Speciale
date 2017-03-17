@@ -5,13 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
+using System.Collections;
 
 namespace Speciale_v01
 {
     class FileMonitor
     {
+
+        static int MONITORTIMEOUT = 2;
         public static int i = 0;
         public static int temp = 0;
+        public static Hashtable eventTimeLog = new Hashtable();
         public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
@@ -44,12 +48,24 @@ namespace Speciale_v01
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
-            if (temp <= 3)
+            try
             {
-                temp++;
-                Console.WriteLine("File: " + e.FullPath + " " + e.ChangeType);
-                Thread.Sleep(5000);
+                Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
+                eventTimeLog[e.FullPath] = DateTime.Now;
                 MainWindow.honeypotChange(e.FullPath);
+            }
+            catch
+            {
+                if (MONITORTIMEOUT < (DateTime.Now - (DateTime)eventTimeLog[e.FullPath]).TotalSeconds)
+                {
+                    Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
+                    eventTimeLog[e.FullPath] = DateTime.Now;
+                    MainWindow.honeypotChange(e.FullPath);
+                }
+                else
+                {
+                    Console.WriteLine(e.FullPath + " has been changed within 2 seconds of another change");
+                }
             }
         }
 

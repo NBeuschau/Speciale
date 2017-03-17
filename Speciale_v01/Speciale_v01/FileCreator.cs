@@ -49,8 +49,3 @@ namespace Speciale_v01
         }
     }
 }
-
-
-/*TextWriter tw = new StreamWriter(path, true);
-tw.WriteLine("The next line!");
-    tw.Close(); */
