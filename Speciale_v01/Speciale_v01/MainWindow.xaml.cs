@@ -25,7 +25,7 @@ namespace Speciale_v01
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string PATH = @"C:\Speciale\Test\";
+        static string PATH = @"C:\Speciale\Test";
         static int INDEXER = 0;
         static string BACKINGNAME = "backingName";
         static HashSet<int> pID = new HashSet<int>();

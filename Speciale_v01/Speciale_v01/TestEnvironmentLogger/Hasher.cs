@@ -10,14 +10,14 @@ namespace Speciale_v01.TestEnvironmentLogger
 {
     class Hasher
     {
-        private static Dictionary<string, string> hashedFiles = new Dictionary<string, string>();
-        public static Dictionary<string,string> fileHasher(string path)
+        private Dictionary<string, string> hashedFiles = new Dictionary<string, string>();
+        public Dictionary<string, string> fileHasher(string path)
         {
-            string [] filesInDirectory = Directory.GetFiles(path);
+            string[] filesInDirectory = Directory.GetFiles(path);
 
             foreach (string file in filesInDirectory)
             {
-                hashedFiles.Add(file, md5Hasher(file)); 
+                hashedFiles.Add(file, md5Hasher(file));
             }
 
             //Get every subdirectory in the given path
@@ -35,13 +35,21 @@ namespace Speciale_v01.TestEnvironmentLogger
             return hashedFiles;
         }
 
-        private static string md5Hasher(string path)
+        private string md5Hasher(string path)
         {
             using (var md5 = MD5.Create())
             {
-                using (var stream = File.OpenRead(path))
+                try
                 {
-                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+                    using (var stream = File.OpenRead(path))
+                    {
+                        return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "").ToLower();
+                    }
+                }
+                catch (Exception)
+                {
+
+                    return "I cannot change";
                 }
             }
         }

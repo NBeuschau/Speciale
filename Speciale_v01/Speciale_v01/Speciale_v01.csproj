@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TestEnvironmentLogger\FileMon.cs" />
     <Compile Include="TestEnvironmentLogger\Hasher.cs" />
     <Compile Include="TestEnvironmentLogger\Logger.cs" />
     <Page Include="MainWindow.xaml">
