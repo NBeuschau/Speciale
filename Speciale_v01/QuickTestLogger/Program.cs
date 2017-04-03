@@ -1,5 +1,4 @@
-﻿using Speciale_v01.TestEnvironmentLogger;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +9,7 @@ namespace QuickTestLogger
 {
     class Program
     {
-        static string PATH = @"C:\Users";
+        static string PATH = @"C:\Users\Quick";
         static void Main(string[] args)
         {
             quickTester();
