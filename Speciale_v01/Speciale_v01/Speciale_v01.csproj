@@ -39,6 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="SautinSoft.Document, Version=2.5.3.3, Culture=neutral, PublicKeyToken=e759c76c7515592a, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Speciale\Tools\SautinSoft.Document.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -59,9 +63,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="QuickTester\QTFileMon.cs" />
+    <Compile Include="QuickTester\QTHasher.cs" />
+    <Compile Include="QuickTester\QTLogger.cs" />
     <Compile Include="TestEnvironmentLogger\FileMon.cs" />
     <Compile Include="TestEnvironmentLogger\Hasher.cs" />
     <Compile Include="TestEnvironmentLogger\Logger.cs" />
+    <Compile Include="TestEnvironmentLogger\VirtualMachineController.cs" />
+    <Compile Include="TestFileCreator\BookLoader.cs" />
+    <Compile Include="TestFileCreator\RandomDataGenerator.cs" />
+    <Compile Include="TestFileCreator\WordFileCreator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

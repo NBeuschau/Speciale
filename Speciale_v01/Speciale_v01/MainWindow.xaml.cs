@@ -1,9 +1,14 @@
-﻿using Speciale_v01.TestEnvironmentLogger;
+﻿using Sample;
+using Speciale_v01.TestEnvironmentLogger;
+using Speciale_v01.TestFileCreator;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -25,10 +30,14 @@ namespace Speciale_v01
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string PATH = @"C:\Speciale\Test";
+        static string PATH = @"C:\Users\viruseater1";
         static int INDEXER = 0;
         static string BACKINGNAME = "backingName";
         static HashSet<int> pID = new HashSet<int>();
+        static string RANSOMWAREFILEPATH = "";
+        static string NAMEONTEST = "";
+        static string FULLRESPONSESTRING = "";
+        private static readonly HttpClient client = new HttpClient();
 
 
 
@@ -60,7 +69,9 @@ namespace Speciale_v01
         {
             InitializeComponent();
             //start();
-            Logger.LogWriter(PATH);
+            //WordFileCreator.CreateDocx(PATH);
+
+            hostOfQuickTester();
         }
 
         public static void start()
@@ -72,6 +83,77 @@ namespace Speciale_v01
 
             var pm = new Thread(() => Procmon.createProcmonBackingFile(PATH, BACKINGNAME + INDEXER));
             pm.Start();
+        }
+
+        public static void quickTester1()
+        {
+
+            Thread.Sleep(18000);
+            QTLogger.getQuickRansomware();
+            Thread.Sleep(2000);
+            NAMEONTEST = QTLogger.getNAMEONTEST();
+            //Install ransomware
+
+            Thread.Sleep(5000);
+
+            downloadFileFTP(NAMEONTEST);
+
+            Thread.Sleep(15000);
+
+            executeProgram(RANSOMWAREFILEPATH);
+
+            Thread.Sleep(10000);
+
+            QTLogger.postQuickFetched();
+
+            //Play ransomware
+        }
+
+        public static void quickTester2()
+        {
+            Thread.Sleep(60000);
+          //  QTLogger.getQuickHost();
+
+            QTLogger.LogWriter(PATH);
+
+
+        }
+
+        public static void hostOfQuickTester()
+        {
+            while (true)
+            {
+                VirtualMachineController.startVirtualMashine("QuickTester");
+                Thread.Sleep(10000);
+                //Wait for QT post somehow
+                getQuickHost();
+                string temp = FULLRESPONSESTRING;
+                Boolean action = false;
+                int runs = 0;
+                while (!action)
+                {
+                    getQuickHost();
+                    if (!temp.Equals(FULLRESPONSESTRING))
+                    {
+                        break;
+                    }
+                    runs++;
+                    Thread.Sleep(5000);
+                    if (runs >= 60)
+                    {
+                        postQuickPosted(NAMEONTEST);
+                        break;
+                    }
+                }
+
+
+                VirtualMachineController.poweroffVirtualMashine("QuickTester");
+
+                Thread.Sleep(8000);
+
+                //TODO
+                VirtualMachineController.restoreVirtualMashine("QuickTester", "QTsnapshot1");
+            }
         }
 
         public static void honeypotChange(string path)
@@ -196,5 +278,55 @@ namespace Speciale_v01
 
         }
         */
+
+        private static void downloadFileFTP(string ransomwareName)
+        {
+            RANSOMWAREFILEPATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "ransomware.exe";
+            string ftphost = "192.168.8.102";
+            string ftpfilepath = "/VirusShare/" + ransomwareName;
+
+            string ftpfullpath = "ftp://" + ftphost + ftpfilepath;
+
+            using (WebClient request = new WebClient())
+            {
+                request.Credentials = new NetworkCredential("datacollector", "");
+                byte[] fileData = request.DownloadData(ftpfullpath);
+
+                using (FileStream file = File.Create(RANSOMWAREFILEPATH))
+                {
+                    file.Write(fileData, 0, fileData.Length);
+                    file.Close();
+                }
+            }
+        }
+
+        private static void executeProgram(string programPath)
+        {
+            Process.Start(programPath);
+        }
+
+        private static async void postQuickPosted(string NAMEONTEST)
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"FileChangedOnHash", "0"},
+                {"FileChangedOnWatcher", "0"},
+                {"Active", "No" },
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postquickposted", content);
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
+        }
+
+        public static async void getQuickHost()
+        {
+            var responseString = await client.GetStringAsync("http://192.168.8.102/v1/index.php/getquickhost");
+
+            FULLRESPONSESTRING = responseString;
+        }
     }
 }

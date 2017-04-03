@@ -136,7 +136,7 @@ namespace Speciale_v01.TestEnvironmentLogger
 
             Dictionary<DateTime,string> fileMonChanges = FileMon.getFilemonChanges();
 
-            string filePath = PATH + "\\RansomwareLog1.txt";
+            string filePath = PATH + "\\RansomwareLog.txt";
             if (!File.Exists(filePath))
             {
                 // Create a file to write to.
