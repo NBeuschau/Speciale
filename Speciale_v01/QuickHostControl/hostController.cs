@@ -18,7 +18,7 @@ namespace QuickHostControl
         {
             while (true)
             {
-                VirtualMashineController.startVirtualMashine("QuickTester");
+                VirtualMachineController.startVirtualMachine("QuickTester");
                 Thread.Sleep(10000);
                 //Wait for QT post somehow
                 getQuickHost();
@@ -42,12 +42,12 @@ namespace QuickHostControl
                 }
 
 
-                VirtualMashineController.poweroffVirtualMashine("QuickTester");
+                VirtualMachineController.poweroffVirtualMachine("QuickTester");
 
                 Thread.Sleep(8000);
 
                 //TODO
-                VirtualMashineController.restoreVirtualMashine("QuickTester", "QTsnapshot1");
+                VirtualMachineController.restoreVirtualMachine("QuickTester", "QTsnapshot1");
             }
         }
 
