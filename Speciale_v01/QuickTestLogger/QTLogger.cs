@@ -219,15 +219,13 @@ namespace QuickTestLogger
             };
 
             var content = new FormUrlEncodedContent(values);
-
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postquickposted", content);
-
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postquickposted", content).Result;
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
         public static async void getQuickHost()
         {
-            var responseString = await client.GetStringAsync("http://192.168.8.102/v1/index.php/getquickhost");
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getquickhost").Result;
 
             NAMEONTEST = findNAMEONTEST(responseString);
         }

