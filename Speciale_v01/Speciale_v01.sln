@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speciale_v01", "Speciale_v0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickHostControl", "QuickHostControl\QuickHostControl.csproj", "{62911152-D43F-4127-BE61-6853427DFB20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDownloader1", "..\..\..\Visual Studio 2015\Projects\Comp Hard Problem\RansomwareDownloader\RansomwareDownloader\RansomwareDownloader1.csproj", "{45EF1360-1CDE-4E08-BE3B-86232009E250}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTestLogger", "QuickTestLogger\QuickTestLogger.csproj", "{544DC3B8-1D36-4A6A-B0F0-98A304929C01}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDownloader", "RansomwareDownloader\RansomwareDownloader.csproj", "{4CB7006D-D81F-4C19-8D48-F5B34FF1666C}"
@@ -27,10 +25,6 @@ Global
 		{62911152-D43F-4127-BE61-6853427DFB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62911152-D43F-4127-BE61-6853427DFB20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62911152-D43F-4127-BE61-6853427DFB20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45EF1360-1CDE-4E08-BE3B-86232009E250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45EF1360-1CDE-4E08-BE3B-86232009E250}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45EF1360-1CDE-4E08-BE3B-86232009E250}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45EF1360-1CDE-4E08-BE3B-86232009E250}.Release|Any CPU.Build.0 = Release|Any CPU
 		{544DC3B8-1D36-4A6A-B0F0-98A304929C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{544DC3B8-1D36-4A6A-B0F0-98A304929C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{544DC3B8-1D36-4A6A-B0F0-98A304929C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
