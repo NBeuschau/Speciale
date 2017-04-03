@@ -9,9 +9,9 @@ namespace QuickHostControl
 {
     class VirtualMachineController
     {
-        public static void poweroffVirtualMachine(string machineName)
+        private static Process cmd = new Process();
+        public void poweroffVirtualMachine(string machineName)
         {
-            Process cmd = new Process();
             cmd.StartInfo.FileName = "cmd.exe";
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = true;
@@ -21,11 +21,12 @@ namespace QuickHostControl
 
             cmd.StandardInput.WriteLine(@"""C:\Program Files\Oracle\VirtualBox\VBoxManage.exe"" controlvm " + machineName + " poweroff");
             cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
         }
 
-        public static void restoreVirtualMachine(string machineName, string snapshotName)
+        public void restoreVirtualMachine(string machineName, string snapshotName)
         {
-            Process cmd = new Process();
             cmd.StartInfo.FileName = "cmd.exe";
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = true;
@@ -35,11 +36,12 @@ namespace QuickHostControl
 
             cmd.StandardInput.WriteLine(@"""C:\Program Files\Oracle\VirtualBox\VBoxManage.exe"" snapshot " + machineName + " restore " + snapshotName);
             cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
         }
 
-        public static void startVirtualMachine(string machineName)
+        public void startVirtualMachine(string machineName)
         {
-            Process cmd = new Process();
             cmd.StartInfo.FileName = "cmd.exe";
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = true;
@@ -49,6 +51,8 @@ namespace QuickHostControl
 
             cmd.StandardInput.WriteLine(@"""C:\Program Files\Oracle\VirtualBox\VBoxManage.exe"" startvm " + machineName);
             cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
         }
     }
 }

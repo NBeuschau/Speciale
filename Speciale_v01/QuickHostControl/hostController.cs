@@ -16,38 +16,62 @@ namespace QuickHostControl
 
         public static void hostOfQuickTester()
         {
+            VirtualMachineController tempVir = null;
+            Boolean action = false;
             while (true)
             {
-                VirtualMachineController.startVirtualMachine("QuickTester");
-                Thread.Sleep(10000);
+
+                tempVir = new VirtualMachineController();
+                tempVir.startVirtualMachine("QuickTester");
+                Thread.Sleep(30000);
                 //Wait for QT post somehow
                 getQuickHost();
                 string temp = FULLRESPONSESTRING;
-                Boolean action = false;
+                Console.Write(temp);
+                int count = temp.Split(':').Length - 1;
+                Console.Write(count);
+                action = false;
                 int runs = 0;
                 while (!action)
                 {
-                    getQuickHost();
-                    if (!temp.Equals(FULLRESPONSESTRING))
+                    if (count > 1)
                     {
-                        break;
+                        Console.WriteLine(temp);
+                        Console.WriteLine(count);
+                        getQuickHost();
+                        if (!temp.Equals(FULLRESPONSESTRING))
+                        {
+                            Console.WriteLine("Breaking because of changes");
+                            action = true;
+                        }
+                        runs++;
+                        Thread.Sleep(5000);
+                        if (runs >= 60)
+                        {
+                            Console.WriteLine("Posting soon");
+                            postQuickPosted(temp);
+                            action = true;
+                        }
                     }
-                    runs++;
-                    Thread.Sleep(5000);
-                    if (runs >= 60)
+                    else
                     {
-                        postQuickPosted(NAMEONTEST);
-                        break;
+                        Thread.Sleep(5000);
+                        getQuickHost();
+                        temp = FULLRESPONSESTRING;
+                        count = temp.Split(':').Length - 1;
                     }
                 }
 
 
-                VirtualMachineController.poweroffVirtualMachine("QuickTester");
 
-                Thread.Sleep(8000);
+                tempVir.poweroffVirtualMachine("QuickTester");
 
-                //TODO
-                VirtualMachineController.restoreVirtualMachine("QuickTester", "QTsnapshot1");
+                Thread.Sleep(5000);
+
+                tempVir.restoreVirtualMachine("QuickTester", "QTsnapshotStartUp");
+
+                Thread.Sleep(10000);
+
             }
         }
 
@@ -58,8 +82,10 @@ namespace QuickHostControl
             FULLRESPONSESTRING = responseString;
         }
 
-        private static async void postQuickPosted(string NAMEONTEST)
+        private static async void postQuickPosted(string RAWNAMEONTEST)
         {
+            NAMEONTEST = findNAMEONTEST(RAWNAMEONTEST);
+            Console.WriteLine("1");
             var values = new Dictionary<string, string>
             {
                 {"FileChangedOnHash", "0"},
@@ -68,11 +94,34 @@ namespace QuickHostControl
                 {"RansomwareName",  NAMEONTEST}
             };
 
+            Console.WriteLine("2");
             var content = new FormUrlEncodedContent(values);
-
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postquickposted", content);
-
+            Console.WriteLine("3");
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postquickposted", content).Result;
+            Console.WriteLine("4");
             var responseString = await response.Content.ReadAsByteArrayAsync();
+            Console.WriteLine("5");
+        }
+
+
+        private static string findNAMEONTEST(string responsestring)
+        {
+            int i = 0;
+            int j = 0;
+            foreach (char c in responsestring)
+            {
+                if (i == 5)
+                {
+                    return responsestring.Substring(j, responsestring.Length - j - 4);
+                }
+                if (c.Equals('"'))
+                {
+                    i++;
+                }
+                j++;
+            }
+
+            return "Could Not Find";
         }
     }
 }
