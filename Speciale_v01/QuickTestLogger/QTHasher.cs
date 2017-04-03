@@ -14,6 +14,11 @@ namespace QuickTestLogger
         public Dictionary<string, string> fileHasher(string path)
         {
             string[] filesInDirectory = null;
+            Console.WriteLine(path);
+            if (!path.Contains("Quick") || path.Contains("Data"))
+            {
+                return hashedFiles;
+            }
             try
             {
                 filesInDirectory = Directory.GetFiles(path);

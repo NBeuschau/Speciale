@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.IO;
 using SautinSoft.Document;
 using Speciale_v01.TestFileCreator;
@@ -103,4 +103,4 @@ namespace Sample
             return sb.ToString();
         }
     }
-}
+} */

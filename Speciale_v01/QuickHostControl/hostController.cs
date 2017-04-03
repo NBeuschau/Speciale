@@ -90,7 +90,7 @@ namespace QuickHostControl
             {
                 {"FileChangedOnHash", "0"},
                 {"FileChangedOnWatcher", "0"},
-                {"Active", "No" },
+                {"Active", "0" },
                 {"RansomwareName",  NAMEONTEST}
             };
 

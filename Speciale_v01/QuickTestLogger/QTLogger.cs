@@ -214,7 +214,7 @@ namespace QuickTestLogger
             {
                 {"FileChangedOnHash", fileChangedOnHash},
                 {"FileChangedOnWatcher", fileChangedOnWatcher},
-                {"Active", "Yes" },
+                {"Active", "1" },
                 {"RansomwareName",  NAMEONTEST}
             };
 

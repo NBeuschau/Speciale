@@ -1,5 +1,4 @@
-﻿using Sample;
-using Speciale_v01.TestEnvironmentLogger;
+﻿using Speciale_v01.TestEnvironmentLogger;
 using Speciale_v01.TestFileCreator;
 using System;
 using System.Collections;
