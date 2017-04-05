@@ -9,7 +9,8 @@ namespace BaseLineLogger
 {
     class Program
     {
-        static string PATH = @"C:\Users\Quick";
+        //static string PATH = @"C:\Speciale\Test";
+        static string PATH = @"C:\Users\Baseline";
         static void Main(string[] args)
         {
             baseLineTester();
@@ -20,10 +21,12 @@ namespace BaseLineLogger
 
             Thread.Sleep(5000);
 
-            BaseLineLogger.getQuickHost();
+            BaseLineLogger.getBaseRansomware();
 
             BaseLineLogger.LogWriter(PATH);
-            BaseLineLogger.postQuickPosted();
+            BaseLineLogger.postBasePosted();
+
+            BaseLineLogger.postBaseTested();
         }
     }
 }

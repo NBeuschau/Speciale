@@ -34,6 +34,15 @@ namespace BaseLineLogger
         private static List<float> harddiskList = new List<float>();
         private static List<float> threadList = new List<float>();
         private static List<float> handleList = new List<float>();
+        static string path1 = @"C:\Users\Baseline\Desktop";
+        static string path2 = @"C:\Users\Baseline\Documents";
+        static string path3 = @"C:\Users\Baseline\Downloads";
+        static string path4 = @"C:\Users\Baseline\Videos";
+        
+        //static string path1 = @"C:\Speciale\Test\Test1";
+        //static string path2 = @"C:\Speciale\Test\Test2";
+        //static string path3 = @"C:\Speciale\Test\Test3";
+        //static string path4 = @"C:\Speciale\Test\Test4";
 
         private static readonly HttpClient client = new HttpClient();
 
@@ -48,12 +57,31 @@ namespace BaseLineLogger
 
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
-            var fw = new Thread(() => FileMon.CreateFileWatcher(PATH));
+            var fw = new Thread(() => FileMon.CreateFileWatcher(@"C:\"));
             fw.Start();
-
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
-            Hasher tempHasher1 = new Hasher();
-            hashedFilesAtStart = tempHasher1.fileHasher(PATH);
+            Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFilesAtStarttemp2 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFilesAtStarttemp3 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFilesAtStarttemp4 = new Dictionary<string, string>();
+            Hasher tempStartHasher1 = new Hasher();
+            hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
+
+            Hasher tempStartHasher2 = new Hasher();
+            hashedFilesAtStarttemp2 = tempStartHasher2.fileHasher(path2);
+
+            Hasher tempStartHasher3 = new Hasher();
+            hashedFilesAtStarttemp3 = tempStartHasher3.fileHasher(path3);
+
+            Hasher tempStartHasher4 = new Hasher();
+            hashedFilesAtStarttemp4 = tempStartHasher4.fileHasher(path4);
+
+
+            hashedFilesAtStarttemp1.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
+            hashedFilesAtStarttemp2.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
+            hashedFilesAtStarttemp3.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
+            hashedFilesAtStarttemp4.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
+
 
             amountOfLoops = 0;
             
@@ -73,12 +101,37 @@ namespace BaseLineLogger
 
                 span = DateTime.Now.Subtract(startTimeStamp);
             }
-            
+
+
+
+
+            Dictionary<string, string> hashedFilesAtEnd = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFilesAtEndtemp1 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFilesAtEndtemp2 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFilesAtEndtemp3 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFilesAtEndtemp4 = new Dictionary<string, string>();
+            Hasher tempEndHasher1 = new Hasher();
+            hashedFilesAtEndtemp1 = tempEndHasher1.fileHasher(path1);
+
+            Hasher tempEndHasher2 = new Hasher();
+            hashedFilesAtStarttemp2 = tempEndHasher2.fileHasher(path2);
+
+            Hasher tempEndHasher3 = new Hasher();
+            hashedFilesAtEndtemp3 = tempEndHasher3.fileHasher(path3);
+
+            Hasher tempEndHasher4 = new Hasher();
+            hashedFilesAtEndtemp4 = tempEndHasher4.fileHasher(path4);
+
+
+            hashedFilesAtEndtemp1.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
+            hashedFilesAtEndtemp2.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
+            hashedFilesAtEndtemp3.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
+            hashedFilesAtEndtemp4.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
+
 
             //Take a hash of the files at the end
-            Hasher tempHasher2 = new Hasher();
-            Dictionary<string, string> hashedFilesAtEnd = new Dictionary<string, string>();
-            hashedFilesAtEnd = tempHasher2.fileHasher(PATH);
+
+
 
             //Find the end timestamp
             DateTime endTimeStamp = DateTime.Now;
@@ -173,7 +226,7 @@ namespace BaseLineLogger
                     }
                     foreach (var item in fileMonChanges)
                     {
-                        filemonChangesReturn += item.Value + ":" + item.Key.ToString("dd/MM/yyyy HH:mm:ss.fff");
+                        filemonChangesReturn += item.Value + "<>" + item.Key.ToString("dd/MM/yyyy HH:mm:ss.fff");
                         filemonChangesReturn += "?";
                     }
 
@@ -217,7 +270,7 @@ namespace BaseLineLogger
             return handleCounter.NextValue();
         }
 
-        public static async void postQuickPosted()
+        public static async void postBasePosted()
         {
             string cpuReturn = returnMonitorListAsString(cpuList);
             string ramReturn = returnMonitorListAsString(ramList);
@@ -272,13 +325,13 @@ namespace BaseLineLogger
             };
 
             var content = new FormUrlEncodedContent(values);
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postquickposted", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content).Result;
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
-        public static async void getQuickHost()
+        public static async void getBaseRansomware()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getquickhost").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbaseransomware").Result;
 
             NAMEONTEST = findNAMEONTEST(responseString);
         }
@@ -314,5 +367,20 @@ namespace BaseLineLogger
             }
             return temp;
         }
+
+        public static async void postBaseTested()
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbasetested", content);
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
+        }
+
     }
 }
