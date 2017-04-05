@@ -7,16 +7,16 @@ using System.IO;
 using System.Threading;
 using System.Collections;
 
-namespace QuickTestLogger
+namespace QuickTestLoggerImproved
 {
     class QTFileMon
     {
 
-        static Dictionary<DateTime, string> fileMonChanges = new Dictionary<DateTime, string>();
-        public static int i = 0;
-        public static int temp = 0;
+        Dictionary<DateTime, string> fileMonChanges = new Dictionary<DateTime, string>();
+        public int i = 0;
+        public int temp = 0;
         public static Hashtable eventTimeLog = new Hashtable();
-        public static void CreateFileWatcher(string PATH)
+        public void CreateFileWatcher(string PATH)
         {
             //FileSystemWatcher can monitor changes in files
             FileSystemWatcher watcher = new FileSystemWatcher();
@@ -46,12 +46,13 @@ namespace QuickTestLogger
 
 
         //Event handeler if an object is changed
-        private static void OnChanged(object source, FileSystemEventArgs e)
+        private void OnChanged(object source, FileSystemEventArgs e)
         {
             if (!e.FullPath.Contains("Data"))
             {
                 if (!fileMonChanges.ContainsKey(DateTime.Now))
                 {
+                    Console.WriteLine("Changed " + e.FullPath);
                     fileMonChanges.Add(DateTime.Now, e.FullPath);
                 }
             }
@@ -59,15 +60,16 @@ namespace QuickTestLogger
 
 
         //Event handeler if an object is renamed
-        private static void OnRenamed(object source, RenamedEventArgs e)
+        private void OnRenamed(object source, RenamedEventArgs e)
         {
             if (!fileMonChanges.ContainsKey(DateTime.Now))
             {
+                Console.WriteLine("Renamed " + e.FullPath);
                 fileMonChanges.Add(DateTime.Now, e.FullPath);
             }
         }
 
-        public static Dictionary<DateTime, string> getFilemonChanges()
+        public Dictionary<DateTime, string> getFilemonChanges()
         {
             return fileMonChanges;
         }

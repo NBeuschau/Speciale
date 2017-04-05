@@ -7,22 +7,23 @@ using System.IO;
 using System.Threading;
 using System.Collections;
 
-namespace QuickTestLogger
+namespace BaseLineLogger
+
 {
-    class QTFileMon
+    class FileMon
     {
 
         static Dictionary<DateTime, string> fileMonChanges = new Dictionary<DateTime, string>();
         public static int i = 0;
         public static int temp = 0;
         public static Hashtable eventTimeLog = new Hashtable();
-        public static void CreateFileWatcher(string PATH)
+        public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
             FileSystemWatcher watcher = new FileSystemWatcher();
 
             //The given path dictates what directory the watcher will monitor
-            watcher.Path = PATH;
+            watcher.Path = path;
 
             //The NotifyFilters determine what the monitors triggers upon. 
             //It can also be a change in size.
@@ -48,12 +49,9 @@ namespace QuickTestLogger
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
-            if (!e.FullPath.Contains("Data"))
+            if (!fileMonChanges.ContainsKey(DateTime.Now))
             {
-                if (!fileMonChanges.ContainsKey(DateTime.Now))
-                {
-                    fileMonChanges.Add(DateTime.Now, e.FullPath);
-                }
+                fileMonChanges.Add(DateTime.Now, e.FullPath);
             }
         }
 

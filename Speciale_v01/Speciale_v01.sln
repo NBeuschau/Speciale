@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTestLogger", "QuickTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDownloader", "RansomwareDownloader\RansomwareDownloader.csproj", "{4CB7006D-D81F-4C19-8D48-F5B34FF1666C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTestLoggerImproved", "QuickTestLoggerImproved\QuickTestLoggerImproved.csproj", "{7D3FE7AE-EAAC-4119-82A7-9220BA009177}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLineLogger", "BaseLineLogger\BaseLineLogger.csproj", "{DF257012-61C8-4630-80BA-1B1C48EC40AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{4CB7006D-D81F-4C19-8D48-F5B34FF1666C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CB7006D-D81F-4C19-8D48-F5B34FF1666C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CB7006D-D81F-4C19-8D48-F5B34FF1666C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D3FE7AE-EAAC-4119-82A7-9220BA009177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D3FE7AE-EAAC-4119-82A7-9220BA009177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D3FE7AE-EAAC-4119-82A7-9220BA009177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D3FE7AE-EAAC-4119-82A7-9220BA009177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF257012-61C8-4630-80BA-1B1C48EC40AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF257012-61C8-4630-80BA-1B1C48EC40AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF257012-61C8-4630-80BA-1B1C48EC40AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF257012-61C8-4630-80BA-1B1C48EC40AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
