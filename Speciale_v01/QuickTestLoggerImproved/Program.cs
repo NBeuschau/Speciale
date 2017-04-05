@@ -9,10 +9,10 @@ namespace QuickTestLoggerImproved
 {
     class Program
     {
-        static string path1 = @"C:\Speciale\Test\Test1";
-        static string path2 = @"C:\Speciale\Test\Test2";
-        static string path3 = @"C:\Speciale\Test\Test3";
-        static string path4 = @"C:\Speciale\Test\Test4";
+        static string path1 = @"C:\Users\Quick\Desktop";
+        static string path2 = @"C:\Users\Quick\Documents";
+        static string path3 = @"C:\Users\Quick\Downloads";
+        static string path4 = @"C:\Users\Quick\Videos";
         static void Main(string[] args)
         {
             quickTestStarter();
