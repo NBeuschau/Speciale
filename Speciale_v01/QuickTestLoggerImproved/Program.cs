@@ -21,7 +21,7 @@ namespace QuickTestLoggerImproved
         private static void quickTestStarter()
         {
 
-            Thread.Sleep(60000);
+            Thread.Sleep(21000);
 
             QTLogger.getQuickHost();
 

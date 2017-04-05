@@ -77,7 +77,17 @@ namespace QuickHostControl
 
         public static void getQuickHost()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getquickhost").Result;
+            string responseString = "";
+            try
+            {
+                responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getquickhost").Result;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
 
             FULLRESPONSESTRING = responseString;
         }
