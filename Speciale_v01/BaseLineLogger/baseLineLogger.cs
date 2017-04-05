@@ -12,8 +12,8 @@ namespace BaseLineLogger
 {
     class BaseLineLogger
     {
-        private static int INTERVALFORLOOP = 20000;
-        private static int MINUTESOFLOGGING = 3;
+        private static int INTERVALFORLOOP = 500;
+        private static int MINUTESOFLOGGING = 25;
         private static string NAMEONTEST = "test";
         private static Boolean MONITORSTATUS = true;
         private static PerformanceCounter cpuUsageCounter;
