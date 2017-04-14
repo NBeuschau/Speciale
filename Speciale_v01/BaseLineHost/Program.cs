@@ -10,7 +10,7 @@ namespace BaseLineHost
     {
         static void Main(string[] args)
         {
-            hostController.hostOfQuickTester();
+            hostController.hostOfBaseLineTester();
         }
     }
 }

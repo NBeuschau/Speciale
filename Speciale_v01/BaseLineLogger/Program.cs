@@ -9,7 +9,7 @@ namespace BaseLineLogger
 {
     class Program
     {
-        //static string PATH = @"C:\Speciale\Test";
+        //static string PATH = @"C:\Users\viruseater1";
         static string PATH = @"C:\Users\Baseline";
         static void Main(string[] args)
         {
@@ -19,14 +19,21 @@ namespace BaseLineLogger
         public static void baseLineTester()
         {
 
-            Thread.Sleep(5000);
-
+            /*
             BaseLineLogger.getBaseRansomware();
-
+            Console.WriteLine(BaseLineLogger.getNAMEONTEST());
             BaseLineLogger.LogWriter(PATH);
             BaseLineLogger.postBasePosted();
 
             BaseLineLogger.postBaseTested();
+            */
+
+            BaseLineLogger.getBaseRansomware();
+            Console.WriteLine(BaseLineLogger.getNAMEONTEST());
+            BaseLineLogger.postBaseFetched();
+            BaseLineLogger.test();
+            BaseLineLogger.postBaseTested();
+
         }
     }
 }

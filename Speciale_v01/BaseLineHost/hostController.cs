@@ -14,7 +14,7 @@ namespace BaseLineHost
         private static readonly HttpClient client = new HttpClient();
         private static string NAMEONTEST = "Error";
 
-        public static void hostOfQuickTester()
+        public static void hostOfBaseLineTester()
         {
             VirtualMachineController tempVir = null;
             Boolean action = false;
@@ -22,53 +22,14 @@ namespace BaseLineHost
             {
 
                 tempVir = new VirtualMachineController();
-                tempVir.startVirtualMachine("QuickTester");
-                Thread.Sleep(30000);
-                //Wait for QT post somehow
-                getQuickHost();
-                string temp = FULLRESPONSESTRING;
-                Console.Write(temp);
-                int count = temp.Split(':').Length - 1;
-                Console.Write(count);
-                action = false;
-                int runs = 0;
-                while (!action)
-                {
-                    if (count > 1)
-                    {
-                        Console.WriteLine(temp);
-                        Console.WriteLine(count);
-                        getQuickHost();
-                        if (!temp.Equals(FULLRESPONSESTRING))
-                        {
-                            Console.WriteLine("Breaking because of changes");
-                            action = true;
-                        }
-                        runs++;
-                        Thread.Sleep(5000);
-                        if (runs >= 60)
-                        {
-                            Console.WriteLine("Posting soon");
-                            postQuickPosted(temp);
-                            action = true;
-                        }
-                    }
-                    else
-                    {
-                        Thread.Sleep(5000);
-                        getQuickHost();
-                        temp = FULLRESPONSESTRING;
-                        count = temp.Split(':').Length - 1;
-                    }
-                }
+                tempVir.startVirtualMachine("BaselineTest");
+                Thread.Sleep(2220000);
 
-
-
-                tempVir.poweroffVirtualMachine("QuickTester");
+                tempVir.poweroffVirtualMachine("BaselineTest");
 
                 Thread.Sleep(5000);
 
-                tempVir.restoreVirtualMachine("QuickTester", "QTsnapshotStartUp");
+                tempVir.restoreVirtualMachine("BaselineTest", "BLsnapshotStartUp");
 
                 Thread.Sleep(10000);
 
