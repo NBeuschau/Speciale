@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickHostControl", "QuickHo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTestLogger", "QuickTestLogger\QuickTestLogger.csproj", "{544DC3B8-1D36-4A6A-B0F0-98A304929C01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareDownloader", "RansomwareDownloader\RansomwareDownloader.csproj", "{4CB7006D-D81F-4C19-8D48-F5B34FF1666C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickRansomwareDownloader", "RansomwareDownloader\QuickRansomwareDownloader.csproj", "{4CB7006D-D81F-4C19-8D48-F5B34FF1666C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTestLoggerImproved", "QuickTestLoggerImproved\QuickTestLoggerImproved.csproj", "{7D3FE7AE-EAAC-4119-82A7-9220BA009177}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLineLogger", "BaseLineL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoneyPotFilemon", "HoneyPotFilemon\HoneyPotFilemon.csproj", "{03A10693-BC22-423D-8FF8-9863432B28AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RansomwareBaseDownloader", "RansomwareBaseDownloader\RansomwareBaseDownloader.csproj", "{A3419A52-F309-4049-87D8-60E5EED7778E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLineRansomwareDownloader", "RansomwareBaseDownloader\BaseLineRansomwareDownloader.csproj", "{A3419A52-F309-4049-87D8-60E5EED7778E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLineHost", "BaseLineHost\BaseLineHost.csproj", "{A862E2B3-311E-4247-862E-4D63E8F4A6BC}"
 EndProject

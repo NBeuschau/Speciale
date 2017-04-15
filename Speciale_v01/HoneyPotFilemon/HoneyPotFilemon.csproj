@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionTaker.cs" />
+    <Compile Include="CSVfileHandler.cs" />
+    <Compile Include="FileMon.cs" />
+    <Compile Include="ProcMon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
