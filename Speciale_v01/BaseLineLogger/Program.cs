@@ -19,20 +19,21 @@ namespace BaseLineLogger
         public static void baseLineTester()
         {
 
-            /*
+            
             BaseLineLogger.getBaseRansomware();
             Console.WriteLine(BaseLineLogger.getNAMEONTEST());
             BaseLineLogger.LogWriter(PATH);
             BaseLineLogger.postBasePosted();
 
             BaseLineLogger.postBaseTested();
-            */
+            /*
 
             BaseLineLogger.getBaseRansomware();
             Console.WriteLine(BaseLineLogger.getNAMEONTEST());
             BaseLineLogger.postBaseFetched();
             BaseLineLogger.test();
             BaseLineLogger.postBaseTested();
+            */
 
         }
     }

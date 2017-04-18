@@ -306,7 +306,7 @@ namespace BaseLineLogger
                 filemonChangesReturn += item.Value + ":" + item.Key.ToString("dd/MM/yyyy HH:mm:ss.fff");
                 filemonChangesReturn += "?";
             }
-
+            /*
             var values = new Dictionary<string, string>
             {
                 {"RansomwareName", NAMEONTEST },
@@ -326,10 +326,38 @@ namespace BaseLineLogger
                 {"ListNewFiles", newFilesReturn},
                 {"ListFilemonObservations", "I am the problem!"}
             };
-
+            
             var content = new FormUrlEncodedContent(values);
             var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content).Result;
             var responseString = await response.Content.ReadAsByteArrayAsync();
+            */
+
+            var options = new
+            {
+                RansomwareName = NAMEONTEST,
+                MonitorStatus = "1" ,
+                MonitorCount = amountOfLoops.ToString() ,
+                CountChangedFiles = changedKeyList.Count().ToString() ,
+                CountDeletedFiles = hashedFilesAtStartKeys.Count().ToString() ,
+                CountNewFiles = hashedFilesAtEndKeys.Count().ToString() ,
+                CountFilemonObservations = fileMonChanges.Count().ToString() ,
+                CPU = cpuReturn,
+                RAM = ramReturn,
+                HDD = harddiskReturn,
+                ThreadCount = threadReturn,
+                HandleCount = handleReturn,
+                ListChangedFiles = changedFilesReturn,
+                ListDeletedFiles = deletedFilesReturn,
+                ListNewFiles = newFilesReturn,
+                ListFilemonObservations = filemonChangesReturn
+            };
+
+
+            var stringPayload = JsonConvert.SerializeObject(options);
+            var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content);
+            var result = await response.Content.ReadAsByteArrayAsync();
         }
 
         public static void getBaseRansomware()
@@ -389,6 +417,16 @@ namespace BaseLineLogger
         {
             return NAMEONTEST;
         }
+
+
+
+
+
+
+
+
+
+
 
         public static async void test()
         {
@@ -462,6 +500,7 @@ namespace BaseLineLogger
                     ListNewFiles = "test",
                     ListFilemonObservations = "test"
                 };
+                
                 var stringPayload = JsonConvert.SerializeObject(options);
                 var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
@@ -523,20 +562,6 @@ namespace BaseLineLogger
 
                 //var content = new FormUrlEncodedContent(values);
 
-        }
-
-        public static async void postBaseFetched()
-        {
-            var values = new Dictionary<string, string>
-            {
-                {"RansomwareName",  NAMEONTEST}
-            };
-
-            var content = new FormUrlEncodedContent(values);
-
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbasefetched", content);
-
-            var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
     }
