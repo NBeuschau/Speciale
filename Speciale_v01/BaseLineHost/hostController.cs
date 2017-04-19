@@ -23,7 +23,7 @@ namespace BaseLineHost
 
                 tempVir = new VirtualMachineController();
                 tempVir.startVirtualMachine("BaselineTest");
-                Thread.Sleep(2220000);
+                Thread.Sleep(1980000);
 
                 tempVir.poweroffVirtualMachine("BaselineTest");
 

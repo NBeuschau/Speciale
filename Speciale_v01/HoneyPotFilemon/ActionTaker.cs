@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HoneyPotFilemon
+namespace HoneyPotPOC
 {
     class ActionTaker
     {
 
-        static string PATH = "";
+        static string PATH = @"C:\procmon\Procmon.exe";
         static int INDEXER = 0;
         static string BACKINGNAME = "";
         static HashSet<int> pID = new HashSet<int>();

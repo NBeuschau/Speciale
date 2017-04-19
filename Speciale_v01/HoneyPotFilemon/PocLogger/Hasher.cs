@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace HoneyPotFilemon.PocLogger
+namespace HoneyPotPOC.PocLogger
 {
     class Hasher
     {

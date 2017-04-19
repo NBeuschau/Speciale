@@ -7,7 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Collections;
 
-namespace HoneyPotFilemon
+namespace HoneyPotPOC
 {
     class FileMon
     {

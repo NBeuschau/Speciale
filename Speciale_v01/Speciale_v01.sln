@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTestLoggerImproved", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLineLogger", "BaseLineLogger\BaseLineLogger.csproj", "{DF257012-61C8-4630-80BA-1B1C48EC40AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoneyPotFilemon", "HoneyPotFilemon\HoneyPotFilemon.csproj", "{03A10693-BC22-423D-8FF8-9863432B28AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoneyPotPOC", "HoneyPotFilemon\HoneyPotPOC.csproj", "{03A10693-BC22-423D-8FF8-9863432B28AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLineRansomwareDownloader", "RansomwareBaseDownloader\BaseLineRansomwareDownloader.csproj", "{A3419A52-F309-4049-87D8-60E5EED7778E}"
 EndProject
