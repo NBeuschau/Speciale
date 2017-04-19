@@ -12,6 +12,7 @@ namespace HoneyPotPOC
     {
 
         static string PATH = @"C:\procmon\Procmon.exe";
+        static string ProcmonPath = @"C:\procmon\Procmon.exe";
         static int INDEXER = 0;
         static string BACKINGNAME = "";
         static HashSet<int> pID = new HashSet<int>();

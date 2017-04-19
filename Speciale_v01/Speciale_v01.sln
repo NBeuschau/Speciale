@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLineHost", "BaseLineHos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoneyPotFileCreator", "HoneyPotFileCreator\HoneyPotFileCreator.csproj", "{C7CF5950-6C74-48C4-84C7-4A380C62701E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoneyPotPOCRansomwareDownloader", "HoneyPotPOCRansomwareDownloader\HoneyPotPOCRansomwareDownloader.csproj", "{EAC9BB36-427F-4CDA-9706-3725A6A0F456}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{C7CF5950-6C74-48C4-84C7-4A380C62701E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7CF5950-6C74-48C4-84C7-4A380C62701E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7CF5950-6C74-48C4-84C7-4A380C62701E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC9BB36-427F-4CDA-9706-3725A6A0F456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC9BB36-427F-4CDA-9706-3725A6A0F456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC9BB36-427F-4CDA-9706-3725A6A0F456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC9BB36-427F-4CDA-9706-3725A6A0F456}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

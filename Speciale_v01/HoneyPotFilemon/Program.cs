@@ -17,10 +17,10 @@ namespace HoneyPotPOC
 
         static void Main(string[] args)
         {
-
+            honeyPotFileMonDetection();
         }
 
-        public void honeyPotFileMonDetection()
+        public static void honeyPotFileMonDetection()
         {
 
             Logger.getBaseRansomware();
