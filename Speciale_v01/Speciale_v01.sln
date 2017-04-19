@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speciale_v01", "Speciale_v01\Speciale_v01.csproj", "{FB4FFE7B-9B5E-4020-85C1-8D32A038891A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickHostControl", "QuickHostControl\QuickHostControl.csproj", "{62911152-D43F-4127-BE61-6853427DFB20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickTestLogger", "QuickTestLogger\QuickTestLogger.csproj", "{544DC3B8-1D36-4A6A-B0F0-98A304929C01}"
@@ -27,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FB4FFE7B-9B5E-4020-85C1-8D32A038891A}.Debug|Any CPU.ActiveCfg = Release|Any CPU
-		{FB4FFE7B-9B5E-4020-85C1-8D32A038891A}.Debug|Any CPU.Build.0 = Release|Any CPU
-		{FB4FFE7B-9B5E-4020-85C1-8D32A038891A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB4FFE7B-9B5E-4020-85C1-8D32A038891A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62911152-D43F-4127-BE61-6853427DFB20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62911152-D43F-4127-BE61-6853427DFB20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62911152-D43F-4127-BE61-6853427DFB20}.Release|Any CPU.ActiveCfg = Release|Any CPU

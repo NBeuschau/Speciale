@@ -17,6 +17,7 @@ namespace BaseLineLogger
         public static int i = 0;
         public static int temp = 0;
         public static Hashtable eventTimeLog = new Hashtable();
+        private static Boolean stopAddingToLog = false;
         public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
@@ -49,9 +50,12 @@ namespace BaseLineLogger
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
-            if (!fileMonChanges.ContainsKey(DateTime.Now))
+            if (!stopAddingToLog)
             {
-                fileMonChanges.Add(DateTime.Now, e.FullPath);
+                if (!fileMonChanges.ContainsKey(DateTime.Now))
+                {
+                    fileMonChanges.Add(DateTime.Now, e.FullPath);
+                }
             }
         }
 
@@ -59,15 +63,23 @@ namespace BaseLineLogger
         //Event handeler if an object is renamed
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
-            if (!fileMonChanges.ContainsKey(DateTime.Now))
+            if (!stopAddingToLog)
             {
-                fileMonChanges.Add(DateTime.Now, e.FullPath);
+                if (!fileMonChanges.ContainsKey(DateTime.Now))
+                {
+                    fileMonChanges.Add(DateTime.Now, e.FullPath);
+                }
             }
         }
 
         public static Dictionary<DateTime, string> getFilemonChanges()
         {
             return fileMonChanges;
+        }
+
+        public static void setStopAddingToLog(Boolean b)
+        {
+            stopAddingToLog = b;
         }
     }
 }

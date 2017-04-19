@@ -38,7 +38,7 @@ namespace Speciale_v01
         static string FULLRESPONSESTRING = "";
         private static readonly HttpClient client = new HttpClient();
 
-
+        /*
 
         public MainWindow()
         {
@@ -179,5 +179,6 @@ namespace Speciale_v01
             
 
         }
+    */
     }
 }

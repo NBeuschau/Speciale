@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaseLineLogger
+namespace HoneyPotFilemon.PocLogger
 {
-    class BaseLineLogger
+    class Logger
     {
         private static int INTERVALFORLOOP = 500;
         private static int MINUTESOFLOGGING = 25;
@@ -31,7 +31,7 @@ namespace BaseLineLogger
         private static List<string> inEndDictionary = new List<string>();
         private static Dictionary<string, string>.KeyCollection hashedFilesAtStartKeys = null;
         private static Dictionary<string, string>.KeyCollection hashedFilesAtEndKeys = null;
-        private static Dictionary<DateTime, string> fileMonChanges = FileMon.getFilemonChanges();
+        private static Dictionary<DateTime, string> fileMonChanges = Filemon.getFilemonChanges();
         private static List<float> cpuList = new List<float>();
         private static List<float> ramList = new List<float>();
         private static List<float> harddiskList = new List<float>();
@@ -60,7 +60,7 @@ namespace BaseLineLogger
 
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
-            var fw = new Thread(() => FileMon.CreateFileWatcher(@"C:\"));
+            var fw = new Thread(() => Filemon.CreateFileWatcher(@"C:\"));
             fw.Start();
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
@@ -183,8 +183,8 @@ namespace BaseLineLogger
             }
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
-            FileMon.setStopAddingToLog(true);
-            fileMonChanges = FileMon.getFilemonChanges();
+
+            fileMonChanges = Filemon.getFilemonChanges();
 
             string filePath = PATH + "\\RansomwareLog.txt";
             if (!File.Exists(filePath))
@@ -280,11 +280,14 @@ namespace BaseLineLogger
             string harddiskReturn = returnMonitorListAsString(harddiskList);
             string threadReturn = returnMonitorListAsString(threadList);
             string handleReturn = returnMonitorListAsString(handleList);
+            List<string> killedProcesses = ActionTaker.getKilledProcesses();
 
             string changedFilesReturn = "";
             string deletedFilesReturn = "";
             string newFilesReturn = "";
             string filemonChangesReturn = "";
+            string killedProcessesReturn = "";
+
 
             for (int i = 0; i < changedKeyList.Count - 1; i++)
             {
@@ -305,6 +308,11 @@ namespace BaseLineLogger
             {
                 filemonChangesReturn += item.Value + ":" + item.Key.ToString("dd/MM/yyyy HH:mm:ss.fff");
                 filemonChangesReturn += "?";
+            }
+            foreach (string s in killedProcesses)
+            {
+                killedProcessesReturn += s;
+                killedProcessesReturn += "?";
             }
             /*
             var values = new Dictionary<string, string>
@@ -335,12 +343,12 @@ namespace BaseLineLogger
             var options = new
             {
                 RansomwareName = NAMEONTEST,
-                MonitorStatus = "1" ,
-                MonitorCount = amountOfLoops.ToString() ,
-                CountChangedFiles = changedKeyList.Count().ToString() ,
-                CountDeletedFiles = hashedFilesAtStartKeys.Count().ToString() ,
-                CountNewFiles = hashedFilesAtEndKeys.Count().ToString() ,
-                CountFilemonObservations = fileMonChanges.Count().ToString() ,
+                MonitorStatus = "1",
+                MonitorCount = amountOfLoops.ToString(),
+                CountChangedFiles = changedKeyList.Count().ToString(),
+                CountDeletedFiles = hashedFilesAtStartKeys.Count().ToString(),
+                CountNewFiles = hashedFilesAtEndKeys.Count().ToString(),
+                CountFilemonObservations = fileMonChanges.Count().ToString(),
                 CPU = cpuReturn,
                 RAM = ramReturn,
                 HDD = harddiskReturn,
@@ -349,7 +357,8 @@ namespace BaseLineLogger
                 ListChangedFiles = changedFilesReturn,
                 ListDeletedFiles = deletedFilesReturn,
                 ListNewFiles = newFilesReturn,
-                ListFilemonObservations = filemonChangesReturn
+                ListFilemonObservations = filemonChangesReturn,
+                NameOfShutdownRansomware = killedProcessesReturn
             };
 
 
@@ -358,8 +367,6 @@ namespace BaseLineLogger
 
             var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content);
             var result = await response.Content.ReadAsByteArrayAsync();
-
-            FileMon.setStopAddingToLog(false);
         }
 
         public static void getBaseRansomware()
@@ -475,13 +482,6 @@ namespace BaseLineLogger
                 {"ListFilemonObservations", "te"}
                 ;}
                 */
-                var options1 = new
-                {
-                    value = "test",
-                    apikey = ConfigurationManager.AppSettings["pdf:key"],
-                    MarginLeft = "10",
-                    MarginRight = "10"
-                };
 
                 var options = new
                 {
@@ -502,7 +502,7 @@ namespace BaseLineLogger
                     ListNewFiles = "test",
                     ListFilemonObservations = "test"
                 };
-                
+
                 var stringPayload = JsonConvert.SerializeObject(options);
                 var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
@@ -510,59 +510,59 @@ namespace BaseLineLogger
                 var result = await response.Content.ReadAsByteArrayAsync();
             }
 
-                //NYT
-                /*
-                using (var client = new HttpClient())
+            //NYT
+            /*
+            using (var client = new HttpClient())
+            {
+                // Build the conversion options
+                var options = new Dictionary<string, string>
                 {
-                    // Build the conversion options
-                    var options = new Dictionary<string, string>
-                    {
-                        { "value", html },
-                        { "apikey", ConfigurationManager.AppSettings["pdf:key"] },
-                        { "MarginLeft", "10" },
-                        { "MarginRight", "10" }
-                    };
+                    { "value", html },
+                    { "apikey", ConfigurationManager.AppSettings["pdf:key"] },
+                    { "MarginLeft", "10" },
+                    { "MarginRight", "10" }
+                };
 
-                    // THIS LINE RAISES THE EXCEPTION
-                    var content = new FormUrlEncodedContent(options);
+                // THIS LINE RAISES THE EXCEPTION
+                var content = new FormUrlEncodedContent(options);
 
-                    var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
-                    var result = await response.Content.ReadAsByteArrayAsync();
-                    return result;
-                }
+                var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
+                var result = await response.Content.ReadAsByteArrayAsync();
+                return result;
+            }
 
-                using (var client = new HttpClient())
+            using (var client = new HttpClient())
+            {
+                // Build the conversion options
+                var options = new
                 {
-                    // Build the conversion options
-                    var options = new
-                    {
-                        value = html,
-                        apikey = ConfigurationManager.AppSettings["pdf:key"],
-                        MarginLeft = "10",
-                        MarginRight = "10"
-                    };
+                    value = html,
+                    apikey = ConfigurationManager.AppSettings["pdf:key"],
+                    MarginLeft = "10",
+                    MarginRight = "10"
+                };
 
-                    // Serialize our concrete class into a JSON String
-                    var content = JsonConvert.SerializeObject(options);
-                    var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+                // Serialize our concrete class into a JSON String
+                var content = JsonConvert.SerializeObject(options);
+                var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-                    var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
-                    var result = await response.Content.ReadAsByteArrayAsync();
-                    return result;
-                }
+                var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
+                var result = await response.Content.ReadAsByteArrayAsync();
+                return result;
+            }
 
-                var values = new List<KeyValuePair<string, string>>();
-                values.Add(new KeyValuePair<string, string>("data", XMLBody));
-                var content = new FormUrlEncodedContent(values);
-                HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
+            var values = new List<KeyValuePair<string, string>>();
+            values.Add(new KeyValuePair<string, string>("data", XMLBody));
+            var content = new FormUrlEncodedContent(values);
+            HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
 
 
-                StringContent content = new StringContent("data=" + HttpUtility.UrlEncode(action.Body), Encoding.UTF8, "application/x-www-form-urlencoded");
-                HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
-                */
-                //NYT
+            StringContent content = new StringContent("data=" + HttpUtility.UrlEncode(action.Body), Encoding.UTF8, "application/x-www-form-urlencoded");
+            HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
+            */
+            //NYT
 
-                //var content = new FormUrlEncodedContent(values);
+            //var content = new FormUrlEncodedContent(values);
 
         }
 

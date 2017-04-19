@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace BaseLineLogger
+namespace HoneyPotFilemon.PocLogger
 {
     class Hasher
     {
@@ -31,7 +32,6 @@ namespace BaseLineLogger
 
             foreach (string file in filesInDirectory)
             {
-                Console.WriteLine(file);
                 hashedFiles.Add(file, md5Hasher(file));
             }
 

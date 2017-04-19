@@ -76,5 +76,10 @@ namespace HoneyPotFilemon
         {
             BACKINGNAME = name;
         }
+
+        public static List<string> getKilledProcesses()
+        {
+            return killedProcesses;
+        }
     }
 }
