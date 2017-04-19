@@ -117,7 +117,7 @@ namespace BaseLineLogger
             hashedFilesAtEndtemp1 = tempEndHasher1.fileHasher(path1);
 
             Hasher tempEndHasher2 = new Hasher();
-            hashedFilesAtStarttemp2 = tempEndHasher2.fileHasher(path2);
+            hashedFilesAtEndtemp2 = tempEndHasher2.fileHasher(path2);
 
             Hasher tempEndHasher3 = new Hasher();
             hashedFilesAtEndtemp3 = tempEndHasher3.fileHasher(path3);
