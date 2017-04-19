@@ -41,6 +41,7 @@ namespace BaseLineLogger
         static string path2 = @"C:\Users\Baseline\Documents";
         static string path3 = @"C:\Users\Baseline\Downloads";
         static string path4 = @"C:\Users\Baseline\Videos";
+        static string pathFileWatch = @"C:\Users\Baseline";
 
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";
@@ -60,7 +61,7 @@ namespace BaseLineLogger
 
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
-            var fw = new Thread(() => FileMon.CreateFileWatcher(@"C:\"));
+            var fw = new Thread(() => FileMon.CreateFileWatcher(pathFileWatch));
             fw.Start();
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
@@ -306,31 +307,6 @@ namespace BaseLineLogger
                 filemonChangesReturn += item.Value + ":" + item.Key.ToString("dd/MM/yyyy HH:mm:ss.fff");
                 filemonChangesReturn += "?";
             }
-            /*
-            var values = new Dictionary<string, string>
-            {
-                {"RansomwareName", NAMEONTEST },
-                {"MonitorStatus", "1" },
-                {"MonitorCount", amountOfLoops.ToString() },
-                {"CountChangedFiles",changedKeyList.Count().ToString() },
-                {"CountDeletedFiles", hashedFilesAtStartKeys.Count().ToString() },
-                {"CountNewFiles", hashedFilesAtEndKeys.Count().ToString() },
-                {"CountFilemonObservations", fileMonChanges.Count().ToString()  },
-                {"CPU", cpuReturn},
-                {"RAM", ramReturn},
-                {"HDD", harddiskReturn},
-                {"ThreadCount", threadReturn},
-                {"HandleCount", handleReturn},
-                {"ListChangedFiles", changedFilesReturn},
-                {"ListDeletedFiles", deletedFilesReturn},
-                {"ListNewFiles", newFilesReturn},
-                {"ListFilemonObservations", "I am the problem!"}
-            };
-            
-            var content = new FormUrlEncodedContent(values);
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content).Result;
-            var responseString = await response.Content.ReadAsByteArrayAsync();
-            */
 
             var options = new
             {
