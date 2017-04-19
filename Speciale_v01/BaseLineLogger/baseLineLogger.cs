@@ -185,7 +185,7 @@ namespace BaseLineLogger
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
             FileMon.setStopAddingToLog(true);
             fileMonChanges = FileMon.getFilemonChanges();
-
+            /*
             string filePath = PATH + "\\RansomwareLog.txt";
             if (!File.Exists(filePath))
             {
@@ -244,7 +244,7 @@ namespace BaseLineLogger
                     sw.WriteLine(filemonChangesReturn);
 
                 }
-            }
+            }*/
             return true;
         }
 
