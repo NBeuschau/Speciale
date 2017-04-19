@@ -332,7 +332,7 @@ namespace BaseLineLogger
             var stringPayload = JsonConvert.SerializeObject(options);
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content);
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content).Result;
             var result = await response.Content.ReadAsByteArrayAsync();
 
             FileMon.setStopAddingToLog(false);

@@ -41,6 +41,7 @@ namespace HoneyPotFilemon.PocLogger
         static string path2 = @"C:\Users\Baseline\Documents";
         static string path3 = @"C:\Users\Baseline\Downloads";
         static string path4 = @"C:\Users\Baseline\Videos";
+        static string pathFileWatch = @"C:\Users\PoC";
 
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";
@@ -60,7 +61,7 @@ namespace HoneyPotFilemon.PocLogger
 
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
-            var fw = new Thread(() => Filemon.CreateFileWatcher(@"C:\"));
+            var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
             fw.Start();
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
@@ -117,7 +118,7 @@ namespace HoneyPotFilemon.PocLogger
             hashedFilesAtEndtemp1 = tempEndHasher1.fileHasher(path1);
 
             Hasher tempEndHasher2 = new Hasher();
-            hashedFilesAtStarttemp2 = tempEndHasher2.fileHasher(path2);
+            hashedFilesAtEndtemp2 = tempEndHasher2.fileHasher(path2);
 
             Hasher tempEndHasher3 = new Hasher();
             hashedFilesAtEndtemp3 = tempEndHasher3.fileHasher(path3);
@@ -185,7 +186,7 @@ namespace HoneyPotFilemon.PocLogger
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
 
             fileMonChanges = Filemon.getFilemonChanges();
-
+            /*
             string filePath = PATH + "\\RansomwareLog.txt";
             if (!File.Exists(filePath))
             {
@@ -244,7 +245,7 @@ namespace HoneyPotFilemon.PocLogger
                     sw.WriteLine(filemonChangesReturn);
 
                 }
-            }
+            }*/
             return true;
         }
 
@@ -365,7 +366,7 @@ namespace HoneyPotFilemon.PocLogger
             var stringPayload = JsonConvert.SerializeObject(options);
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content);
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content).Result;
             var result = await response.Content.ReadAsByteArrayAsync();
         }
 
