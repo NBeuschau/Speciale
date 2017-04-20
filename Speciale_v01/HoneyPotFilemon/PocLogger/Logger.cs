@@ -185,6 +185,7 @@ namespace HoneyPotPOC.PocLogger
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
 
+            Filemon.setStopAddingToLog(true);
             fileMonChanges = Filemon.getFilemonChanges();
             /*
             string filePath = PATH + "\\RansomwareLog.txt";
@@ -212,6 +213,7 @@ namespace HoneyPotPOC.PocLogger
                     string deletedFilesReturn = "";
                     string newFilesReturn = "";
                     string filemonChangesReturn = "";
+                    string killedProcessesReturn = "";
 
                     for (int i = 0; i < changedKeyList.Count; i++)
                     {
@@ -233,6 +235,11 @@ namespace HoneyPotPOC.PocLogger
                         filemonChangesReturn += item.Value + "<>" + item.Key.ToString("dd/MM/yyyy HH:mm:ss.fff");
                         filemonChangesReturn += "?";
                     }
+                    foreach (string s in killedProcesses)
+                    {
+                        killedProcessesReturn += s;
+                        killedProcessesReturn += "?";
+                    }
 
                     sw.WriteLine(cpuReturn);
                     sw.WriteLine(ramReturn);
@@ -243,6 +250,7 @@ namespace HoneyPotPOC.PocLogger
                     sw.WriteLine(deletedFilesReturn);
                     sw.WriteLine(newFilesReturn);
                     sw.WriteLine(filemonChangesReturn);
+                    sw.WriteLine(killedProcessesReturn);
 
                 }
             }*/
