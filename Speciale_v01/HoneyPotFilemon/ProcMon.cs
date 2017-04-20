@@ -24,7 +24,7 @@ namespace HoneyPotPOC
             cmd.StartInfo.UseShellExecute = false;
             cmd.Start();
 
-            cmd.StandardInput.WriteLine(@"start " + procMonPath + @" /quiet /minimized /backingfile C:\Speciale\Test\" + backingName + ".PML");
+            cmd.StandardInput.WriteLine(@"start " + procMonPath + @" /quiet /minimized /backingfile " + path + "\\" + backingName + ".PML");
             cmd.StandardInput.Flush();
         }
 

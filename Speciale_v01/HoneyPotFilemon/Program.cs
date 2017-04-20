@@ -14,14 +14,12 @@ namespace HoneyPotPOC
         //static string PATH = @"C:\Users\PoC";
         static string PATH = @"C:\Users\PoC-tester";
         static string BACKINGNAME = "backingFromProcMon";
+        static string pathToBackingFile = @"C:\procmon\backingFileTest";
         static string ProcMonPath = @"C:\procmon\Procmon.exe";
 
         static void Main(string[] args)
         {
-            //honeyPotFileMonDetection();
-
-            Logger.getPoCRansomware();
-            Thread.Sleep(100000);
+            honeyPotFileMonDetection();
         }
 
         public static void honeyPotFileMonDetection()
@@ -30,11 +28,11 @@ namespace HoneyPotPOC
             Logger.getPoCRansomware();
 
             ActionTaker.setBackingName(BACKINGNAME);
-            ActionTaker.setPATH(PATH);
+            ActionTaker.setPathToBackingFile(pathToBackingFile);
 
             ProcMon.setPathToProcMon(ProcMonPath);
 
-            var t = new Thread(() => ProcMon.createProcmonBackingFile(PATH, BACKINGNAME));
+            var t = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME));
             t.Start();
 
             FileMon.createFileWatcher(PATH);

@@ -11,7 +11,7 @@ namespace HoneyPotPOC
     class ActionTaker
     {
 
-        static string PATH = @"C:\procmon\Procmon.exe";
+        static string pathToBackingFile = "";
         static int INDEXER = 0;
         static string BACKINGNAME = "";
         static HashSet<int> pID = new HashSet<int>();
@@ -25,12 +25,12 @@ namespace HoneyPotPOC
             Thread.Sleep(10000);
 
             INDEXER++;
-            var cpmbf = new Thread(() => ProcMon.createProcmonBackingFile(PATH, BACKINGNAME + INDEXER));
+            var cpmbf = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME + INDEXER));
             cpmbf.Start();
 
-            ProcMon.convertPMLfileToCSV(PATH, BACKINGNAME + (INDEXER - 1) + ".PML", "convertedFile" + (INDEXER - 1) + ".CSV");
+            ProcMon.convertPMLfileToCSV(pathToBackingFile, BACKINGNAME + (INDEXER - 1) + ".PML", "convertedFile" + (INDEXER - 1) + ".CSV");
 
-            List<CSVfileHandler> parsedData = CSVfileHandler.CSVparser(PATH + "convertedFile" + (INDEXER - 1) + ".CSV");
+            List<CSVfileHandler> parsedData = CSVfileHandler.CSVparser(pathToBackingFile + "convertedFile" + (INDEXER - 1) + ".CSV");
 
             foreach (var item in parsedData)
             {
@@ -67,9 +67,9 @@ namespace HoneyPotPOC
             process.WaitForExit();
         }
 
-        public static void setPATH(string path)
+        public static void setPathToBackingFile(string path)
         {
-            PATH = path;
+            pathToBackingFile = path;
         }
 
         public static void setBackingName(string name)

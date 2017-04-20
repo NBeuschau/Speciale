@@ -41,7 +41,7 @@ namespace HoneyPotPOC.PocLogger
         static string path2 = @"C:\Users\Baseline\Documents";
         static string path3 = @"C:\Users\Baseline\Downloads";
         static string path4 = @"C:\Users\Baseline\Videos";
-        static string pathFileWatch = @"C:\Users\PoC";
+        static string pathFileWatch = @"C:\Users\PoC-tester";
 
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";
@@ -413,136 +413,137 @@ namespace HoneyPotPOC.PocLogger
 
 
 
-/*
 
-        public static async void test()
-        {
-            var values = new Dictionary<string, string>
-            {
-                {"RansomwareName", NAMEONTEST },
-                {"MonitorStatus", "1" },
-                {"MonitorCount", "test" },
-                {"CountChangedFiles", "test" },
-                {"CountDeletedFiles", "test" },
-                {"CountNewFiles", "test" },
-                {"CountFilemonObservations", "test" },
-                {"CPU", "test"},
-                {"RAM", "test"},
-                {"HDD", "test"},
-                {"ThreadCount", "test"},
-                {"HandleCount", "test"},
-                {"ListChangedFiles", "test"},
-                {"ListDeletedFiles", "test" },
-                {"ListNewFiles", "test"},
-                {"ListFilemonObservations","Prut" }
-            };
+        /*
 
-            using (var client = new HttpClient())
-            {
-                /*
-                var options = new
+                public static async void test()
                 {
-                    "RansomwareName" = NAMEONTEST ,
-                "MonitorStatus" = "1" ,
-                {"MonitorCount", "test" },
-                {"CountChangedFiles", "test" },
-                {"CountDeletedFiles", "test" },
-                {"CountNewFiles", "test" },
-                {"CountFilemonObservations", "test" },
-                {"CPU", "test"},
-                {"RAM", "test"},
-                {"HDD", "test"},
-                {"ThreadCount", "test"},
-                {"HandleCount", "test"},
-                {"ListChangedFiles", "test"},
-                {"ListDeletedFiles", "test"},
-                {"ListNewFiles", "test"},
-                {"ListFilemonObservations", "te"}
-                ;}
-                
+                    var values = new Dictionary<string, string>
+                    {
+                        {"RansomwareName", NAMEONTEST },
+                        {"MonitorStatus", "1" },
+                        {"MonitorCount", "test" },
+                        {"CountChangedFiles", "test" },
+                        {"CountDeletedFiles", "test" },
+                        {"CountNewFiles", "test" },
+                        {"CountFilemonObservations", "test" },
+                        {"CPU", "test"},
+                        {"RAM", "test"},
+                        {"HDD", "test"},
+                        {"ThreadCount", "test"},
+                        {"HandleCount", "test"},
+                        {"ListChangedFiles", "test"},
+                        {"ListDeletedFiles", "test" },
+                        {"ListNewFiles", "test"},
+                        {"ListFilemonObservations","Prut" }
+                    };
 
-                var options = new
-                {
-                    RansomwareName = NAMEONTEST,
-                    MonitorStatus = "1",
-                    MonitorCount = "test",
-                    CountChangedFiles = "test",
-                    CountDeletedFiles = "test",
-                    CountNewFiles = "test",
-                    CountFilemonObservations = "test",
-                    CPU = "test",
-                    RAM = "test",
-                    HDD = "test",
-                    ThreadCount = "test",
-                    HandleCount = "test",
-                    ListChangedFiles = "test",
-                    ListDeletedFiles = "test",
-                    ListNewFiles = "test",
-                    ListFilemonObservations = "test"
-                };
-
-                var stringPayload = JsonConvert.SerializeObject(options);
-                var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-
-                var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content);
-                var result = await response.Content.ReadAsByteArrayAsync();
-            }
-
-            //NYT
-            /*
-            using (var client = new HttpClient())
-            {
-                // Build the conversion options
-                var options = new Dictionary<string, string>
-                {
-                    { "value", html },
-                    { "apikey", ConfigurationManager.AppSettings["pdf:key"] },
-                    { "MarginLeft", "10" },
-                    { "MarginRight", "10" }
-                };
-
-                // THIS LINE RAISES THE EXCEPTION
-                var content = new FormUrlEncodedContent(options);
-
-                var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
-                var result = await response.Content.ReadAsByteArrayAsync();
-                return result;
-            }
-
-            using (var client = new HttpClient())
-            {
-                // Build the conversion options
-                var options = new
-                {
-                    value = html,
-                    apikey = ConfigurationManager.AppSettings["pdf:key"],
-                    MarginLeft = "10",
-                    MarginRight = "10"
-                };
-
-                // Serialize our concrete class into a JSON String
-                var content = JsonConvert.SerializeObject(options);
-                var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-
-                var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
-                var result = await response.Content.ReadAsByteArrayAsync();
-                return result;
-            }
-
-            var values = new List<KeyValuePair<string, string>>();
-            values.Add(new KeyValuePair<string, string>("data", XMLBody));
-            var content = new FormUrlEncodedContent(values);
-            HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
+                    using (var client = new HttpClient())
+                    {
+                        /*
+                        var options = new
+                        {
+                            "RansomwareName" = NAMEONTEST ,
+                        "MonitorStatus" = "1" ,
+                        {"MonitorCount", "test" },
+                        {"CountChangedFiles", "test" },
+                        {"CountDeletedFiles", "test" },
+                        {"CountNewFiles", "test" },
+                        {"CountFilemonObservations", "test" },
+                        {"CPU", "test"},
+                        {"RAM", "test"},
+                        {"HDD", "test"},
+                        {"ThreadCount", "test"},
+                        {"HandleCount", "test"},
+                        {"ListChangedFiles", "test"},
+                        {"ListDeletedFiles", "test"},
+                        {"ListNewFiles", "test"},
+                        {"ListFilemonObservations", "te"}
+                        ;}
 
 
-            StringContent content = new StringContent("data=" + HttpUtility.UrlEncode(action.Body), Encoding.UTF8, "application/x-www-form-urlencoded");
-            HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
-            
-            //NYT
+                        var options = new
+                        {
+                            RansomwareName = NAMEONTEST,
+                            MonitorStatus = "1",
+                            MonitorCount = "test",
+                            CountChangedFiles = "test",
+                            CountDeletedFiles = "test",
+                            CountNewFiles = "test",
+                            CountFilemonObservations = "test",
+                            CPU = "test",
+                            RAM = "test",
+                            HDD = "test",
+                            ThreadCount = "test",
+                            HandleCount = "test",
+                            ListChangedFiles = "test",
+                            ListDeletedFiles = "test",
+                            ListNewFiles = "test",
+                            ListFilemonObservations = "test"
+                        };
 
-            //var content = new FormUrlEncodedContent(values);
+                        var stringPayload = JsonConvert.SerializeObject(options);
+                        var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-        }
-        */
+                        var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content);
+                        var result = await response.Content.ReadAsByteArrayAsync();
+                    }
+
+                    //NYT
+                    /*
+                    using (var client = new HttpClient())
+                    {
+                        // Build the conversion options
+                        var options = new Dictionary<string, string>
+                        {
+                            { "value", html },
+                            { "apikey", ConfigurationManager.AppSettings["pdf:key"] },
+                            { "MarginLeft", "10" },
+                            { "MarginRight", "10" }
+                        };
+
+                        // THIS LINE RAISES THE EXCEPTION
+                        var content = new FormUrlEncodedContent(options);
+
+                        var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
+                        var result = await response.Content.ReadAsByteArrayAsync();
+                        return result;
+                    }
+
+                    using (var client = new HttpClient())
+                    {
+                        // Build the conversion options
+                        var options = new
+                        {
+                            value = html,
+                            apikey = ConfigurationManager.AppSettings["pdf:key"],
+                            MarginLeft = "10",
+                            MarginRight = "10"
+                        };
+
+                        // Serialize our concrete class into a JSON String
+                        var content = JsonConvert.SerializeObject(options);
+                        var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
+
+                        var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
+                        var result = await response.Content.ReadAsByteArrayAsync();
+                        return result;
+                    }
+
+                    var values = new List<KeyValuePair<string, string>>();
+                    values.Add(new KeyValuePair<string, string>("data", XMLBody));
+                    var content = new FormUrlEncodedContent(values);
+                    HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
+
+
+                    StringContent content = new StringContent("data=" + HttpUtility.UrlEncode(action.Body), Encoding.UTF8, "application/x-www-form-urlencoded");
+                    HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
+
+                    //NYT
+
+                    //var content = new FormUrlEncodedContent(values);
+
+                }
+                */
     }
 }
