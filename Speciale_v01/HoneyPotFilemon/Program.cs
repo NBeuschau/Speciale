@@ -11,19 +11,23 @@ namespace HoneyPotPOC
     class Program
     {
         //In addition, four paths needs to be set in PocLogger\Logger
-        static string PATH = @"C:\Users\viruseater1";
+        //static string PATH = @"C:\Users\PoC";
+        static string PATH = @"C:\Users\PoC-tester";
         static string BACKINGNAME = "backingFromProcMon";
         static string ProcMonPath = @"C:\procmon\Procmon.exe";
 
         static void Main(string[] args)
         {
-            honeyPotFileMonDetection();
+            //honeyPotFileMonDetection();
+
+            Logger.getPoCRansomware();
+            Thread.Sleep(100000);
         }
 
         public static void honeyPotFileMonDetection()
         {
 
-            Logger.getBaseRansomware();
+            Logger.getPoCRansomware();
 
             ActionTaker.setBackingName(BACKINGNAME);
             ActionTaker.setPATH(PATH);
@@ -38,9 +42,9 @@ namespace HoneyPotPOC
             
             Console.WriteLine(Logger.getNAMEONTEST());
             Logger.LogWriter(PATH);
-            Logger.postBasePosted();
+            Logger.postPoCPosted();
 
-            Logger.postBaseTested();
+            Logger.postPoCTested();
         }
     }
 }

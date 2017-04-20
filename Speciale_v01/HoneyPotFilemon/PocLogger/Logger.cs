@@ -274,7 +274,7 @@ namespace HoneyPotPOC.PocLogger
             return handleCounter.NextValue();
         }
 
-        public static async void postBasePosted()
+        public static async void postPoCPosted()
         {
             string cpuReturn = returnMonitorListAsString(cpuList);
             string ramReturn = returnMonitorListAsString(ramList);
@@ -315,31 +315,6 @@ namespace HoneyPotPOC.PocLogger
                 killedProcessesReturn += s;
                 killedProcessesReturn += "?";
             }
-            /*
-            var values = new Dictionary<string, string>
-            {
-                {"RansomwareName", NAMEONTEST },
-                {"MonitorStatus", "1" },
-                {"MonitorCount", amountOfLoops.ToString() },
-                {"CountChangedFiles",changedKeyList.Count().ToString() },
-                {"CountDeletedFiles", hashedFilesAtStartKeys.Count().ToString() },
-                {"CountNewFiles", hashedFilesAtEndKeys.Count().ToString() },
-                {"CountFilemonObservations", fileMonChanges.Count().ToString()  },
-                {"CPU", cpuReturn},
-                {"RAM", ramReturn},
-                {"HDD", harddiskReturn},
-                {"ThreadCount", threadReturn},
-                {"HandleCount", handleReturn},
-                {"ListChangedFiles", changedFilesReturn},
-                {"ListDeletedFiles", deletedFilesReturn},
-                {"ListNewFiles", newFilesReturn},
-                {"ListFilemonObservations", "I am the problem!"}
-            };
-            
-            var content = new FormUrlEncodedContent(values);
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content).Result;
-            var responseString = await response.Content.ReadAsByteArrayAsync();
-            */
 
             var options = new
             {
@@ -366,15 +341,16 @@ namespace HoneyPotPOC.PocLogger
             var stringPayload = JsonConvert.SerializeObject(options);
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postpocposted", content).Result;
             var result = await response.Content.ReadAsByteArrayAsync();
         }
 
-        public static void getBaseRansomware()
+        public static void getPoCRansomware()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbaseransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getpocransomware").Result;
 
             NAMEONTEST = findNAMEONTEST(responseString);
+            Console.WriteLine(NAMEONTEST);
         }
 
 
@@ -409,7 +385,7 @@ namespace HoneyPotPOC.PocLogger
             return temp;
         }
 
-        public static async void postBaseTested()
+        public static async void postPoCTested()
         {
             var values = new Dictionary<string, string>
             {
@@ -418,7 +394,7 @@ namespace HoneyPotPOC.PocLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbasetested", content);
+            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postpoctested", content);
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
@@ -437,6 +413,7 @@ namespace HoneyPotPOC.PocLogger
 
 
 
+/*
 
         public static async void test()
         {
@@ -482,7 +459,7 @@ namespace HoneyPotPOC.PocLogger
                 {"ListNewFiles", "test"},
                 {"ListFilemonObservations", "te"}
                 ;}
-                */
+                
 
                 var options = new
                 {
@@ -560,12 +537,12 @@ namespace HoneyPotPOC.PocLogger
 
             StringContent content = new StringContent("data=" + HttpUtility.UrlEncode(action.Body), Encoding.UTF8, "application/x-www-form-urlencoded");
             HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
-            */
+            
             //NYT
 
             //var content = new FormUrlEncodedContent(values);
 
         }
-
+        */
     }
 }
