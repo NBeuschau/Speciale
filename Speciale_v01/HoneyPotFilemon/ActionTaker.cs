@@ -29,7 +29,7 @@ namespace HoneyPotPOC
             var cpmbf = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME + INDEXER));
             cpmbf.Start();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
 
             ProcMon.convertPMLfileToCSV(pathToBackingFile, BACKINGNAME + (INDEXER - 1) + ".PML", "convertedFile" + (INDEXER - 1) + ".CSV");
             //Thread.Sleep(3000);
@@ -76,11 +76,11 @@ namespace HoneyPotPOC
             {
                 Console.WriteLine("Process: " + Process.GetProcessById(pID.Last()).ProcessName + " is killed due to suspicious behaviour");
                 killedProcesses.Add(Process.GetProcessById(pID.Last()).ProcessName);
-                //killProcess(pID.Last());
+                killProcess(pID.Last());
             }
             catch (Exception)
             {
-                Console.WriteLine("Killing of Process with id: " + killedProcesses.Last() + " -- FAILED.");
+                Console.WriteLine("Killing of Process with id: " + pID.Last() + " -- FAILED.");
             }
           
             //Console.WriteLine("Do you wish to kill? ");
