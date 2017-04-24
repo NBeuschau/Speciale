@@ -37,11 +37,11 @@ namespace HoneyPotPOC.PocLogger
         private static List<float> harddiskList = new List<float>();
         private static List<float> threadList = new List<float>();
         private static List<float> handleList = new List<float>();
-        static string path1 = @"C:\Users\Baseline\Desktop";
-        static string path2 = @"C:\Users\Baseline\Documents";
-        static string path3 = @"C:\Users\Baseline\Downloads";
-        static string path4 = @"C:\Users\Baseline\Videos";
-        static string pathFileWatch = @"C:\Users\PoC-tester";
+        static string path1 = @"C:\Users\PoC\Desktop";
+        static string path2 = @"C:\Users\PoC\Documents";
+        static string path3 = @"C:\Users\PoC\Downloads";
+        static string path4 = @"C:\Users\PoC\Videos";
+        static string pathFileWatch = @"C:\Users\PoC";
 
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";
@@ -69,7 +69,7 @@ namespace HoneyPotPOC.PocLogger
             Dictionary<string, string> hashedFilesAtStarttemp3 = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp4 = new Dictionary<string, string>();
             Hasher tempStartHasher1 = new Hasher();
-            hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
+           /* hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
 
             Hasher tempStartHasher2 = new Hasher();
             hashedFilesAtStarttemp2 = tempStartHasher2.fileHasher(path2);
@@ -86,7 +86,7 @@ namespace HoneyPotPOC.PocLogger
             hashedFilesAtStarttemp3.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
             hashedFilesAtStarttemp4.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
 
-
+            */
             amountOfLoops = 0;
 
             TimeSpan span = DateTime.Now.Subtract(startTimeStamp);
@@ -115,7 +115,7 @@ namespace HoneyPotPOC.PocLogger
             Dictionary<string, string> hashedFilesAtEndtemp3 = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtEndtemp4 = new Dictionary<string, string>();
             Hasher tempEndHasher1 = new Hasher();
-            hashedFilesAtEndtemp1 = tempEndHasher1.fileHasher(path1);
+           /* hashedFilesAtEndtemp1 = tempEndHasher1.fileHasher(path1);
 
             Hasher tempEndHasher2 = new Hasher();
             hashedFilesAtEndtemp2 = tempEndHasher2.fileHasher(path2);
@@ -131,6 +131,7 @@ namespace HoneyPotPOC.PocLogger
             hashedFilesAtEndtemp2.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp3.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp4.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
+            */
 
 
             //Take a hash of the files at the end
@@ -184,7 +185,7 @@ namespace HoneyPotPOC.PocLogger
             }
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
-
+                 
             Filemon.setStopAddingToLog(true);
             fileMonChanges = Filemon.getFilemonChanges();
             /*

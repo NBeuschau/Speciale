@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,21 +21,43 @@ namespace HoneyPotPOC
 
         public static void honeypotChange(string path)
         {
-            Thread.Sleep(2000);
-            ProcMon.procmonTerminator();
-            Thread.Sleep(10000);
+            //Thread.Sleep(2000);
+            ProcMon.procmonTerminator(pathToBackingFile, BACKINGNAME+INDEXER);
+            //Thread.Sleep(10000);
 
             INDEXER++;
             var cpmbf = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME + INDEXER));
             cpmbf.Start();
 
+            Thread.Sleep(1000);
+
             ProcMon.convertPMLfileToCSV(pathToBackingFile, BACKINGNAME + (INDEXER - 1) + ".PML", "convertedFile" + (INDEXER - 1) + ".CSV");
+            //Thread.Sleep(3000);
 
-            List<CSVfileHandler> parsedData = CSVfileHandler.CSVparser(pathToBackingFile + "convertedFile" + (INDEXER - 1) + ".CSV");
+            bool hasCSVbeenWritten = false;
+            Console.WriteLine("Path to CSV file: " + pathToBackingFile + "\\" + "convertedFile" +(INDEXER - 1)+ ".CSV");
 
+            while (hasCSVbeenWritten == false)
+            {
+                try
+                {
+
+                    using (Stream stream = new FileStream(pathToBackingFile + "\\" + "convertedFile" + (INDEXER - 1) + ".CSV", FileMode.Open))
+                    {
+                        hasCSVbeenWritten = true;
+                    }
+                }
+                catch (IOException)
+                {
+
+                }
+            }
+                
+                List<CSVfileHandler> parsedData = CSVfileHandler.CSVparser(pathToBackingFile + "\\" + "convertedFile" + (INDEXER - 1) + ".CSV");
+            
             foreach (var item in parsedData)
             {
-                if (!item.processName.Equals("Explorer.EXE"))
+                if (!item.processName.Equals("Explorer.EXE")) 
                 {
                     try
                     {
@@ -49,12 +72,21 @@ namespace HoneyPotPOC
                 }
             }
 
-            Console.WriteLine("Process: " + Process.GetProcessById(pID.Last()).ProcessName + " is killed due to suspicious behaviour");
+            try
+            {
+                Console.WriteLine("Process: " + Process.GetProcessById(pID.Last()).ProcessName + " is killed due to suspicious behaviour");
+                killedProcesses.Add(Process.GetProcessById(pID.Last()).ProcessName);
+                //killProcess(pID.Last());
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Killing of Process with id: " + killedProcesses.Last() + " -- FAILED.");
+            }
+          
             //Console.WriteLine("Do you wish to kill? ");
             //string killInput = Console.ReadLine();
-            Thread.Sleep(3000);
-            killedProcesses.Add(Process.GetProcessById(pID.Last()).ProcessName);
-            killProcess(pID.Last());
+            
+
 
 
             //Dataanalysis

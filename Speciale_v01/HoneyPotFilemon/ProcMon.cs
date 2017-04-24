@@ -25,13 +25,40 @@ namespace HoneyPotPOC
             cmd.Start();
 
             cmd.StandardInput.WriteLine(@"start " + procMonPath + @" /quiet /minimized /backingfile " + path + "\\" + backingName + ".PML");
+            Console.WriteLine("Path to procMon file: " + path + "\\"+ backingName);
             cmd.StandardInput.Flush();
         }
 
-        public static void procmonTerminator()
+        public static void procmonTerminator(string path, string backingName)
         {
             cmd.StandardInput.WriteLine(procMonPath + " /waitforidle");
             cmd.StandardInput.WriteLine(procMonPath + " /terminate");
+            Console.WriteLine("Path to procMon file: " +path+"\\"+backingName +".PML");
+            bool isProcMonTerminated = false;
+
+            while (isProcMonTerminated == false) { 
+            try
+            {
+
+                using (Stream stream = new FileStream(path + "\\" + backingName +".PML", FileMode.Open))
+                {
+                    isProcMonTerminated = true;
+                }
+            }
+            catch (IOException)
+            {
+
+            }
+        }
+            /*
+            bool tmp = cmd.HasExited;
+            Console.WriteLine("Has the process exited? : " + tmp);
+            while (!cmd.HasExited) {
+                tmp = cmd.HasExited;
+                Console.WriteLine("Has the process exited? : " + tmp);
+            };
+            tmp = cmd.HasExited;
+            Console.WriteLine("Has the process exited? : " + tmp);*/
         }
 
         public static void convertPMLfileToCSV(string path, string PMLfile, string CSVfile)
@@ -45,10 +72,20 @@ namespace HoneyPotPOC
             cmd.StartInfo.UseShellExecute = false;
             cmd.Start();
 
-            cmd.StandardInput.WriteLine(@"start " + procMonPath + " / quiet /minimized /AcceptEula /saveas " + path + CSVfile + " /OpenLog " + path + PMLfile);
-            Thread.Sleep(1000);
+            cmd.StandardInput.WriteLine(@"start " + procMonPath + " /quiet /minimized /AcceptEula /SaveApplyFilter /saveas " + path + CSVfile + " /OpenLog " + path + PMLfile);
+            Thread.Sleep(5000);
             int i = 0;
-            long length = new System.IO.FileInfo(path + CSVfile).Length;
+            long length = 0;
+            while (!File.Exists(path + CSVfile)) {
+                try
+                {
+                    length = new System.IO.FileInfo(path + CSVfile).Length;
+                }
+                catch (Exception)
+                {
+                }
+                
+        }
             long temp = 0;
             while (length != temp)
             {
