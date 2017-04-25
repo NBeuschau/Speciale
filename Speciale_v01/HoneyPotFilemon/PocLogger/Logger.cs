@@ -15,7 +15,7 @@ namespace HoneyPotPOC.PocLogger
     class Logger
     {
         private static int INTERVALFORLOOP = 500;
-        private static int MINUTESOFLOGGING = 25;
+        private static int MINUTESOFLOGGING = 5;
         private static string NAMEONTEST = "test";
         private static Boolean MONITORSTATUS = true;
         private static PerformanceCounter cpuUsageCounter;
@@ -115,7 +115,7 @@ namespace HoneyPotPOC.PocLogger
             Dictionary<string, string> hashedFilesAtEndtemp3 = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtEndtemp4 = new Dictionary<string, string>();
             Hasher tempEndHasher1 = new Hasher();
-           /* hashedFilesAtEndtemp1 = tempEndHasher1.fileHasher(path1);
+            hashedFilesAtEndtemp1 = tempEndHasher1.fileHasher(path1);
 
             Hasher tempEndHasher2 = new Hasher();
             hashedFilesAtEndtemp2 = tempEndHasher2.fileHasher(path2);
@@ -131,7 +131,7 @@ namespace HoneyPotPOC.PocLogger
             hashedFilesAtEndtemp2.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp3.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp4.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
-            */
+            
 
 
             //Take a hash of the files at the end
