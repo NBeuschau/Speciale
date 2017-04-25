@@ -9,7 +9,10 @@ namespace BaseLineHost
 {
     class VirtualMachineController
     {
+        //Creates a process for the commandopromt
         private static Process cmd = new Process();
+
+        //A function to power off the virtual machine
         public void poweroffVirtualMachine(string machineName)
         {
             cmd.StartInfo.FileName = "cmd.exe";
@@ -25,6 +28,7 @@ namespace BaseLineHost
             cmd.WaitForExit();
         }
 
+        //A function to restore the virtual machine
         public void restoreVirtualMachine(string machineName, string snapshotName)
         {
             cmd.StartInfo.FileName = "cmd.exe";
@@ -40,6 +44,7 @@ namespace BaseLineHost
             cmd.WaitForExit();
         }
 
+        //A function to start the virtual machine
         public void startVirtualMachine(string machineName)
         {
             cmd.StartInfo.FileName = "cmd.exe";

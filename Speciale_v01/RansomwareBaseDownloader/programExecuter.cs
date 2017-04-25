@@ -9,6 +9,7 @@ namespace BaseLineRansomwareDownloader
 {
     class programExecuter
     {
+        //Starts a program
         public static void executeProgram(string programPath)
         {
             Process.Start(programPath);

@@ -15,7 +15,7 @@ namespace HoneyPotPOC.PocLogger
     class Logger
     {
         private static int INTERVALFORLOOP = 500;
-        private static int MINUTESOFLOGGING = 5;
+        private static int MINUTESOFLOGGING = 25;
         private static string NAMEONTEST = "test";
         private static Boolean MONITORSTATUS = true;
         private static PerformanceCounter cpuUsageCounter;

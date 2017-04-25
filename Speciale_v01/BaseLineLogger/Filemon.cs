@@ -77,6 +77,7 @@ namespace BaseLineLogger
             return fileMonChanges;
         }
 
+        //Stops adding to log such that an iteration won't trigger an error
         public static void setStopAddingToLog(Boolean b)
         {
             stopAddingToLog = b;

@@ -8,6 +8,7 @@ namespace BaseLineHost
 {
     class Program
     {
+        //Initialize the host
         static void Main(string[] args)
         {
             hostController.hostOfBaseLineTester();

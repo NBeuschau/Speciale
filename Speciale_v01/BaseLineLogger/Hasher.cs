@@ -14,11 +14,10 @@ namespace BaseLineLogger
         public Dictionary<string, string> fileHasher(string path)
         {
             string[] filesInDirectory = null;
+            //Writes the path that is hashed
             Console.WriteLine(path);
-            if (path.Contains("Data"))
-            {
-                return hashedFiles;
-            }
+            
+            //Tries to see if the directory is locked
             try
             {
                 filesInDirectory = Directory.GetFiles(path);
@@ -28,7 +27,7 @@ namespace BaseLineLogger
                 return hashedFiles;
             }
 
-
+            //Hashes every file in the directory
             foreach (string file in filesInDirectory)
             {
                 Console.WriteLine(file);
@@ -50,6 +49,7 @@ namespace BaseLineLogger
             return hashedFiles;
         }
 
+        //The hashing function
         private string md5Hasher(string path)
         {
             using (var md5 = MD5.Create())
@@ -64,7 +64,7 @@ namespace BaseLineLogger
                 catch (Exception)
                 {
 
-                    return "I cannot change";
+                    return "File " + path + " cannot be hashed";
                 }
             }
         }
