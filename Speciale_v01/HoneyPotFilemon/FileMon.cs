@@ -12,7 +12,7 @@ namespace HoneyPotPOC
     class FileMon
     {
 
-        static int MONITORTIMEOUT = 2;
+        static int MONITORTIMEOUT = 60;
         public static int i = 0;
         public static int temp = 0;
         public static Dictionary<string, DateTime> eventNameAndTime = new Dictionary<string, DateTime>();
@@ -55,6 +55,7 @@ namespace HoneyPotPOC
                 if (MONITORTIMEOUT < (DateTime.Now.Subtract((DateTime)eventNameAndTime[e.FullPath])).TotalSeconds)
                 {
                     //Report it has been changed
+                    eventNameAndTime[e.FullPath] = DateTime.Now;
                     ActionTaker.honeypotChange(e.FullPath);
                 }
             }

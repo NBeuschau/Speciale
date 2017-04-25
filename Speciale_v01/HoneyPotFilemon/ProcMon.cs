@@ -30,7 +30,7 @@ namespace HoneyPotPOC
             cmd.Start();
 
             cmd.StandardInput.WriteLine(@"start " + procMonPath + @" /quiet /minimized /backingfile " + path + "\\" + backingName + ".PML");
-            Console.WriteLine("Path to procMon file: " + path + "\\"+ backingName);
+            Console.WriteLine("Path to procMon file: " + path + "\\" + backingName);
             cmd.StandardInput.Flush();
         }
 
@@ -38,23 +38,25 @@ namespace HoneyPotPOC
         {
             cmd.StandardInput.WriteLine(procMonPath + " /waitforidle");
             cmd.StandardInput.WriteLine(procMonPath + " /terminate");
-            Console.WriteLine("Path to procMon file: " +path+"\\"+backingName +".PML");
+            Console.WriteLine("Path to procMon file: " + path + "\\" + backingName + ".PML");
             bool isProcMonTerminated = false;
 
-            while (isProcMonTerminated == false) { 
-            try
+            while (isProcMonTerminated == false)
             {
-
-                using (Stream stream = new FileStream(path + "\\" + backingName +".PML", FileMode.Open))
+                try
                 {
-                    isProcMonTerminated = true;
+                    using (Stream stream = new FileStream(path + "\\" + backingName + ".PML", FileMode.Open))
+                    {
+                        isProcMonTerminated = true;
+                        stream.Dispose();
+                    }
                 }
-            }
-            catch (IOException)
-            {
+                catch (IOException)
+                {
 
+                }
+                Thread.Sleep(50);
             }
-        }
             /*
             bool tmp = cmd.HasExited;
             Console.WriteLine("Has the process exited? : " + tmp);
@@ -81,7 +83,8 @@ namespace HoneyPotPOC
             Thread.Sleep(5000);
             int i = 0;
             long length = 0;
-            while (!File.Exists(path + CSVfile)) {
+            while (!File.Exists(path + CSVfile))
+            {
                 try
                 {
                     length = new System.IO.FileInfo(path + CSVfile).Length;
@@ -89,14 +92,14 @@ namespace HoneyPotPOC
                 catch (Exception)
                 {
                 }
-                
-        }
+                Thread.Sleep(50);
+            }
             long temp = 0;
             while (length != temp)
             {
                 i++;
                 temp = length;
-                Thread.Sleep(10);
+                Thread.Sleep(50);
                 length = new System.IO.FileInfo(path + CSVfile).Length;
             }
             cmd.StandardInput.Flush();
