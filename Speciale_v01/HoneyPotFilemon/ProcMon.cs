@@ -13,8 +13,13 @@ namespace HoneyPotPOC
     {
         private static Process cmd = new Process();
         private static string procMonPath = "";
+        private static Boolean isHasherDone = false;
         public static void createProcmonBackingFile(string path, string backingName)
         {
+            while (!isHasherDone)
+            {
+                Thread.Sleep(500);
+            }
             string backPath = path + @"\" + backingName;
 
             cmd.StartInfo.FileName = "cmd.exe";
@@ -103,6 +108,11 @@ namespace HoneyPotPOC
         public static void setPathToProcMon(string path)
         {
             procMonPath = path;
+        }
+
+        public static void setIsHasherDone(Boolean b)
+        {
+            isHasherDone = b;
         }
     }
 }

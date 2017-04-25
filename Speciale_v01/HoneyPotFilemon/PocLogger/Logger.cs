@@ -69,7 +69,7 @@ namespace HoneyPotPOC.PocLogger
             Dictionary<string, string> hashedFilesAtStarttemp3 = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp4 = new Dictionary<string, string>();
             Hasher tempStartHasher1 = new Hasher();
-           /* hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
+            hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
 
             Hasher tempStartHasher2 = new Hasher();
             hashedFilesAtStarttemp2 = tempStartHasher2.fileHasher(path2);
@@ -86,7 +86,7 @@ namespace HoneyPotPOC.PocLogger
             hashedFilesAtStarttemp3.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
             hashedFilesAtStarttemp4.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
 
-            */
+            ProcMon.setIsHasherDone(true);
             amountOfLoops = 0;
 
             TimeSpan span = DateTime.Now.Subtract(startTimeStamp);
