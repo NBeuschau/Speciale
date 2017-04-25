@@ -343,7 +343,9 @@ namespace HoneyPotPOC.PocLogger
                 ListDeletedFiles = deletedFilesReturn,
                 ListNewFiles = newFilesReturn,
                 ListFilemonObservations = filemonChangesReturn,
-                NameOfShutdownRansomware = killedProcessesReturn
+                NameOfShutdownRansomware = killedProcessesReturn,
+                Detected = FileMon.getFirstDetected(),
+                Shutdown = ActionTaker.getFirstKilledTime()
             };
 
 

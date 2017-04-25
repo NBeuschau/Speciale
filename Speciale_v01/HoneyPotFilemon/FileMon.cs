@@ -13,9 +13,13 @@ namespace HoneyPotPOC
     {
 
         static int MONITORTIMEOUT = 60;
+        static int thresholdNum = 3;
         public static int i = 0;
         public static int temp = 0;
         public static Dictionary<string, DateTime> eventNameAndTime = new Dictionary<string, DateTime>();
+        private static Boolean hasMadeFirstDetection = false;
+        private static DateTime firstDetectionTime = new DateTime();
+        private static List<DateTime> threshold = new List<DateTime>();
 
         public static void createFileWatcher(string path)
         {
@@ -49,21 +53,48 @@ namespace HoneyPotPOC
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
-            if (eventNameAndTime.ContainsKey(e.FullPath))
+            threshold.Add(DateTime.Now);
+            List<DateTime> temp = new List<DateTime>();
+            DateTime now = DateTime.Now;
+            foreach (DateTime t in threshold)
             {
-                Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
-                if (MONITORTIMEOUT < (DateTime.Now.Subtract((DateTime)eventNameAndTime[e.FullPath])).TotalSeconds)
+                if(60 < (now.Subtract(t).Seconds))
                 {
-                    //Report it has been changed
-                    eventNameAndTime[e.FullPath] = DateTime.Now;
-                    ActionTaker.honeypotChange(e.FullPath);
+                    temp.Add(t);
                 }
             }
-            else
+
+            foreach (DateTime t in temp)
             {
-                eventNameAndTime.Add(e.FullPath, DateTime.Now);
-                //Report it has been changed
-                ActionTaker.honeypotChange(e.FullPath);
+                threshold.Remove(t);
+            }
+
+
+            if (threshold.Count > thresholdNum)
+            {
+
+                if (!hasMadeFirstDetection)
+                {
+                    firstDetectionTime = DateTime.Now;
+                    hasMadeFirstDetection = true;
+                }
+                if (eventNameAndTime.ContainsKey(e.FullPath))
+                {
+                    Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
+                    if (MONITORTIMEOUT < (DateTime.Now.Subtract((DateTime)eventNameAndTime[e.FullPath])).TotalSeconds)
+                    {
+                        Console.WriteLine("Stopping the process fucking with MY honeypot!");
+                        //Report it has been changed
+                        eventNameAndTime[e.FullPath] = DateTime.Now;
+                        ActionTaker.honeypotChange(e.FullPath);
+                    }
+                }
+                else
+                {
+                    eventNameAndTime.Add(e.FullPath, DateTime.Now);
+                    //Report it has been changed
+                    ActionTaker.honeypotChange(e.FullPath);
+                }
             }
         }
 
@@ -71,6 +102,11 @@ namespace HoneyPotPOC
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
             Console.WriteLine("Flie: {0} renamed to {1}", e.OldFullPath, e.FullPath);
+        }
+
+        public static DateTime getFirstDetected()
+        {
+            return firstDetectionTime;
         }
 
     }

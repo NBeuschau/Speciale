@@ -18,6 +18,8 @@ namespace HoneyPotPOC
         static HashSet<int> pID = new HashSet<int>();
         static string NAMEONTEST = "";
         static List<string> killedProcesses = new List<string>();
+        private static Boolean killedFirstProcess = false;
+        private static DateTime firstKilledProcessTime = new DateTime();
 
         public static void honeypotChange(string path)
         {
@@ -61,8 +63,6 @@ namespace HoneyPotPOC
                 {
                     try
                     {
-                        Console.WriteLine("Process :" + item.processName + " has changed a honeypot");
-                        Console.WriteLine("It has process ID: " + item.PID + "\n");
                         pID.Add(item.PID);
                     }
                     catch
@@ -77,6 +77,11 @@ namespace HoneyPotPOC
                 Console.WriteLine("Process: " + Process.GetProcessById(pID.Last()).ProcessName + " is killed due to suspicious behaviour");
                 killedProcesses.Add(Process.GetProcessById(pID.Last()).ProcessName);
                 killProcess(pID.Last());
+                if (!killedFirstProcess)
+                {
+                    firstKilledProcessTime = DateTime.Now;
+                    killedFirstProcess = true;
+                }
             }
             catch (Exception)
             {
@@ -112,6 +117,11 @@ namespace HoneyPotPOC
         public static List<string> getKilledProcesses()
         {
             return killedProcesses;
+        }
+
+        public static DateTime getFirstKilledTime()
+        {
+            return firstKilledProcessTime;
         }
     }
 }
