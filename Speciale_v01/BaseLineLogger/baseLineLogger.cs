@@ -414,7 +414,7 @@ namespace BaseLineLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbasetested", content);
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasetested", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
