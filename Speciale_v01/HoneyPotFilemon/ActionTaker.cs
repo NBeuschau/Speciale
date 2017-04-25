@@ -80,7 +80,7 @@ namespace HoneyPotPOC
             }
             catch (Exception)
             {
-                Console.WriteLine("Killing of Process with id: " + pID.Last() + " -- FAILED.");
+                Console.WriteLine("Killing of  -- FAILED.");
             }
           
             //Console.WriteLine("Do you wish to kill? ");
