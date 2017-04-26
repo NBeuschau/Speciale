@@ -8,8 +8,10 @@ namespace HoneyPotHost
 {
     class Program
     {
+        //Start the program
         static void Main(string[] args)
         {
+            hostPocController.hostOfPOCTester();
         }
     }
 }

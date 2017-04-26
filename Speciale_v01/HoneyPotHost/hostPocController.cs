@@ -10,8 +10,8 @@ namespace HoneyPotHost
 {
     class hostPocController
     {
-        private static string nameOfMachine = "";
-        private static string nameofStartUpSnapshot = "";
+        private static string nameOfMachine = "PocTester";
+        private static string nameofStartUpSnapshot = "HoneyPotPOCsnapshotStartUp";
 
         //Hosts the baseline every 33 minute
         public static void hostOfPOCTester()
