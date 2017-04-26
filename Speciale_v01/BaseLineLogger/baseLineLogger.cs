@@ -49,6 +49,10 @@ namespace BaseLineLogger
         static string path4 = @"C:\Users\Baseline\Videos";
         static string pathFileWatch = @"C:\Users\Baseline";
 
+
+        //Add the path to the ransomware downloader
+        private static string ransomwareDownloaderPath = "";
+
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";
         //static string path3 = @"C:\Users\viruseater1\Downloads";
@@ -90,6 +94,8 @@ namespace BaseLineLogger
 
             Hasher tempStartHasher4 = new Hasher();
             hashedFilesAtStarttemp4 = tempStartHasher4.fileHasher(path4);
+
+            programExecuter.executeProgram(ransomwareDownloaderPath);
 
             //Adds the hashed files to a single list
             hashedFilesAtStarttemp1.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
@@ -423,6 +429,11 @@ namespace BaseLineLogger
         public static string getNAMEONTEST()
         {
             return NAMEONTEST;
+        }
+
+        public static void setRansomwareDownloaderPath(string s)
+        {
+            ransomwareDownloaderPath = s;
         }
 
 

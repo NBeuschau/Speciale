@@ -31,22 +31,19 @@ namespace BaseLineRansomwareDownloader
             //Recieves the ransomware from the server
             serverCommunicator.getBaseRansomware();
             Console.WriteLine(serverCommunicator.getNAMEONTEST());
-            Thread.Sleep(10000);
+            Thread.Sleep(100);
             //Install ransomware
 
             //Posts to the server that the ransomware has been taken by the baseline, this creates the ransomware in the baseline part of the server
             serverCommunicator.postBaseTaken();
-            Thread.Sleep(5000);
+            Thread.Sleep(100);
 
             //Downloads the ransomware
             serverCommunicator.downloadFileFTP();
-            Thread.Sleep(8000);
+            Thread.Sleep(100);
 
             //Posts to the server that it has been fetched by ransomware, this marks the ransomware in the 
             serverCommunicator.postBaseFetched();
-
-            //Waits for the logger to complete the hashing
-            Thread.Sleep(120000);
 
             //Starts the ransomware
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());

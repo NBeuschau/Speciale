@@ -13,6 +13,9 @@ namespace BaseLineLogger
         //The path used for the testing computer
         static string PATH = @"C:\Users\Baseline";
 
+        //The path for the ransomwareDownloader
+        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\RansomwareBaseDownloader\bin\Release\RansomwareBaseDownloader.exe";
+
         static void Main(string[] args)
         {
             baseLineTester();
@@ -22,6 +25,7 @@ namespace BaseLineLogger
         public static void baseLineTester()
         {
             //Gets the name of the ransomware
+            BaseLineLogger.setRansomwareDownloaderPath(RANSOMWAREDOWNLOADERPATH);
             BaseLineLogger.getBaseRansomware();
             Console.WriteLine(BaseLineLogger.getNAMEONTEST());
 
