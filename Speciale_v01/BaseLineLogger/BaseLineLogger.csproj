@@ -52,6 +52,7 @@
     <Compile Include="Filemon.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="programExecuter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

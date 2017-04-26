@@ -17,6 +17,9 @@ namespace HoneyPotPOC
         static string pathToBackingFile = @"C:\procmon\backingFileTest";
         static string ProcMonPath = @"C:\procmon\Procmon.exe";
 
+        //Path to ransomware downloader
+        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPotPOCRansomwareDownloader\bin\Release\HoneyPotPOCRansomwareDownloader.exe";
+
         static void Main(string[] args)
         {
             honeyPotFileMonDetection();
@@ -27,6 +30,7 @@ namespace HoneyPotPOC
 
             Logger.getPoCRansomware();
 
+            Logger.setRansomwareDownloaderPath(RANSOMWAREDOWNLOADERPATH);
 
             ActionTaker.setBackingName(BACKINGNAME);
             ActionTaker.setPathToBackingFile(pathToBackingFile);

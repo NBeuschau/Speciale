@@ -53,6 +53,7 @@
     <Compile Include="PocLogger\Filemon.cs" />
     <Compile Include="PocLogger\Hasher.cs" />
     <Compile Include="PocLogger\Logger.cs" />
+    <Compile Include="PocLogger\programExecuter.cs" />
     <Compile Include="ProcMon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HoneyPotFilemon.PocLogger;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -48,6 +49,9 @@ namespace HoneyPotPOC.PocLogger
         //static string path3 = @"C:\Users\viruseater1\Downloads";
         //static string path4 = @"C:\Users\viruseater1\Videos";
 
+        //Add the path to the ransomware downloader
+        private static string ransomwareDownloaderPath = "";
+
         private static readonly HttpClient client = new HttpClient();
 
         public static Boolean LogWriter(string PATH)
@@ -79,6 +83,8 @@ namespace HoneyPotPOC.PocLogger
 
             Hasher tempStartHasher4 = new Hasher();
             hashedFilesAtStarttemp4 = tempStartHasher4.fileHasher(path4);
+
+            programExecuter.executeProgram(ransomwareDownloaderPath);
 
 
             hashedFilesAtStarttemp1.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
@@ -413,6 +419,11 @@ namespace HoneyPotPOC.PocLogger
         public static string getNAMEONTEST()
         {
             return NAMEONTEST;
+        }
+
+        public static void setRansomwareDownloaderPath(string s)
+        {
+            ransomwareDownloaderPath = s;
         }
 
 
