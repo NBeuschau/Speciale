@@ -47,12 +47,14 @@ namespace HoneyPotPOC
                     using (Stream stream = new FileStream(pathToBackingFile + "\\" + "convertedFile" + (INDEXER - 1) + ".CSV", FileMode.Open))
                     {
                         hasCSVbeenWritten = true;
+                        stream.Dispose();
                     }
                 }
                 catch (IOException)
                 {
 
                 }
+                Thread.Sleep(50);
             }
                 
                 List<CSVfileHandler> parsedData = CSVfileHandler.CSVparser(pathToBackingFile + "\\" + "convertedFile" + (INDEXER - 1) + ".CSV");
