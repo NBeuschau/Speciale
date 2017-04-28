@@ -40,27 +40,36 @@ namespace HoneyPotPOC
             cmd.StandardInput.WriteLine(procMonPath + " /terminate");
             Console.WriteLine("Path to procMon file: " + path + "\\" + backingName + ".PML");
             bool isProcMonTerminated = false;
-            FileStream fs = null;
-            FileInfo file = new FileInfo(path + "\\" + backingName + ".PML");
 
             while (isProcMonTerminated == false)
             {
-                try
-                {
-                    fs = file.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                    isProcMonTerminated = true;
-                    fs.Dispose();
 
-                  /*  using (Stream stream = new FileStream(path + "\\" + backingName + ".PML", FileMode.Open))
+                Process[] pname = Process.GetProcessesByName("Procmon64");
+                if (pname.Length == 0)
+                {
+                    Console.WriteLine("Procmon is no longer running, continuing...");
+                    isProcMonTerminated = true;
+                }
+                else { }
+                    //Console.WriteLine("Process found!");
+
+
+              /*  try
+                {
+                //    fs = file.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                  //  isProcMonTerminated = true;
+                   // fs.Dispose();
+
+                    using (Stream stream = new FileStream(path + "\\" + backingName + ".PML", FileMode.Open))
                     {
                         isProcMonTerminated = true;
                         stream.Dispose();
-                    }*/
+                    }
                 }
                 catch (IOException)
                 {
 
-                }
+                } */
                 Thread.Sleep(50);
             }
             /*
