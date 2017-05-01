@@ -66,6 +66,16 @@ namespace HoneyPotPOC
                     try
                     {
                         pID.Add(item.PID);
+                        killedProcesses.Add(Process.GetProcessById(item.PID).ProcessName);
+                        try
+                        {
+                            killProcess(item.PID);
+                            Console.WriteLine("Process: " + Process.GetProcessById(item.PID).ProcessName + " is killed due to suspicious behaviour");
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Killing of " + Process.GetProcessById(item.PID).ProcessName + " failed");
+                        }
                     }
                     catch
                     {
@@ -76,6 +86,7 @@ namespace HoneyPotPOC
 
             try
             {
+                /*
                 Console.WriteLine("Process: " + Process.GetProcessById(pID.Last()).ProcessName + " is killed due to suspicious behaviour");
                 killedProcesses.Add(Process.GetProcessById(pID.Last()).ProcessName);
                 killProcess(pID.Last());
@@ -84,6 +95,7 @@ namespace HoneyPotPOC
                     firstKilledProcessTime = DateTime.Now;
                     killedFirstProcess = true;
                 }
+                */
             }
             catch (Exception)
             {
