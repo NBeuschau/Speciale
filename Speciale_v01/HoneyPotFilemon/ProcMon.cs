@@ -57,7 +57,9 @@ namespace HoneyPotPOC
                     Console.WriteLine("Procmon is no longer running, continuing...");
                     isProcMonTerminated = true;
                 }
-                else { }
+                else {
+                    Console.WriteLine("Procmon64 process is running!");
+                }
                     //Console.WriteLine("Process found!");
 
 
