@@ -36,6 +36,13 @@ namespace HoneyPotPOC
 
         public static void procmonTerminator(string path, string backingName)
         {
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.UseShellExecute = false;
+            cmd.Start();
+
             cmd.StandardInput.WriteLine(procMonPath + " /waitforidle");
             cmd.StandardInput.WriteLine(procMonPath + " /terminate");
             Console.WriteLine("Path to procMon file: " + path + "\\" + backingName + ".PML");

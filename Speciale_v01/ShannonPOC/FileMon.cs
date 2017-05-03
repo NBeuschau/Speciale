@@ -44,13 +44,26 @@ namespace ShannonPOC
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
             Console.WriteLine(e.FullPath + " is " + e.ChangeType);
+
+            if (e.ChangeType.ToString().Equals("Changed"))
+            {
+
+            }
+            else if (e.ChangeType.ToString().Equals("Created"))
+            {
+
+            }
+            else if (e.ChangeType.ToString().Equals("Deleted"))
+            {
+
+            }
         }
 
 
         //Event handeler if an object is renamed
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
-            Console.WriteLine(e.OldFullPath + " is renamed to " + e.FullPath + ". Also known as " + e.Name);
+            Console.WriteLine(e.OldFullPath + " is renamed to " + e.FullPath);
         }
     }
 }
