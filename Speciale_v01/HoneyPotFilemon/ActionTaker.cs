@@ -61,7 +61,7 @@ namespace HoneyPotPOC
             
             foreach (var item in parsedData)
             {
-                if (!item.processName.Equals("Explorer.EXE")) 
+                if (!item.processName.Equals("Explorer.EXE") || !item.processName.Equals("HoneyPotFilemon.exe")) 
                 {
                     try
                     {

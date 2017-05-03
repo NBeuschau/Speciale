@@ -91,6 +91,7 @@ namespace HoneyPotPOC
                 }
                 else
                 {
+                    Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
                     eventNameAndTime.Add(e.FullPath, DateTime.Now);
                     //Report it has been changed
                     ActionTaker.honeypotChange(e.FullPath);
