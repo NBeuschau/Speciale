@@ -37,15 +37,14 @@ namespace ShannonPOC
             tempEntropyCalculator4.getEntropyOfAllFilesInPath(path4).ToList().ForEach(x => entropiesOfFiles.Add(x.Key, x.Value));
 
 
-            //DOWNLOAD RANSOMWARE IF THE LOGGER IS READY AS WELL
+            //TODO DOWNLOAD RANSOMWARE IF THE LOGGER IS READY AS WELL
 
         }
 
         public static void changeDetectedInFile(string path)
         {
             ShannonEntropy tempEntropyCalculator = new ShannonEntropy();
-            //Hvad gør vi hvis filen ikke eksisterer længere?
-
+            //TODO what if the file doesn't exists anymore
 
             FileInfo tempFileInf = new FileInfo(path);
 

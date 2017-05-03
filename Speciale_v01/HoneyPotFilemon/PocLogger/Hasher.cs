@@ -33,7 +33,14 @@ namespace HoneyPotPOC.PocLogger
 
             foreach (string file in filesInDirectory)
             {
-                hashedFiles.Add(file, md5Hasher(file));
+                try
+                {
+                    hashedFiles.Add(file, md5Hasher(file));
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Cannot hash file: " + file);
+                }
             }
 
             //Get every subdirectory in the given path

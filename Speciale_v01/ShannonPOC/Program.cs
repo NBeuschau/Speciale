@@ -12,11 +12,12 @@ namespace ShannonPOC
     {
         static void Main(string[] args)
         {
+            string path = @"C:\speciale";
+            /*
             string path = @"C:\speciale\test\shannon\bitch1.7z";
             FileInfo fil = new FileInfo(path);
 
             Console.WriteLine(ShannonEntropy.CalculateEntropy(fil));
-            path = @"C:\speciale";
             EntropyHandler nonStatic = new EntropyHandler();
             Dictionary<string, double> temp = nonStatic.getEntropyOfAllFilesInPath(path);
 
@@ -24,8 +25,10 @@ namespace ShannonPOC
             {
                 Console.WriteLine(item.Key + " - " + item.Value);
             }
+            */
+            FileMon.CreateFileWatcher(path);
 
-            Thread.Sleep(20000);
+            Console.ReadLine();
         }
     }
 }
