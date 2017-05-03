@@ -90,13 +90,13 @@ namespace HoneyPotPOC
                 /*
                 Console.WriteLine("Process: " + Process.GetProcessById(pID.Last()).ProcessName + " is killed due to suspicious behaviour");
                 killedProcesses.Add(Process.GetProcessById(pID.Last()).ProcessName);
-                killProcess(pID.Last());
+                killProcess(pID.Last());*/
                 if (!killedFirstProcess)
                 {
                     firstKilledProcessTime = DateTime.Now;
                     killedFirstProcess = true;
                 }
-                */
+                
             }
             catch (Exception)
             {

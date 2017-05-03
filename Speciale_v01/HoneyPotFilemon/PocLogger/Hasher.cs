@@ -26,6 +26,7 @@ namespace HoneyPotPOC.PocLogger
             }
             catch (Exception)
             {
+                Console.WriteLine("Cannot get files in directory for: " + path);
                 return hashedFiles;
             }
 
@@ -63,7 +64,7 @@ namespace HoneyPotPOC.PocLogger
                 }
                 catch (Exception)
                 {
-
+                    Console.WriteLine("Failed to hash file: " + path);
                     return "I cannot change";
                 }
             }
