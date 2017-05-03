@@ -69,12 +69,13 @@ namespace HoneyPotPOC
                         killedProcesses.Add(Process.GetProcessById(item.PID).ProcessName);
                         try
                         {
-                            killProcess(item.PID);
                             Console.WriteLine("Process: " + Process.GetProcessById(item.PID).ProcessName + " is killed due to suspicious behaviour");
+                            killProcess(item.PID);
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine("Killing of " + Process.GetProcessById(item.PID).ProcessName + " failed");
+                            //Save processname as a temp
+                            Console.WriteLine("Killing of the process failed");
                         }
                     }
                     catch
