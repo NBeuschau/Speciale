@@ -32,7 +32,9 @@ namespace HoneyPotPOC.PocLogger
                 try
                 {
                     Console.WriteLine(file);
-                    hashedFiles.Add(file, md5Hasher(file));
+                    string hashedFile = md5Hasher(file);
+                    Console.WriteLine(hashedFile);
+                    hashedFiles.Add(file, hashedFile);
                 }
                 catch (Exception)
                 {

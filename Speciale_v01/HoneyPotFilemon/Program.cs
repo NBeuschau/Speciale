@@ -22,7 +22,10 @@ namespace HoneyPotPOC
 
         static void Main(string[] args)
         {
-            honeyPotFileMonDetection();
+            Hasher hash = new Hasher();
+            hash.fileHasher(@"C:\Speciale\Test\shannon\path3");
+            Console.ReadLine();
+            //honeyPotFileMonDetection();
         }
 
         public static void honeyPotFileMonDetection()

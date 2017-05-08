@@ -109,10 +109,10 @@ namespace ShannonPOC
             //Start logger
             //TODO fix call to server such that it is not honeypotpoc that is called
             Logger.LogWriter(PATH);
-            /*
+            
             Logger.postPoCPosted();
             Logger.postPoCTested();
-            */
+            
         }
     }
 }

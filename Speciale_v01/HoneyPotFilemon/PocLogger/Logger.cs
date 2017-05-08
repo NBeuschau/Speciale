@@ -358,13 +358,13 @@ namespace HoneyPotPOC.PocLogger
             var stringPayload = JsonConvert.SerializeObject(options);
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postpocposted", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1posted", content).Result;
             var result = await response.Content.ReadAsByteArrayAsync();
         }
 
         public static void getPoCRansomware()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getpocransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp1ransomware").Result;
 
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
@@ -411,7 +411,7 @@ namespace HoneyPotPOC.PocLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postpoctested", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1tested", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
