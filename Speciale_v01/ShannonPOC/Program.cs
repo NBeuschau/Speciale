@@ -11,15 +11,15 @@ namespace ShannonPOC
 {
     class Program
     {
-        private static string path1 = "";
-        private static string path2 = "";
-        private static string path3 = "";
-        private static string path4 = "";
+        private static string path1 = @"C:\Speciale\Test\shannon\path1";
+        private static string path2 = @"C:\Speciale\Test\shannon\path2";
+        private static string path3 = @"C:\Speciale\Test\shannon\path3";
+        private static string path4 = @"C:\Speciale\Test\shannon\path4";
 
-        static string PATH = @"C:\Users\PoC";
+        static string PATH = @"C:\Speciale\Test\shannon";
         static string BACKINGNAME = "backingFromProcMon";
-        static string pathToBackingFile = @"C:\procmon\backingFileTest";
-        static string ProcMonPath = @"C:\procmon\Procmon.exe";
+        static string pathToBackingFile = @"C:\Speciale\Tools\procmon";
+        static string ProcMonPath = @"C:\Speciale\Tools\procmon\Procmon.exe";
 
         static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPotPOCRansomwareDownloader\bin\Release\HoneyPotPOCRansomwareDownloader.exe";
 
@@ -30,6 +30,7 @@ namespace ShannonPOC
         static void Main(string[] args)
         {
             //string path = @"C:\speciale";
+            /*
             string path = @"C:\Program Files (x86)\Hearthstone\Data\Win\spells0.unity3d";
             
             FileInfo fil = new FileInfo(path);
@@ -49,16 +50,7 @@ namespace ShannonPOC
             //Console.WriteLine(FilemonEventHandler.returnFilePath(path));
 
 
-            //Start logger
-            //TODO fix call to server such that it is not honeypotpoc that is called
-
-            //Start procmon
-
-            //Start filemon
-            //When filemon sees a reaction it posts to filemoneventhandler
-            //Filemoneventhandler then deems if it is nessesary to take action, using actiontaker
-
-            //Start download
+            shannonEntropyFileMonDetection();
 
             Console.ReadLine();
         }
@@ -77,6 +69,12 @@ namespace ShannonPOC
             FilemonEventHandler.setEntropyThreshold(entropyThreshold);
             FilemonEventHandler.setThresholdToReaction(thresholdToReaction);
             FilemonEventHandler.setSecondsInThreshold(secondsInThreshold);
+
+            Logger.setPath1(path1);
+            Logger.setPath2(path2);
+            Logger.setPath3(path3);
+            Logger.setPath4(path4);
+            Logger.setPathFileWatch(PATH);
          
             //Find entropy of all files
             ShannonEntropy temp1 = new ShannonEntropy();
@@ -91,15 +89,30 @@ namespace ShannonPOC
             ShannonEntropy temp4 = new ShannonEntropy();
             temp4.getEntropyOfAllFilesInPath(path4);
 
+            Dictionary<string, double> test = ShannonEntropy.getSavedEntropies();
+            foreach (var item in test)
+            {
+                Console.WriteLine(item.Key + " - " + item.Value);
+            }
+
+
+            //Start procmon
             BACKINGNAME = BACKINGNAME + 0;
             var t = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME));
             t.Start();
 
+            //Start filemon
+            //When filemon sees a reaction it posts to filemoneventhandler
+            //Filemoneventhandler then deems if it is nessesary to take action, using actiontaker
             FileMon.CreateFileWatcher(PATH);
+
+            //Start logger
+            //TODO fix call to server such that it is not honeypotpoc that is called
             Logger.LogWriter(PATH);
+            /*
             Logger.postPoCPosted();
             Logger.postPoCTested();
-
+            */
         }
     }
 }

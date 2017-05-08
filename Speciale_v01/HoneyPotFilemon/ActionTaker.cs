@@ -32,7 +32,6 @@ namespace HoneyPotPOC
             cpmbf.Start();
 
             Thread.Sleep(3000);
-
             ProcMon.convertPMLfileToCSV(pathToBackingFile, BACKINGNAME + (INDEXER - 1) + ".PML", "convertedFile" + (INDEXER - 1) + ".CSV");
             //Thread.Sleep(3000);
 

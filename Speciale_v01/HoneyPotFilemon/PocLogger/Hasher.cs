@@ -16,10 +16,6 @@ namespace HoneyPotPOC.PocLogger
         {
             string[] filesInDirectory = null;
             Console.WriteLine(path);
-            if (path.Contains("Data"))
-            {
-                return hashedFiles;
-            }
             try
             {
                 filesInDirectory = Directory.GetFiles(path);
@@ -35,6 +31,7 @@ namespace HoneyPotPOC.PocLogger
             {
                 try
                 {
+                    Console.WriteLine(file);
                     hashedFiles.Add(file, md5Hasher(file));
                 }
                 catch (Exception)

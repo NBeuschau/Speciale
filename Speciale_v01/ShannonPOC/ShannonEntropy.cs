@@ -84,7 +84,6 @@ namespace ShannonPOC
                 {
                     double probability = (double)count / values.LongLength;
                     entropy -= probability * Math.Log(probability, range);
-                    Console.WriteLine(entropy);
                 }
             }
             return entropy;

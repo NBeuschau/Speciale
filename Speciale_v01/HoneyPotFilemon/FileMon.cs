@@ -20,6 +20,7 @@ namespace HoneyPotPOC
         private static Boolean hasMadeFirstDetection = false;
         private static DateTime firstDetectionTime = new DateTime();
         private static List<DateTime> threshold = new List<DateTime>();
+        static Boolean stopLogging = false;
 
         public static void createFileWatcher(string path)
         {
@@ -58,7 +59,7 @@ namespace HoneyPotPOC
             DateTime now = DateTime.Now;
             foreach (DateTime t in threshold)
             {
-                if(60 < (now.Subtract(t).Seconds))
+                if (60 < (now.Subtract(t).Seconds))
                 {
                     temp.Add(t);
                 }
@@ -109,6 +110,5 @@ namespace HoneyPotPOC
         {
             return firstDetectionTime;
         }
-
     }
 }

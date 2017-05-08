@@ -425,6 +425,30 @@ namespace ShannonPOC.ShannonLogger
             ransomwareDownloaderPath = s;
         }
 
+        public static void setPath1(string s)
+        {
+            path1 = s;
+        }
+
+        public static void setPath2(string s)
+        {
+            path2 = s;
+        }
+
+        public static void setPath3(string s)
+        {
+            path3 = s;
+        }
+
+        public static void setPath4(string s)
+        {
+            path4 = s;
+        }
+
+        public static void setPathFileWatch(string s)
+        {
+            pathFileWatch = s;
+        }
 
 
 

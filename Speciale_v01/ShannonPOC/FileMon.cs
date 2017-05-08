@@ -46,17 +46,20 @@ namespace ShannonPOC
             //Cancel out appdata
             Console.WriteLine(e.FullPath + " is " + e.ChangeType);
 
-            if (e.ChangeType.ToString().Equals("Changed"))
+            if (e.FullPath.Contains("."))
             {
-                FilemonEventHandler.changeOccured(e);
-            }
-            else if (e.ChangeType.ToString().Equals("Created"))
-            {
-                FilemonEventHandler.creationOccured(e);
-            }
-            else if (e.ChangeType.ToString().Equals("Deleted"))
-            {
-                FilemonEventHandler.deletionOccured(e);
+                if (e.ChangeType.ToString().Equals("Changed"))
+                {
+                    FilemonEventHandler.changeOccured(e);
+                }
+                else if (e.ChangeType.ToString().Equals("Created"))
+                {
+                    FilemonEventHandler.creationOccured(e);
+                }
+                else if (e.ChangeType.ToString().Equals("Deleted"))
+                {
+                    FilemonEventHandler.deletionOccured(e);
+                }
             }
         }
 
@@ -65,6 +68,9 @@ namespace ShannonPOC
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
             Console.WriteLine(e.OldFullPath + " is renamed to " + e.FullPath);
+            Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
+            ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
+            ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
         }
     }
 }

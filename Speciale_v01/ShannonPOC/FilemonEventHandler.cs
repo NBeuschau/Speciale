@@ -10,6 +10,7 @@ namespace ShannonPOC
     class FilemonEventHandler
     {
         private static DateTime firstDetected;
+        static Boolean hasMadeFirstDetection = false;
         private static double entropyThreshold = 0.0;
         private static int thresholdToReaction = 0;
         private static List<DateTime> threshold = new List<DateTime>();
@@ -22,25 +23,26 @@ namespace ShannonPOC
             FileInfo changedFile = new FileInfo(e.FullPath);
             ShannonEntropy entropyCalculator = new ShannonEntropy();
             Double changedFileEntropy = entropyCalculator.CalculateEntropy(changedFile);
+            Double originalFileEntropy = 0.0;
+            try
+            {
+                originalFileEntropy = savedEntropies[e.FullPath];
+            }
+            catch (Exception)
+            {
 
-            Double originalFileEntropy = savedEntropies[e.FullPath];
+            }
 
             //TODO Find ud af threshold
             if(changedFileEntropy-originalFileEntropy > 0.05 && changedFileEntropy > 0.9)
             {
                 //React
-                threshold.Add(DateTime.Now);
-                List<DateTime> temp = new List<DateTime>();
-                DateTime now = DateTime.Now;
-
-                foreach (DateTime t in threshold)
-                {
-                    if ()
-                }
+                react(e);
             }
             else if (changedFileEntropy > 0.9 && originalFileEntropy < 0.9)
             {
                 //React
+                react(e);
             }
         }
 
@@ -80,6 +82,8 @@ namespace ShannonPOC
             else
             {
                 //TODO find threshold på nye filer og om entropien er for høj
+                ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, createdFileEntropy);
+                react(e);
             }
         }
 
@@ -103,11 +107,47 @@ namespace ShannonPOC
                     FileInfo newFileInfo = new FileInfo(s);
                     double newEntropy = entropyCreator.CalculateEntropy(newFileInfo);
                     double oldEntropy = ShannonEntropy.getSavedEntropies()[e.FullPath];
-                               
+
                     //TODO  react if needed
+                    react(e);
                 }
             }
+
+            ShannonEntropy.removeKeyFromSavedEntropies(e.FullPath);
         }
+
+        private static void react(FileSystemEventArgs e)
+        {
+            threshold.Add(DateTime.Now);
+            List<DateTime> temp = new List<DateTime>();
+            DateTime now = DateTime.Now;
+
+            foreach (DateTime t in threshold)
+            {
+                if (secondsInThreshold < (now.Subtract(t).Seconds))
+                {
+                    temp.Add(t);
+                }
+            }
+
+            foreach (DateTime t in temp)
+            {
+                threshold.Remove(t);
+            }
+
+            if (threshold.Count > thresholdToReaction)
+            {
+                if (!hasMadeFirstDetection)
+                {
+                    hasMadeFirstDetection = true;
+                    firstDetected = DateTime.Now;
+                }
+                Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
+
+                ActionTaker.shannonReaction(e.FullPath);
+            }
+        }
+
 
         public static string returnFileName(string fullPath)
         {
