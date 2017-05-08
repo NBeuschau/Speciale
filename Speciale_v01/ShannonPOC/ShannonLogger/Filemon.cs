@@ -7,10 +7,16 @@ using System.IO;
 using System.Threading;
 using System.Collections;
 
-namespace ShannonPOC
+namespace ShannonPOC.ShannonLogger
 {
-    class FileMon
+    class Filemon
     {
+
+        static Dictionary<DateTime, string> fileMonChanges = new Dictionary<DateTime, string>();
+        public static int i = 0;
+        public static int temp = 0;
+        public static Hashtable eventTimeLog = new Hashtable();
+        private static Boolean stopAddingToLog = false;
         public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
@@ -43,20 +49,12 @@ namespace ShannonPOC
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
-            //Cancel out appdata
-            Console.WriteLine(e.FullPath + " is " + e.ChangeType);
-
-            if (e.ChangeType.ToString().Equals("Changed"))
+            if (!stopAddingToLog)
             {
-                FilemonEventHandler.changeOccured(e);
-            }
-            else if (e.ChangeType.ToString().Equals("Created"))
-            {
-                FilemonEventHandler.creationOccured(e);
-            }
-            else if (e.ChangeType.ToString().Equals("Deleted"))
-            {
-                FilemonEventHandler.deletionOccured(e);
+                if (!fileMonChanges.ContainsKey(DateTime.Now))
+                {
+                    fileMonChanges.Add(DateTime.Now, e.FullPath);
+                }
             }
         }
 
@@ -64,7 +62,23 @@ namespace ShannonPOC
         //Event handeler if an object is renamed
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
-            Console.WriteLine(e.OldFullPath + " is renamed to " + e.FullPath);
+            if (!stopAddingToLog)
+            {
+                if (!fileMonChanges.ContainsKey(DateTime.Now))
+                {
+                    fileMonChanges.Add(DateTime.Now, e.FullPath);
+                }
+            }
+        }
+
+        public static Dictionary<DateTime, string> getFilemonChanges()
+        {
+            return fileMonChanges;
+        }
+
+        public static void setStopAddingToLog(Boolean b)
+        {
+            stopAddingToLog = b;
         }
     }
 }

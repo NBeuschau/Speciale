@@ -56,7 +56,16 @@ namespace ShannonPOC
             int range = byte.MaxValue + 1;
 
             //Read the bytes of the file into a byte array
-            byte[] values = File.ReadAllBytes(file.FullName);
+            //If the path is not a file but a directory it returns 0
+            byte[] values;
+            try
+            {
+                values = File.ReadAllBytes(file.FullName);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
 
             //Make a long array the size of the range we are interested in
             long[] counts = new long[range];
@@ -75,9 +84,25 @@ namespace ShannonPOC
                 {
                     double probability = (double)count / values.LongLength;
                     entropy -= probability * Math.Log(probability, range);
+                    Console.WriteLine(entropy);
                 }
             }
             return entropy;
+        }
+
+        public static Dictionary<string, double> getSavedEntropies()
+        {
+            return savedEntropies;
+        }
+
+        public static void removeKeyFromSavedEntropies(string key)
+        {
+            savedEntropies.Remove(key);
+        }
+
+        public static void addKeyAndDoubleToSavedEntropies(string key, double value)
+        {
+            savedEntropies.Add(key, value);
         }
     }
 }

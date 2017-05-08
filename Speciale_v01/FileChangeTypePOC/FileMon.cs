@@ -7,7 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Collections;
 
-namespace ShannonPOC
+namespace FileChangeTypePOC
 {
     class FileMon
     {

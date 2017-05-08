@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoneyPotHost", "HoneyPotHos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShannonPOC", "ShannonPOC\ShannonPOC.csproj", "{24952274-A8A8-46FC-8730-6B7B8081A6A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileChangeTypePOC", "FileChangeTypePOC\FileChangeTypePOC.csproj", "{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{24952274-A8A8-46FC-8730-6B7B8081A6A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24952274-A8A8-46FC-8730-6B7B8081A6A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24952274-A8A8-46FC-8730-6B7B8081A6A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

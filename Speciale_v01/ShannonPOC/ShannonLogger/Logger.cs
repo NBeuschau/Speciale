@@ -1,5 +1,4 @@
-﻿using HoneyPotFilemon.PocLogger;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HoneyPotPOC.PocLogger
+namespace ShannonPOC.ShannonLogger
 {
     class Logger
     {
@@ -84,7 +83,7 @@ namespace HoneyPotPOC.PocLogger
             Hasher tempStartHasher4 = new Hasher();
             hashedFilesAtStarttemp4 = tempStartHasher4.fileHasher(path4);
 
-            programExecuter.executeProgram(ransomwareDownloaderPath);
+            ProgramExecuter.executeProgram(ransomwareDownloaderPath);
 
 
             hashedFilesAtStarttemp1.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
@@ -137,7 +136,7 @@ namespace HoneyPotPOC.PocLogger
             hashedFilesAtEndtemp2.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp3.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp4.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
-            
+
 
 
             //Take a hash of the files at the end
@@ -191,7 +190,7 @@ namespace HoneyPotPOC.PocLogger
             }
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
-                 
+
             Filemon.setStopAddingToLog(true);
             fileMonChanges = Filemon.getFilemonChanges();
             /*
@@ -350,8 +349,8 @@ namespace HoneyPotPOC.PocLogger
                 ListNewFiles = newFilesReturn,
                 ListFilemonObservations = filemonChangesReturn,
                 NameOfShutdownRansomware = killedProcessesReturn,
-                Detected = FileMon.getFirstDetected().ToString("dd/MM/yyyy HH:mm:ss.fff"),
-                Shutdown = ActionTaker.getFirstKilledTime().ToString("dd/MM/yyyy HH:mm:ss.fff")
+                Detected = FilemonEventHandler.getFirstDetected(),
+                Shutdown = ActionTaker.getFirstKilledTime()
             };
 
 
