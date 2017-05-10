@@ -36,7 +36,7 @@ namespace HoneyPotPOC
 
             //The filter gives the watcher a specific filename to look for
             // "*honeypot.*" monitors every file with honeypot in the ending, and every format.
-            watcher.Filter = "*honeypot*";
+            watcher.Filter = "*honeypotbait*";
 
             //This tells the watcher when to react on different changes
             watcher.Created += new FileSystemEventHandler(OnChanged);
