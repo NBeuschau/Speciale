@@ -111,9 +111,19 @@ namespace BaseLineHost
 
         public static void getBaseHost()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbasehost").Result;
+            string responseString = "";
+            try
+            {
+                responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbasehost").Result;
 
-            NAMEONTEST = findNAMEONTEST(responseString);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+            FULLRESPONSESTRING = responseString;
         }
     }
 }
