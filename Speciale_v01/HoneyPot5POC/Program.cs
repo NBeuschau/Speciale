@@ -1,4 +1,4 @@
-﻿using HoneyPotPOC.PocLogger;
+﻿using HoneyPot5POC.PocLogger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HoneyPotPOC
+namespace HoneyPot5POC
 {
     class Program
     {
@@ -18,7 +18,7 @@ namespace HoneyPotPOC
         static string ProcMonPath = @"C:\procmon\Procmon.exe";
 
         //Path to ransomware downloader
-        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPotPOCRansomwareDownloader\bin\Release\HoneyPot1POCRansomwareDownloader.exe";
+        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPot5POCRansomwareDownloader\bin\Release\HoneyPot5POCRansomwareDownloader.exe";
 
         static void Main(string[] args)
         {
@@ -47,7 +47,7 @@ namespace HoneyPotPOC
 
             FileMon.createFileWatcher(PATH);
 
-            
+
             Console.WriteLine(Logger.getNAMEONTEST());
             Logger.LogWriter(PATH);
             Logger.postPoCPosted();

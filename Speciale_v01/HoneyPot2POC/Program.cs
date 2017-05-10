@@ -18,7 +18,7 @@ namespace HoneyPot2POC
         static string ProcMonPath = @"C:\procmon\Procmon.exe";
 
         //Path to ransomware downloader
-        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPotPOCRansomwareDownloader\bin\Release\HoneyPotPOCRansomwareDownloader.exe";
+        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPot2POCRansomwareDownloader\bin\Release\HoneyPot2POCRansomwareDownloader.exe";
 
         static void Main(string[] args)
         {

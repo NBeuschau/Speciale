@@ -63,6 +63,8 @@ namespace HoneyPotPOC.PocLogger
             threadCounter = new PerformanceCounter("Process", "Thread Count", "_Total");
             handleCounter = new PerformanceCounter("Process", "Handle Count", "_Total");
 
+            postPoCTaken();
+
             var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
             fw.Start();
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
@@ -430,6 +432,21 @@ namespace HoneyPotPOC.PocLogger
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
+
+        public static async void postPoCTaken()
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1taken", content).Result;
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
+        }
+
 
         public static string getNAMEONTEST()
         {

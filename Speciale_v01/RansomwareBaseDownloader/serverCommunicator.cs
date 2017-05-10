@@ -86,22 +86,6 @@ namespace BaseLineRansomwareDownloader
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
-        //Post to the server in the quicktester that the ransomware has been taken
-        public static async void postBaseTaken()
-        {
-            var values = new Dictionary<string, string>
-            {
-                {"RansomwareName",  NAMEONTEST}
-            };
-
-            var content = new FormUrlEncodedContent(values);
-
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasetaken", content).Result;
-
-            var responseString = await response.Content.ReadAsByteArrayAsync();
-        }
-
-
         public static string getNAMEONTEST()
         {
             return NAMEONTEST;

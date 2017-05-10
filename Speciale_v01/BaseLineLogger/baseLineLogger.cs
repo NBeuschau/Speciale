@@ -68,6 +68,7 @@ namespace BaseLineLogger
             threadCounter = new PerformanceCounter("Process", "Thread Count", "_Total");
             handleCounter = new PerformanceCounter("Process", "Handle Count", "_Total");
 
+            postBaseTaken();
 
             //Starts the filewatcher
             var fw = new Thread(() => FileMon.CreateFileWatcher(pathFileWatch));
@@ -436,6 +437,21 @@ namespace BaseLineLogger
             var content = new FormUrlEncodedContent(values);
 
             var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasefetched", content).Result;
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
+        }
+
+        //Post to the server in the quicktester that the ransomware has been taken
+        public static async void postBaseTaken()
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasetaken", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }

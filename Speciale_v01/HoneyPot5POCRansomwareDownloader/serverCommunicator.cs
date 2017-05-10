@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HoneyPot2POCRansomwareDownloader
+namespace HoneyPot5POCRansomwareDownloader
 {
     class serverCommunicator
     {
@@ -18,7 +18,7 @@ namespace HoneyPot2POCRansomwareDownloader
         public static void getPoCRansomware()
         {
 
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp2ransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp5ransomware").Result;
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
 
@@ -76,10 +76,25 @@ namespace HoneyPot2POCRansomwareDownloader
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp2started", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp5started", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
+
+        public static async void postPoCTaken()
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp5taken", content).Result;
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
+        }
+
 
         public static string getNAMEONTEST()
         {

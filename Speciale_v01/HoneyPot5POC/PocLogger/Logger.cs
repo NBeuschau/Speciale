@@ -1,4 +1,4 @@
-﻿using HoneyPot2POC.PocLogger;
+﻿using HoneyPot5POC.PocLogger;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HoneyPot2POC.PocLogger
+namespace HoneyPotPOC.PocLogger
 {
     class Logger
     {
@@ -38,11 +38,11 @@ namespace HoneyPot2POC.PocLogger
         private static List<float> harddiskList = new List<float>();
         private static List<float> threadList = new List<float>();
         private static List<float> handleList = new List<float>();
-        static string path1 = @"C:\Users\PoC2\Desktop";
-        static string path2 = @"C:\Users\PoC2\Documents";
-        static string path3 = @"C:\Users\PoC2\Downloads";
-        static string path4 = @"C:\Users\PoC2\Videos";
-        static string pathFileWatch = @"C:\Users\PoC2";
+        static string path1 = @"C:\Users\PoC\Desktop";
+        static string path2 = @"C:\Users\PoC\Documents";
+        static string path3 = @"C:\Users\PoC\Downloads";
+        static string path4 = @"C:\Users\PoC\Videos";
+        static string pathFileWatch = @"C:\Users\PoC";
 
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";
@@ -62,8 +62,6 @@ namespace HoneyPot2POC.PocLogger
             harddiskUsageCounter = new PerformanceCounter("PhysicalDisk", "% Disk Time", "_Total");
             threadCounter = new PerformanceCounter("Process", "Thread Count", "_Total");
             handleCounter = new PerformanceCounter("Process", "Handle Count", "_Total");
-
-            postPoCTaken();
 
             var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
             fw.Start();
@@ -140,7 +138,7 @@ namespace HoneyPot2POC.PocLogger
             hashedFilesAtEndtemp2.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp3.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp4.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
-
+            
 
 
             //Take a hash of the files at the end
@@ -194,7 +192,7 @@ namespace HoneyPot2POC.PocLogger
             }
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
-
+                 
             Filemon.setStopAddingToLog(true);
             fileMonChanges = Filemon.getFilemonChanges();
             /*
@@ -361,13 +359,13 @@ namespace HoneyPot2POC.PocLogger
             var stringPayload = JsonConvert.SerializeObject(options);
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp2posted", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1posted", content).Result;
             var result = await response.Content.ReadAsByteArrayAsync();
         }
 
         public static void getPoCRansomware()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp2ransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp1ransomware").Result;
 
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
@@ -382,7 +380,7 @@ namespace HoneyPot2POC.PocLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp2fetched", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1fetched", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
@@ -428,21 +426,7 @@ namespace HoneyPot2POC.PocLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp2tested", content).Result;
-
-            var responseString = await response.Content.ReadAsByteArrayAsync();
-        }
-
-        public static async void postPoCTaken()
-        {
-            var values = new Dictionary<string, string>
-            {
-                {"RansomwareName",  NAMEONTEST}
-            };
-
-            var content = new FormUrlEncodedContent(values);
-
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp2taken", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1tested", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
