@@ -32,9 +32,9 @@ namespace BaseLineHost
 
                 //Starts up the machine
                 tempVir.startVirtualMachine("BaselineTest");
-                Thread.Sleep(30000);
+                Thread.Sleep(60000);
 
-                getBaseRansomware();
+                getBaseHost();
                 string temp = FULLRESPONSESTRING;
 
                 Console.WriteLine(temp);
@@ -53,7 +53,7 @@ namespace BaseLineHost
                     {
                         Console.WriteLine(temp);
                         Console.WriteLine(count);
-                        getBaseRansomware();
+                        getBaseHost();
                         if (!temp.Equals(FULLRESPONSESTRING))
                         {
                             Console.WriteLine("Shutting down virtual machine due to post message");
@@ -72,7 +72,7 @@ namespace BaseLineHost
                     else
                     {
                         Thread.Sleep(5000);
-                        getBaseRansomware();
+                        getBaseHost();
                         temp = FULLRESPONSESTRING;
                         count = temp.Split(':').Length - 1;
                     }
@@ -109,9 +109,9 @@ namespace BaseLineHost
             return "Could Not Find";
         }
 
-        public static void getBaseRansomware()
+        public static void getBaseHost()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbaseransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbasehost").Result;
 
             NAMEONTEST = findNAMEONTEST(responseString);
         }

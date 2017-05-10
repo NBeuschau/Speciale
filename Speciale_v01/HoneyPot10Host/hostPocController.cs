@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HoneyPot2Host
+namespace HoneyPot10Host
 {
     class hostPocController
     {
-        private static string nameOfMachine = "PocTester2";
-        private static string nameofStartUpSnapshot = "HoneyPot2POCsnapshotStartUp";
+        private static string nameOfMachine = "PocTester";
+        private static string nameofStartUpSnapshot = "HoneyPot10POCsnapshotStartUp";
         private static string FULLRESPONSESTRING = "";
         private static string NAMEONTEST = "Error";
 
@@ -65,7 +65,7 @@ namespace HoneyPot2Host
                         runs++;
                         Thread.Sleep(5000);
 
-                        if (runs >= thresholdForRuntime)
+                        if(runs >= thresholdForRuntime)
                         {
                             Console.WriteLine("Posting because no post has been made");
                             action = true;
@@ -95,7 +95,7 @@ namespace HoneyPot2Host
             string responseString = "";
             try
             {
-                responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp2host").Result;
+                responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp10host").Result;
 
             }
             catch (Exception)

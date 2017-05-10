@@ -1,4 +1,4 @@
-﻿using HoneyPot5POC.PocLogger;
+﻿using HoneyPot10POC.PocLogger;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HoneyPot5POC.PocLogger
+namespace HoneyPot10POC.PocLogger
 {
     class Logger
     {
@@ -361,13 +361,13 @@ namespace HoneyPot5POC.PocLogger
             var stringPayload = JsonConvert.SerializeObject(options);
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp5posted", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp10posted", content).Result;
             var result = await response.Content.ReadAsByteArrayAsync();
         }
 
         public static void getPoCRansomware()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp5ransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp10ransomware").Result;
 
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
@@ -382,7 +382,7 @@ namespace HoneyPot5POC.PocLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp5fetched", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp10fetched", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
@@ -428,7 +428,7 @@ namespace HoneyPot5POC.PocLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp5tested", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp10tested", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
@@ -442,7 +442,7 @@ namespace HoneyPot5POC.PocLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp5taken", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp10taken", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }

@@ -35,7 +35,7 @@ namespace HoneyPotHost
                 //Starts up the machine
                 tempVir.startVirtualMachine(nameOfMachine);
 
-                Thread.Sleep(30000);
+                Thread.Sleep(60000);
 
                 getPocH1Host();
                 string temp = FULLRESPONSESTRING;
