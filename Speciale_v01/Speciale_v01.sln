@@ -29,6 +29,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShannonPOC", "ShannonPOC\Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileChangeTypePOC", "FileChangeTypePOC\FileChangeTypePOC.csproj", "{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoneyPot2Host", "HoneyPot2Host\HoneyPot2Host.csproj", "{601EC0FC-FA52-4022-AE4E-D768ADB98197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoneyPot2POCRansomwareDownloader", "HoneyPot2POCRansomwareDownloader\HoneyPot2POCRansomwareDownloader.csproj", "{DAF0D2A4-BD58-4D95-9CA6-FF895BB075A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE89033D-6BD4-4EBE-8FC6-9E9CFE8C8FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{601EC0FC-FA52-4022-AE4E-D768ADB98197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{601EC0FC-FA52-4022-AE4E-D768ADB98197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{601EC0FC-FA52-4022-AE4E-D768ADB98197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{601EC0FC-FA52-4022-AE4E-D768ADB98197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAF0D2A4-BD58-4D95-9CA6-FF895BB075A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAF0D2A4-BD58-4D95-9CA6-FF895BB075A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAF0D2A4-BD58-4D95-9CA6-FF895BB075A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAF0D2A4-BD58-4D95-9CA6-FF895BB075A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

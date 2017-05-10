@@ -11,8 +11,8 @@ namespace BaseLineHost
     class hostController
     {
 
-        //Hosts the baseline every 35 minute
-        static int thresholdForRuntime = 35 * 12;
+        //Hosts the baseline every 80 minute
+        static int thresholdForRuntime = 80 * 12;
 
         private static readonly HttpClient client = new HttpClient();
         private static string NAMEONTEST = "Error";
@@ -44,6 +44,8 @@ namespace BaseLineHost
                 action = false;
 
                 int runs = 0;
+
+                Console.WriteLine(temp);
 
                 while (!action)
                 {
