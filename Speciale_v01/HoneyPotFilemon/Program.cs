@@ -33,6 +33,8 @@ namespace HoneyPotPOC
 
             Logger.getPoCRansomware();
 
+            Logger.postPoCFetched();
+
             Logger.setRansomwareDownloaderPath(RANSOMWAREDOWNLOADERPATH);
 
             ActionTaker.setBackingName(BACKINGNAME);

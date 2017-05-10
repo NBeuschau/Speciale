@@ -35,7 +35,7 @@ namespace HoneyPotPOCRansomwareDownloader
 
             Thread.Sleep(100);
 
-            serverCommunicator.postPoCFetched();
+            serverCommunicator.postPoCStarted();
 
             Thread.Sleep(100);
 

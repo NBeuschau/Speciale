@@ -370,6 +370,20 @@ namespace HoneyPotPOC.PocLogger
             Console.WriteLine(NAMEONTEST);
         }
 
+        public static async void postPoCFetched()
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1fetched", content).Result;
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
+        }
+
 
         private static string findNAMEONTEST(string responsestring)
         {

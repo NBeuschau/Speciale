@@ -27,6 +27,9 @@ namespace BaseLineLogger
             //Gets the name of the ransomware
             BaseLineLogger.setRansomwareDownloaderPath(RANSOMWAREDOWNLOADERPATH);
             BaseLineLogger.getBaseRansomware();
+
+            //Post to the server such that the host controller works properly
+            BaseLineLogger.postBaseFetched();
             Console.WriteLine(BaseLineLogger.getNAMEONTEST());
 
             //Starts the logwriter

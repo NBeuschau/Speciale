@@ -66,16 +66,17 @@ namespace HoneyPotPOCRansomwareDownloader
             }
         }
 
-        public static async void postPoCFetched()
+        public static async void postPoCStarted()
         {
             var values = new Dictionary<string, string>
             {
-                {"RansomwareName",  NAMEONTEST}
+                {"RansomwareName",  NAMEONTEST},
+                {"Started", DateTime.Now.ToString() }
             };
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1fetched", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1started", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }

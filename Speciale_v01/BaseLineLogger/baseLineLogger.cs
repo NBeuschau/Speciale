@@ -425,6 +425,21 @@ namespace BaseLineLogger
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
+        //Informs the server that the data has been downloaded, thus creating an empty 
+        public static async void postBaseFetched()
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasefetched", content).Result;
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
+        }
+
         //Returns the name on the test
         public static string getNAMEONTEST()
         {

