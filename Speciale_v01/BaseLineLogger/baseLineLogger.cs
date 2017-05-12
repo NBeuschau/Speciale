@@ -49,6 +49,10 @@ namespace BaseLineLogger
         static string path4 = @"C:\Users\Baseline\Videos";
         static string pathFileWatch = @"C:\Users\Baseline";
 
+        //Give the correct path for the hashed filesystem.
+        //This includes giving the hasher the same path as the logger.
+        static string hashedFilePath = @"C:\Users\";
+
 
         //Add the path to the ransomware downloader
         private static string ransomwareDownloaderPath = "";
@@ -76,32 +80,12 @@ namespace BaseLineLogger
 
             //Create the dictionaries for the hashed files for each path
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp2 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp3 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp4 = new Dictionary<string, string>();
 
-            //Hashes all files in the given path
-            Hasher tempStartHasher1 = new Hasher();
-            hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
-
-            Hasher tempStartHasher2 = new Hasher();
-            hashedFilesAtStarttemp2 = tempStartHasher2.fileHasher(path2);
-
-            Hasher tempStartHasher3 = new Hasher();
-            hashedFilesAtStarttemp3 = tempStartHasher3.fileHasher(path3);
-
-            Hasher tempStartHasher4 = new Hasher();
-            hashedFilesAtStarttemp4 = tempStartHasher4.fileHasher(path4);
+            hashedFilesAtStart = testParseTXTfile(hashedFilePath);
 
             programExecuter.executeProgram(ransomwareDownloaderPath);
 
             //Adds the hashed files to a single list
-            hashedFilesAtStarttemp1.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp2.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp3.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp4.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
 
@@ -467,6 +451,23 @@ namespace BaseLineLogger
             ransomwareDownloaderPath = s;
         }
 
+        public static Dictionary<string, string> testParseTXTfile(string hashedFilePath)
+        {
+            string line;
+            string[] pairs = new string[2];
+            Dictionary<string, string> hashedFilesReturn = new Dictionary<string, string>();
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(hashedFilePath + "\\HashedFilesLog.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                pairs = line.Split('?');
+                hashedFilesReturn.Add(pairs[0], pairs[1]);
+            }
+            file.Close();
+
+
+            return hashedFilesReturn;
+        }
 
 
 

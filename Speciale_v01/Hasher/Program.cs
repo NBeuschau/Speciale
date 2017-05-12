@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Hasher
+{
+    class Program
+    {
+        static string path1 = @"C:\Speciale\Test\hashtester\path1";
+        static string path2 = @"C:\Speciale\Test\hashtester\path2";
+        static string path3 = @"C:\Speciale\Test\hashtester\path3";
+        static string path4 = @"C:\Speciale\Test\hashtester\path4";
+        static string hashedFilePath = @"C:\Speciale\Test\hashtester";
+
+        static void Main(string[] args)
+        {
+            Dictionary<string, string> hashedFiles = hashingProcess();
+
+            FileWriter.hashedFileLogCreator(hashedFilePath, hashedFiles);
+            Thread.Sleep(1000);
+            parseTXTfile.testParseTXTfile(hashedFilePath);
+            Console.ReadLine();
+        }
+
+
+
+
+        static Dictionary<string, string> hashingProcess()
+        {
+
+            //Creates the dictionaries for the hashed files at the end
+            Dictionary<string, string> collectedHashFiles = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFiles1 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFiles2 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFiles3 = new Dictionary<string, string>();
+            Dictionary<string, string> hashedFiles4 = new Dictionary<string, string>();
+
+            //Hashes the files and adds them to the dictionaries
+            HashingOfFileSystem tempHasher1 = new HashingOfFileSystem();
+            hashedFiles1 = tempHasher1.fileHasher(path1);
+
+            HashingOfFileSystem tempHasher2 = new HashingOfFileSystem();
+            hashedFiles2 = tempHasher2.fileHasher(path2);
+
+            HashingOfFileSystem tempHasher3 = new HashingOfFileSystem();
+            hashedFiles3 = tempHasher3.fileHasher(path3);
+
+            HashingOfFileSystem tempHasher4 = new HashingOfFileSystem();
+            hashedFiles4 = tempHasher4.fileHasher(path4);
+
+
+            //Adds all dictonaries to a single one.
+            hashedFiles1.ToList().ForEach(x => collectedHashFiles.Add(x.Key, x.Value));
+            hashedFiles2.ToList().ForEach(x => collectedHashFiles.Add(x.Key, x.Value));
+            hashedFiles3.ToList().ForEach(x => collectedHashFiles.Add(x.Key, x.Value));
+            hashedFiles4.ToList().ForEach(x => collectedHashFiles.Add(x.Key, x.Value));
+
+
+            return collectedHashFiles;
+        }
+    }
+}
