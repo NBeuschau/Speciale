@@ -17,7 +17,7 @@ namespace Hasher
                 new System.IO.StreamReader(hashedFilePath + "\\HashedFilesLog.txt");
             while ((line = file.ReadLine()) != null)
             {
-                pairs = line.Split('?');
+                pairs = line.Split('?:?:?');
                 hashedFilesReturn.Add(pairs[0], pairs[1]);
             }
             file.Close();

@@ -81,7 +81,7 @@ namespace BaseLineLogger
             //Create the dictionaries for the hashed files for each path
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
 
-            hashedFilesAtStart = testParseTXTfile(hashedFilePath);
+            hashedFilesAtStart = parseTXTfile(hashedFilePath);
 
             programExecuter.executeProgram(ransomwareDownloaderPath);
 
@@ -451,7 +451,7 @@ namespace BaseLineLogger
             ransomwareDownloaderPath = s;
         }
 
-        public static Dictionary<string, string> testParseTXTfile(string hashedFilePath)
+        public static Dictionary<string, string> parseTXTfile(string hashedFilePath)
         {
             string line;
             string[] pairs = new string[2];
@@ -460,7 +460,7 @@ namespace BaseLineLogger
                 new System.IO.StreamReader(hashedFilePath + "\\HashedFilesLog.txt");
             while ((line = file.ReadLine()) != null)
             {
-                pairs = line.Split('?');
+                pairs = line.Split('?:?:?');
                 hashedFilesReturn.Add(pairs[0], pairs[1]);
             }
             file.Close();
