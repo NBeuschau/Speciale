@@ -7,7 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Collections;
 
-namespace BaseLineLogger
+namespace Hasher
 
 {
     class FileMon
@@ -19,9 +19,11 @@ namespace BaseLineLogger
         public static Hashtable eventTimeLog = new Hashtable();
         private static Boolean stopAddingToLog = false;
         private static FileSystemWatcher watcher = new FileSystemWatcher();
+
         public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
+            
 
             //The given path dictates what directory the watcher will monitor
             watcher.Path = path;
@@ -44,12 +46,14 @@ namespace BaseLineLogger
             //IncludeSubdirectories does such that not only the directory given is monitored
             //but also every single subdirectory of the given directory
             watcher.IncludeSubdirectories = true;
+
         }
 
 
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
+            Console.WriteLine("Change in " + e.FullPath);
             if (!stopAddingToLog)
             {
                 if (!fileMonChanges.ContainsKey(DateTime.Now))
@@ -63,6 +67,7 @@ namespace BaseLineLogger
         //Event handeler if an object is renamed
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
+            Console.WriteLine("Change in " + e.FullPath);
             if (!stopAddingToLog)
             {
                 if (!fileMonChanges.ContainsKey(DateTime.Now))

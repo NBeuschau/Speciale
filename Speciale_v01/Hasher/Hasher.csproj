@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filemon.cs" />
     <Compile Include="FileWriter.cs" />
     <Compile Include="HashingOfFileSystem.cs" />
     <Compile Include="parseTXTfile.cs" />
