@@ -18,7 +18,7 @@ namespace HoneyPot2Host
         private static readonly HttpClient client = new HttpClient();
 
         //Every number here adds 5 seconds
-        static int thresholdForRuntime = 80 * 12;
+        static int thresholdForRuntime = 35 * 12;
 
         //Hosts the baseline every 33 minute
         public static void hostOfPOCTester()
@@ -95,6 +95,8 @@ namespace HoneyPot2Host
             string responseString = "";
             try
             {
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.ConnectionClose = true;
                 responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp2host").Result;
 
             }

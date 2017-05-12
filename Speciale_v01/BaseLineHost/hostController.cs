@@ -12,7 +12,7 @@ namespace BaseLineHost
     {
 
         //Hosts the baseline every 80 minute
-        static int thresholdForRuntime = 80 * 12;
+        static int thresholdForRuntime = 35 * 12;
 
         private static readonly HttpClient client = new HttpClient();
         private static string NAMEONTEST = "Error";
@@ -114,6 +114,8 @@ namespace BaseLineHost
             string responseString = "";
             try
             {
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.ConnectionClose = true;
                 responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getbasehost").Result;
 
             }
