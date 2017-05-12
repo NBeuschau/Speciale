@@ -51,7 +51,7 @@ namespace BaseLineLogger
 
         //Give the correct path for the hashed filesystem.
         //This includes giving the hasher the same path as the logger.
-        static string hashedFilePath = @"C:\Users\";
+        static string hashedFilePath = @"C:\Software\";
 
 
         //Add the path to the ransomware downloader

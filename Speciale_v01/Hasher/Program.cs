@@ -9,11 +9,11 @@ namespace Hasher
 {
     class Program
     {
-        static string path1 = @"C:\Speciale\Test\hashtester\path1";
-        static string path2 = @"C:\Speciale\Test\hashtester\path2";
-        static string path3 = @"C:\Speciale\Test\hashtester\path3";
-        static string path4 = @"C:\Speciale\Test\hashtester\path4";
-        static string hashedFilePath = @"C:\Speciale\Test\hashtester";
+        static string path1 = @"C:\Users\Baseline\Desktop";
+        static string path2 = @"C:\Users\Baseline\Documents";
+        static string path3 = @"C:\Users\Baseline\Downloads";
+        static string path4 = @"C:\Users\Baseline\Videos";
+        static string hashedFilePath = @"C:\Software\";
 
         static void Main(string[] args)
         {
