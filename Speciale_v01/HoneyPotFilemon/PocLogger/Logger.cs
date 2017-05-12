@@ -65,8 +65,6 @@ namespace HoneyPotPOC.PocLogger
 
             postPoCTaken();
 
-            var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
-            fw.Start();
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp2 = new Dictionary<string, string>();
@@ -95,6 +93,9 @@ namespace HoneyPotPOC.PocLogger
             ProcMon.setIsHasherDone(true);
             amountOfLoops = 0;
 
+            var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
+            fw.Start();
+
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
 
@@ -115,6 +116,12 @@ namespace HoneyPotPOC.PocLogger
                 span = DateTime.Now.Subtract(startTimeStamp);
             }
 
+            Filemon.setWatcherToStop();
+            fw.Interrupt();
+            if (!fw.Join(3000))
+            {
+                fw.Abort();
+            }
 
 
 

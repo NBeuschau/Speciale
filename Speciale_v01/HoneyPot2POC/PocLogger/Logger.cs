@@ -64,9 +64,6 @@ namespace HoneyPot2POC.PocLogger
             handleCounter = new PerformanceCounter("Process", "Handle Count", "_Total");
 
             postPoCTaken();
-
-            var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
-            fw.Start();
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtStarttemp2 = new Dictionary<string, string>();
@@ -95,6 +92,9 @@ namespace HoneyPot2POC.PocLogger
             ProcMon.setIsHasherDone(true);
             amountOfLoops = 0;
 
+            var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
+            fw.Start();
+
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
 
@@ -115,6 +115,13 @@ namespace HoneyPot2POC.PocLogger
                 span = DateTime.Now.Subtract(startTimeStamp);
             }
 
+
+            Filemon.setWatcherToStop();
+            fw.Interrupt();
+            if (!fw.Join(3000))
+            {
+                fw.Abort();
+            }
 
 
 

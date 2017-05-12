@@ -8,6 +8,7 @@ using System.Threading;
 using System.Collections;
 
 namespace HoneyPot2POC.PocLogger
+
 {
     class Filemon
     {
@@ -17,10 +18,10 @@ namespace HoneyPot2POC.PocLogger
         public static int temp = 0;
         public static Hashtable eventTimeLog = new Hashtable();
         private static Boolean stopAddingToLog = false;
+        private static FileSystemWatcher watcher = new FileSystemWatcher();
         public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
-            FileSystemWatcher watcher = new FileSystemWatcher();
 
             //The given path dictates what directory the watcher will monitor
             watcher.Path = path;
@@ -76,9 +77,15 @@ namespace HoneyPot2POC.PocLogger
             return fileMonChanges;
         }
 
+        //Stops adding to log such that an iteration won't trigger an error
         public static void setStopAddingToLog(Boolean b)
         {
             stopAddingToLog = b;
+        }
+
+        public static void setWatcherToStop()
+        {
+            watcher.EnableRaisingEvents = false;
         }
     }
 }
