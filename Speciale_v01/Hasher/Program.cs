@@ -17,22 +17,8 @@ namespace Hasher
 
         static void Main(string[] args)
         {
-            var fw = new Thread(() => FileMon.CreateFileWatcher(@"C:\Speciale\Test\hashtester"));
-            fw.Start();
-
-            Console.WriteLine("1");
-            Thread.Sleep(10000);
-            Console.WriteLine("2");
-            FileMon.setWatcherToStop();
-            fw.Interrupt();
-            if (!fw.Join(2000))
-            {
-                fw.Abort();
-            }
-            Console.WriteLine("3");
-            Thread.Sleep(10000);
-            Console.WriteLine("4");
-            Console.ReadLine();
+            Dictionary<string,string> temp = hashingProcess();
+            FileWriter.hashedFileLogCreator(hashedFilePath, temp);
         }
 
 

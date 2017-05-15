@@ -19,7 +19,7 @@ namespace Hasher
                 {
                     foreach (var item in hashedFiles)
                     {
-                        sw.WriteLine(item.Key + "?:?:?" + item.Value);
+                        sw.WriteLine(item.Key + "?" + item.Value);
                     }
                 }
             }
