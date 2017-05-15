@@ -28,6 +28,8 @@ namespace QuickTestLoggerImproved
             QTLogger.LogWriter(path1, path2, path3, path4);
 
             QTLogger.postQuickPosted();
+
+            Thread.Sleep(5000);
         }
     }
 }
