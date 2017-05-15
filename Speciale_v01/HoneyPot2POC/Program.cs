@@ -22,10 +22,8 @@ namespace HoneyPot2POC
 
         static void Main(string[] args)
         {
-            Hasher hash = new Hasher();
-            hash.fileHasher(@"C:\Speciale\Test\shannon\path3");
-            Console.ReadLine();
-            //honeyPotFileMonDetection();
+            Thread.Sleep(30000);
+            honeyPotFileMonDetection();
         }
 
         public static void honeyPotFileMonDetection()
@@ -45,14 +43,12 @@ namespace HoneyPot2POC
             var t = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME));
             t.Start();
 
-            FileMon.createFileWatcher(PATH);
-
-
             Console.WriteLine(Logger.getNAMEONTEST());
             Logger.LogWriter(PATH);
+            Logger.postPoCTested();
             Logger.postPoCPosted();
 
-            Logger.postPoCTested();
+            Thread.Sleep(30000);
         }
     }
 }

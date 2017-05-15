@@ -13,7 +13,7 @@ namespace HoneyPot2POC
     {
 
         static int MONITORTIMEOUT = 60;
-        static int thresholdNum = 3;
+        static int thresholdNum = 1;
         public static int i = 0;
         public static int temp = 0;
         public static Dictionary<string, DateTime> eventNameAndTime = new Dictionary<string, DateTime>();
@@ -22,10 +22,11 @@ namespace HoneyPot2POC
         private static List<DateTime> threshold = new List<DateTime>();
         static Boolean stopLogging = false;
 
+        private static FileSystemWatcher watcher = new FileSystemWatcher();
+
         public static void createFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
-            FileSystemWatcher watcher = new FileSystemWatcher();
 
             //The given path dictates what directory the watcher will monitor
             watcher.Path = path;
@@ -54,6 +55,7 @@ namespace HoneyPot2POC
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
+            Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
             threshold.Add(DateTime.Now);
             List<DateTime> temp = new List<DateTime>();
             DateTime now = DateTime.Now;
@@ -73,6 +75,7 @@ namespace HoneyPot2POC
 
             if (threshold.Count > thresholdNum)
             {
+                Console.WriteLine("Threshold reached. It's killing time");
 
                 if (!hasMadeFirstDetection)
                 {
@@ -109,6 +112,11 @@ namespace HoneyPot2POC
         public static DateTime getFirstDetected()
         {
             return firstDetectionTime;
+        }
+
+        public static void setWatcherToStop()
+        {
+            watcher.EnableRaisingEvents = false;
         }
     }
 }
