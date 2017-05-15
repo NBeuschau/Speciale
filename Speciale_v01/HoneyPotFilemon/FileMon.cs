@@ -21,11 +21,11 @@ namespace HoneyPotPOC
         private static DateTime firstDetectionTime = new DateTime();
         private static List<DateTime> threshold = new List<DateTime>();
         static Boolean stopLogging = false;
+        private static FileSystemWatcher watcher = new FileSystemWatcher();
 
         public static void createFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
-            FileSystemWatcher watcher = new FileSystemWatcher();
 
             //The given path dictates what directory the watcher will monitor
             watcher.Path = path;
@@ -111,6 +111,11 @@ namespace HoneyPotPOC
         public static DateTime getFirstDetected()
         {
             return firstDetectionTime;
+        }
+
+        public static void setWatcherToStop()
+        {
+            watcher.EnableRaisingEvents = false;
         }
     }
 }

@@ -109,13 +109,7 @@ namespace HoneyPotPOC.PocLogger
             fileMonChanges = Filemon.getFilemonChanges();
 
             Filemon.setWatcherToStop();
-            fw.Interrupt();
-            if (!fw.Join(3000))
-            {
-                fw.Abort();
-            }
-
-
+            FileMon.setWatcherToStop();
             ActionTaker.terminateProcmon();
 
             Dictionary<string, string> hashedFilesAtEnd = new Dictionary<string, string>();
