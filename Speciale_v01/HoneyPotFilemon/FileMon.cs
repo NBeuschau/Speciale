@@ -13,7 +13,7 @@ namespace HoneyPotPOC
     {
 
         static int MONITORTIMEOUT = 60;
-        static int thresholdNum = 3;
+        static int thresholdNum = 1;
         public static int i = 0;
         public static int temp = 0;
         public static Dictionary<string, DateTime> eventNameAndTime = new Dictionary<string, DateTime>();
@@ -54,6 +54,7 @@ namespace HoneyPotPOC
         //Event handeler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
+            Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
             threshold.Add(DateTime.Now);
             List<DateTime> temp = new List<DateTime>();
             DateTime now = DateTime.Now;
@@ -73,6 +74,7 @@ namespace HoneyPotPOC
 
             if (threshold.Count > thresholdNum)
             {
+                Console.WriteLine("Threshold reached. It's killing time");
 
                 if (!hasMadeFirstDetection)
                 {

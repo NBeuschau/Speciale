@@ -79,8 +79,11 @@ namespace HoneyPotPOC.PocLogger
 
             programExecuter.executeProgram(ransomwareDownloaderPath);
 
-            var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
+            var fw = new Thread(() => FileMon.createFileWatcher(pathFileWatch));
             fw.Start();
+
+            var tmp = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
+            tmp.Start();
 
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;

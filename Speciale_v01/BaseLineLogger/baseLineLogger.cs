@@ -95,6 +95,7 @@ namespace BaseLineLogger
 
             //Loops in an interval given by MINUTESOFLOGGING
             TimeSpan span = DateTime.Now.Subtract(startTimeStamp);
+            Console.WriteLine("Starting loop");
             while (span.Minutes < MINUTESOFLOGGING)
             {
                 amountOfLoops++;
@@ -110,17 +111,13 @@ namespace BaseLineLogger
 
                 span = DateTime.Now.Subtract(startTimeStamp);
             }
+            Console.WriteLine("Ending loop \n starting process to post");
 
             //Stops the filemon log such that there aren't written to it during iteration
             FileMon.setStopAddingToLog(true);
             fileMonChanges = FileMon.getFilemonChanges();
 
             FileMon.setWatcherToStop();
-            fw.Interrupt();
-            if (!fw.Join(3000))
-            {
-                fw.Abort();
-            }
 
 
             //Creates the dictionaries for the hashed files at the end
