@@ -12,7 +12,7 @@ namespace BaseLineHost
     {
 
         //Hosts the baseline every 80 minute
-        static int thresholdForRuntime = 35 * 12;
+        static int thresholdForRuntime = 80 * 12;
 
         private static readonly HttpClient client = new HttpClient();
         private static string NAMEONTEST = "Error";
