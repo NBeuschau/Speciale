@@ -126,6 +126,10 @@ namespace BaseLineLogger
                 span = DateTime.Now.Subtract(startTimeStamp);
             }
 
+            //Stops the filemon log such that there aren't written to it during iteration
+            FileMon.setStopAddingToLog(true);
+            fileMonChanges = FileMon.getFilemonChanges();
+
             FileMon.setWatcherToStop();
             fw.Interrupt();
             if (!fw.Join(3000))
@@ -214,9 +218,7 @@ namespace BaseLineLogger
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
 
-            //Stops the filemon log such that there aren't written to it during iteration
-            FileMon.setStopAddingToLog(true);
-            fileMonChanges = FileMon.getFilemonChanges();
+
 
             //Old part, can create a txt log of what is observed
             /*

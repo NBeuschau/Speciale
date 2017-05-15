@@ -35,11 +35,14 @@ namespace BaseLineLogger
             //Starts the logwriter
             BaseLineLogger.LogWriter(PATH);
 
+            //Post to the server that the baseline has tested this ransomware
+            BaseLineLogger.postBaseTested();
+
             //Posts the results to the server
             BaseLineLogger.postBasePosted();
 
-            //Post to the server that the baseline has tested this ransomware
-            BaseLineLogger.postBaseTested();
+
+            Thread.Sleep(20000);
         }
     }
 }
