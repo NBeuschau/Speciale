@@ -9,10 +9,10 @@ namespace Hasher
 {
     class Program
     {
-        static string path1 = @"C:\Users\Baseline\Desktop";
-        static string path2 = @"C:\Users\Baseline\Documents";
-        static string path3 = @"C:\Users\Baseline\Downloads";
-        static string path4 = @"C:\Users\Baseline\Videos";
+        static string path1 = @"C:\Users\PoC\Desktop";
+        static string path2 = @"C:\Users\PoC\Documents";
+        static string path3 = @"C:\Users\PoC\Downloads";
+        static string path4 = @"C:\Users\PoC\Videos";
         static string hashedFilePath = @"C:\Software\";
 
         static void Main(string[] args)
