@@ -19,6 +19,7 @@ namespace HoneyPotPOC.PocLogger
         private static int MINUTESOFLOGGING = 25;
         private static string NAMEONTEST = "test";
         private static Boolean MONITORSTATUS = true;
+        private static Boolean HASFETCHED = false;
         private static PerformanceCounter cpuUsageCounter;
         private static PerformanceCounter ramUsageCounter;
         private static PerformanceCounter harddiskUsageCounter;
@@ -378,6 +379,8 @@ namespace HoneyPotPOC.PocLogger
 
             var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp1fetched", content).Result;
 
+            HASFETCHED = true;
+
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
@@ -450,6 +453,11 @@ namespace HoneyPotPOC.PocLogger
         public static void setRansomwareDownloaderPath(string s)
         {
             ransomwareDownloaderPath = s;
+        }
+
+        public static Boolean getHasFetched()
+        {
+            return HASFETCHED;
         }
 
         public static Dictionary<string, string> testParseTXTfile(string hashedFilePath)

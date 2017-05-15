@@ -33,6 +33,11 @@ namespace HoneyPot2POC
 
             Logger.postPoCFetched();
 
+            while (!Logger.getHasFetched())
+            {
+                Thread.Sleep(500);
+            }
+
             Logger.setRansomwareDownloaderPath(RANSOMWAREDOWNLOADERPATH);
 
             ActionTaker.setBackingName(BACKINGNAME);
