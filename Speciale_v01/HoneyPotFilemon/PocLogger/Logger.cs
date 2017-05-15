@@ -68,6 +68,7 @@ namespace HoneyPotPOC.PocLogger
             threadCounter = new PerformanceCounter("Process", "Thread Count", "_Total");
             handleCounter = new PerformanceCounter("Process", "Handle Count", "_Total");
 
+            postPoCTaken();
 
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
             hashedFilesAtStart = testParseTXTfile(hashedFilePath);
@@ -78,7 +79,6 @@ namespace HoneyPotPOC.PocLogger
 
             programExecuter.executeProgram(ransomwareDownloaderPath);
 
-            postPoCTaken();
 
             var fw = new Thread(() => FileMon.createFileWatcher(pathFileWatch));
             fw.Start();
