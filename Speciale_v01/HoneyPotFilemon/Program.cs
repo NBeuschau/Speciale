@@ -45,9 +45,11 @@ namespace HoneyPotPOC
                         
             Console.WriteLine(Logger.getNAMEONTEST());
             Logger.LogWriter(PATH);
+            Logger.postPoCTested();
             Logger.postPoCPosted();
 
-            Logger.postPoCTested();
+
+            Thread.Sleep(30000);
         }
     }
 }
