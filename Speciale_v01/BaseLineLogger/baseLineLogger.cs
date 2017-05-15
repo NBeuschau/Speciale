@@ -122,6 +122,7 @@ namespace BaseLineLogger
                 fw.Abort();
             }
 
+
             //Creates the dictionaries for the hashed files at the end
             Dictionary<string, string> hashedFilesAtEnd = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtEndtemp1 = new Dictionary<string, string>();

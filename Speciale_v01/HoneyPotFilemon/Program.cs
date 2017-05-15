@@ -18,14 +18,12 @@ namespace HoneyPotPOC
         static string ProcMonPath = @"C:\procmon\Procmon.exe";
 
         //Path to ransomware downloader
-        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPotPOCRansomwareDownloader\bin\Release\HoneyPot1POCRansomwareDownloader.exe";
+        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPotPOCRansomwareDownloader\bin\Release\HoneyPotPOCRansomwareDownloader.exe";
 
         static void Main(string[] args)
         {
-            Hasher hash = new Hasher();
-            hash.fileHasher(@"C:\Speciale\Test\shannon\path3");
-            Console.ReadLine();
-            //honeyPotFileMonDetection();
+            Thread.Sleep(30000);
+            honeyPotFileMonDetection();
         }
 
         public static void honeyPotFileMonDetection()
@@ -44,10 +42,7 @@ namespace HoneyPotPOC
             BACKINGNAME = BACKINGNAME + 0;
             var t = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME));
             t.Start();
-
-            FileMon.createFileWatcher(PATH);
-
-            
+                        
             Console.WriteLine(Logger.getNAMEONTEST());
             Logger.LogWriter(PATH);
             Logger.postPoCPosted();

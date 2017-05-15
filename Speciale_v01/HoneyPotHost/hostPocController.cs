@@ -18,7 +18,7 @@ namespace HoneyPotHost
         private static readonly HttpClient client = new HttpClient();
 
         //Every number here adds 5 seconds
-        static int thresholdForRuntime = 35 * 12;
+        static int thresholdForRuntime = 80 * 12;
 
         //Hosts the baseline every 33 minute
         public static void hostOfPOCTester()
@@ -37,7 +37,7 @@ namespace HoneyPotHost
 
                 Thread.Sleep(60000);
 
-                getPocH1Host();
+                getPocHP1Host();
                 string temp = FULLRESPONSESTRING;
 
                 Console.WriteLine(temp);
@@ -56,7 +56,7 @@ namespace HoneyPotHost
                     {
                         Console.WriteLine(temp);
                         Console.WriteLine(count);
-                        getPocH1Host();
+                        getPocHP1Host();
                         if (!temp.Equals(FULLRESPONSESTRING))
                         {
                             Console.WriteLine("Shutting down virtual machine due to post message");
@@ -74,7 +74,7 @@ namespace HoneyPotHost
                     else
                     {
                         Thread.Sleep(5000);
-                        getPocH1Host();
+                        getPocHP1Host();
                         temp = FULLRESPONSESTRING;
                         count = temp.Split(':').Length - 1;
                     }
@@ -90,7 +90,7 @@ namespace HoneyPotHost
             }
         }
 
-        public static void getPocH1Host()
+        public static void getPocHP1Host()
         {
             string responseString = "";
             try

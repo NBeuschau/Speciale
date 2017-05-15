@@ -44,6 +44,11 @@ namespace HoneyPotPOC.PocLogger
         static string path4 = @"C:\Users\PoC\Videos";
         static string pathFileWatch = @"C:\Users\PoC";
 
+
+        //Give the correct path for the hashed filesystem.
+        //This includes giving the hasher the same path as the logger.
+        static string hashedFilePath = @"C:\Software\";
+
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";
         //static string path3 = @"C:\Users\viruseater1\Downloads";
@@ -66,32 +71,13 @@ namespace HoneyPotPOC.PocLogger
             postPoCTaken();
 
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp2 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp3 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp4 = new Dictionary<string, string>();
-            Hasher tempStartHasher1 = new Hasher();
-            hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
+            hashedFilesAtStart = testParseTXTfile(hashedFilePath);
 
-            Hasher tempStartHasher2 = new Hasher();
-            hashedFilesAtStarttemp2 = tempStartHasher2.fileHasher(path2);
-
-            Hasher tempStartHasher3 = new Hasher();
-            hashedFilesAtStarttemp3 = tempStartHasher3.fileHasher(path3);
-
-            Hasher tempStartHasher4 = new Hasher();
-            hashedFilesAtStarttemp4 = tempStartHasher4.fileHasher(path4);
-
-            programExecuter.executeProgram(ransomwareDownloaderPath);
-
-
-            hashedFilesAtStarttemp1.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp2.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp3.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp4.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
 
             ProcMon.setIsHasherDone(true);
             amountOfLoops = 0;
+
+            programExecuter.executeProgram(ransomwareDownloaderPath);
 
             var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
             fw.Start();
@@ -116,6 +102,9 @@ namespace HoneyPotPOC.PocLogger
                 span = DateTime.Now.Subtract(startTimeStamp);
             }
 
+            Filemon.setStopAddingToLog(true);
+            fileMonChanges = Filemon.getFilemonChanges();
+
             Filemon.setWatcherToStop();
             fw.Interrupt();
             if (!fw.Join(3000))
@@ -124,6 +113,7 @@ namespace HoneyPotPOC.PocLogger
             }
 
 
+            ActionTaker.terminateProcmon();
 
             Dictionary<string, string> hashedFilesAtEnd = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtEndtemp1 = new Dictionary<string, string>();
@@ -202,8 +192,7 @@ namespace HoneyPotPOC.PocLogger
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
                  
-            Filemon.setStopAddingToLog(true);
-            fileMonChanges = Filemon.getFilemonChanges();
+
             /*
             string filePath = PATH + "\\RansomwareLog.txt";
             if (!File.Exists(filePath))
@@ -463,6 +452,24 @@ namespace HoneyPotPOC.PocLogger
         public static void setRansomwareDownloaderPath(string s)
         {
             ransomwareDownloaderPath = s;
+        }
+
+        public static Dictionary<string, string> testParseTXTfile(string hashedFilePath)
+        {
+            string line;
+            string[] pairs = new string[2];
+            Dictionary<string, string> hashedFilesReturn = new Dictionary<string, string>();
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(hashedFilePath + "\\HashedFilesLog.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                pairs = line.Split('?');
+                hashedFilesReturn.Add(pairs[0], pairs[1]);
+            }
+            file.Close();
+
+
+            return hashedFilesReturn;
         }
 
 

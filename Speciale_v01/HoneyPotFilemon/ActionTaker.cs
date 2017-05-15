@@ -137,5 +137,10 @@ namespace HoneyPotPOC
         {
             return firstKilledProcessTime;
         }
+
+        public static void terminateProcmon()
+        {
+            ProcMon.procmonTerminator(pathToBackingFile, BACKINGNAME + INDEXER);
+        }
     }
 }
