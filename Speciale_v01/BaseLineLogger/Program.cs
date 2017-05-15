@@ -18,6 +18,7 @@ namespace BaseLineLogger
 
         static void Main(string[] args)
         {
+            Thread.Sleep(30000);
             baseLineTester();
         }
 
