@@ -72,7 +72,6 @@ namespace BaseLineLogger
             threadCounter = new PerformanceCounter("Process", "Thread Count", "_Total");
             handleCounter = new PerformanceCounter("Process", "Handle Count", "_Total");
 
-            postBaseTaken();
 
 
 
@@ -82,6 +81,8 @@ namespace BaseLineLogger
             hashedFilesAtStart = testParseTXTfile(hashedFilePath);
 
             programExecuter.executeProgram(ransomwareDownloaderPath);
+
+            postBaseTaken();
 
             //Adds the hashed files to a single list
             //Starts the filewatcher
