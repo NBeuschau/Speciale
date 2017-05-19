@@ -22,10 +22,8 @@ namespace HoneyPot10POC
 
         static void Main(string[] args)
         {
-            Hasher hash = new Hasher();
-            hash.fileHasher(@"C:\Speciale\Test\shannon\path3");
-            Console.ReadLine();
-            //honeyPotFileMonDetection();
+            Thread.Sleep(30000);
+            honeyPotFileMonDetection();
         }
 
         public static void honeyPotFileMonDetection()
@@ -33,7 +31,14 @@ namespace HoneyPot10POC
 
             Logger.getPoCRansomware();
 
+            Thread.Sleep(1000);
+
             Logger.postPoCFetched();
+
+            while (!Logger.getHasFetched())
+            {
+                Thread.Sleep(500);
+            }
 
             Logger.setRansomwareDownloaderPath(RANSOMWAREDOWNLOADERPATH);
 
@@ -45,14 +50,13 @@ namespace HoneyPot10POC
             var t = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME));
             t.Start();
 
-            FileMon.createFileWatcher(PATH);
-
-
             Console.WriteLine(Logger.getNAMEONTEST());
             Logger.LogWriter(PATH);
+            Logger.postPoCTested();
             Logger.postPoCPosted();
 
-            Logger.postPoCTested();
+            Thread.Sleep(30000);
+
         }
     }
 }

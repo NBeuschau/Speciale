@@ -37,7 +37,7 @@ namespace HoneyPot10Host
 
                 Thread.Sleep(60000);
 
-                getPocH1Host();
+                getPocHP10Host();
                 string temp = FULLRESPONSESTRING;
 
                 Console.WriteLine(temp);
@@ -56,7 +56,7 @@ namespace HoneyPot10Host
                     {
                         Console.WriteLine(temp);
                         Console.WriteLine(count);
-                        getPocH1Host();
+                        getPocHP10Host();
                         if (!temp.Equals(FULLRESPONSESTRING))
                         {
                             Console.WriteLine("Shutting down virtual machine due to post message");
@@ -74,7 +74,7 @@ namespace HoneyPot10Host
                     else
                     {
                         Thread.Sleep(5000);
-                        getPocH1Host();
+                        getPocHP10Host();
                         temp = FULLRESPONSESTRING;
                         count = temp.Split(':').Length - 1;
                     }
@@ -90,7 +90,7 @@ namespace HoneyPot10Host
             }
         }
 
-        public static void getPocH1Host()
+        public static void getPocHP10Host()
         {
             string responseString = "";
             try

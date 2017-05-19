@@ -37,7 +37,7 @@ namespace HoneyPot5Host
 
                 Thread.Sleep(60000);
 
-                getPocH1Host();
+                getPocHP5Host();
                 string temp = FULLRESPONSESTRING;
 
                 Console.WriteLine(temp);
@@ -56,7 +56,7 @@ namespace HoneyPot5Host
                     {
                         Console.WriteLine(temp);
                         Console.WriteLine(count);
-                        getPocH1Host();
+                        getPocHP5Host();
                         if (!temp.Equals(FULLRESPONSESTRING))
                         {
                             Console.WriteLine("Shutting down virtual machine due to post message");
@@ -74,7 +74,7 @@ namespace HoneyPot5Host
                     else
                     {
                         Thread.Sleep(5000);
-                        getPocH1Host();
+                        getPocHP5Host();
                         temp = FULLRESPONSESTRING;
                         count = temp.Split(':').Length - 1;
                     }
@@ -90,11 +90,14 @@ namespace HoneyPot5Host
             }
         }
 
-        public static void getPocH1Host()
+        public static void getPocHP5Host()
         {
             string responseString = "";
             try
             {
+
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.ConnectionClose = true;
                 responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp5host").Result;
 
             }

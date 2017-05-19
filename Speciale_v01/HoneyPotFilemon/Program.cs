@@ -31,6 +31,8 @@ namespace HoneyPotPOC
 
             Logger.getPoCRansomware();
 
+            Thread.Sleep(1000);
+
             Logger.postPoCFetched();
 
             while (!Logger.getHasFetched())

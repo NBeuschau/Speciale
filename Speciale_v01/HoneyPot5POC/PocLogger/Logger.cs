@@ -19,6 +19,7 @@ namespace HoneyPot5POC.PocLogger
         private static int MINUTESOFLOGGING = 25;
         private static string NAMEONTEST = "test";
         private static Boolean MONITORSTATUS = true;
+        private static Boolean HASFETCHED = false;
         private static PerformanceCounter cpuUsageCounter;
         private static PerformanceCounter ramUsageCounter;
         private static PerformanceCounter harddiskUsageCounter;
@@ -44,10 +45,9 @@ namespace HoneyPot5POC.PocLogger
         static string path4 = @"C:\Users\PoC\Videos";
         static string pathFileWatch = @"C:\Users\PoC";
 
-        //static string path1 = @"C:\Users\viruseater1\Documents";
-        //static string path2 = @"C:\Users\viruseater1\Desktop";
-        //static string path3 = @"C:\Users\viruseater1\Downloads";
-        //static string path4 = @"C:\Users\viruseater1\Videos";
+        //Give the correct path for the hashed filesystem.
+        //This includes giving the hasher the same path as the logger.
+        static string hashedFilePath = @"C:\Software\";
 
         //Add the path to the ransomware downloader
         private static string ransomwareDownloaderPath = "";
@@ -65,35 +65,20 @@ namespace HoneyPot5POC.PocLogger
 
             postPoCTaken();
 
-            var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
-            fw.Start();
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp2 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp3 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp4 = new Dictionary<string, string>();
-            Hasher tempStartHasher1 = new Hasher();
-            hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
-
-            Hasher tempStartHasher2 = new Hasher();
-            hashedFilesAtStarttemp2 = tempStartHasher2.fileHasher(path2);
-
-            Hasher tempStartHasher3 = new Hasher();
-            hashedFilesAtStarttemp3 = tempStartHasher3.fileHasher(path3);
-
-            Hasher tempStartHasher4 = new Hasher();
-            hashedFilesAtStarttemp4 = tempStartHasher4.fileHasher(path4);
-
-            programExecuter.executeProgram(ransomwareDownloaderPath);
-
-
-            hashedFilesAtStarttemp1.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp2.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp3.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp4.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
+            hashedFilesAtStart = testParseTXTfile(hashedFilePath);
 
             ProcMon.setIsHasherDone(true);
             amountOfLoops = 0;
+
+            programExecuter.executeProgram(ransomwareDownloaderPath);
+            
+
+            var fw = new Thread(() => FileMon.createFileWatcher(pathFileWatch));
+            fw.Start();
+            var tmp = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
+            tmp.Start();
+
 
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
@@ -115,6 +100,12 @@ namespace HoneyPot5POC.PocLogger
                 span = DateTime.Now.Subtract(startTimeStamp);
             }
 
+            Filemon.setStopAddingToLog(true);
+            fileMonChanges = Filemon.getFilemonChanges();
+
+            Filemon.setWatcherToStop();
+            FileMon.setWatcherToStop();
+            ActionTaker.terminateProcmon();
 
 
 
@@ -195,8 +186,6 @@ namespace HoneyPot5POC.PocLogger
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
                  
-            Filemon.setStopAddingToLog(true);
-            fileMonChanges = Filemon.getFilemonChanges();
             /*
             string filePath = PATH + "\\RansomwareLog.txt";
             if (!File.Exists(filePath))
@@ -384,6 +373,8 @@ namespace HoneyPot5POC.PocLogger
 
             var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp5fetched", content).Result;
 
+            HASFETCHED = true;
+
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
@@ -458,6 +449,28 @@ namespace HoneyPot5POC.PocLogger
             ransomwareDownloaderPath = s;
         }
 
+        public static Boolean getHasFetched()
+        {
+            return HASFETCHED;
+        }
+
+        public static Dictionary<string, string> testParseTXTfile(string hashedFilePath)
+        {
+            string line;
+            string[] pairs = new string[2];
+            Dictionary<string, string> hashedFilesReturn = new Dictionary<string, string>();
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(hashedFilePath + "\\HashedFilesLog.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                pairs = line.Split('?');
+                hashedFilesReturn.Add(pairs[0], pairs[1]);
+            }
+            file.Close();
+
+
+            return hashedFilesReturn;
+        }
 
 
 
