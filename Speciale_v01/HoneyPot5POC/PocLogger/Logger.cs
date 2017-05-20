@@ -39,11 +39,11 @@ namespace HoneyPot5POC.PocLogger
         private static List<float> harddiskList = new List<float>();
         private static List<float> threadList = new List<float>();
         private static List<float> handleList = new List<float>();
-        static string path1 = @"C:\Users\PoC\Desktop";
-        static string path2 = @"C:\Users\PoC\Documents";
-        static string path3 = @"C:\Users\PoC\Downloads";
-        static string path4 = @"C:\Users\PoC\Videos";
-        static string pathFileWatch = @"C:\Users\PoC";
+        static string path1 = @"C:\Users\PoC3\Desktop";
+        static string path2 = @"C:\Users\PoC3\Documents";
+        static string path3 = @"C:\Users\PoC3\Downloads";
+        static string path4 = @"C:\Users\PoC3\Videos";
+        static string pathFileWatch = @"C:\Users\PoC3";
 
         //Give the correct path for the hashed filesystem.
         //This includes giving the hasher the same path as the logger.

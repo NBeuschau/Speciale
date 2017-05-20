@@ -12,7 +12,7 @@ namespace HoneyPot10POC
     {
         //In addition, four paths needs to be set in PocLogger\Logger
         //static string PATH = @"C:\Users\PoC";
-        static string PATH = @"C:\Users\PoC";
+        static string PATH = @"C:\Users\Baseline2";
         static string BACKINGNAME = "backingFromProcMon";
         static string pathToBackingFile = @"C:\procmon\backingFileTest";
         static string ProcMonPath = @"C:\procmon\Procmon.exe";

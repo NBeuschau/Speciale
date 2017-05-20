@@ -10,7 +10,7 @@ namespace HoneyPot10Host
 {
     class hostPocController
     {
-        private static string nameOfMachine = "PocTester";
+        private static string nameOfMachine = "BaselineTester2";
         private static string nameofStartUpSnapshot = "HoneyPot10POCsnapshotStartUp";
         private static string FULLRESPONSESTRING = "";
         private static string NAMEONTEST = "Error";
