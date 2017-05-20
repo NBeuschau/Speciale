@@ -15,10 +15,10 @@ namespace HoneyPot10POCRansomwareDownloader
         static string RANSOMWAREFILEPATH = "";
         private static readonly HttpClient client = new HttpClient();
 
-        public static void getPoCRansomware()
+        public static void getPoCHost()
         {
 
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp10ransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp10host").Result;
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
 
@@ -77,20 +77,6 @@ namespace HoneyPot10POCRansomwareDownloader
             var content = new FormUrlEncodedContent(values);
 
             var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp10started", content).Result;
-
-            var responseString = await response.Content.ReadAsByteArrayAsync();
-        }
-
-        public static async void postPoCTaken()
-        {
-            var values = new Dictionary<string, string>
-            {
-                {"RansomwareName",  NAMEONTEST}
-            };
-
-            var content = new FormUrlEncodedContent(values);
-
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/posthp10taken", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
