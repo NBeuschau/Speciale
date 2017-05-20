@@ -11,10 +11,11 @@ namespace ShannonPOC
 {
     class FileMon
     {
+        private static FileSystemWatcher watcher = new FileSystemWatcher();
+
         public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
-            FileSystemWatcher watcher = new FileSystemWatcher();
 
             //The given path dictates what directory the watcher will monitor
             watcher.Path = path;
@@ -71,6 +72,12 @@ namespace ShannonPOC
             Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
             ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
             ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
+        }
+
+
+        public static void setWatcherToStop()
+        {
+            watcher.EnableRaisingEvents = false;
         }
     }
 }

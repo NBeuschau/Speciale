@@ -95,6 +95,8 @@ namespace HoneyPot10Host
             string responseString = "";
             try
             {
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.ConnectionClose = true;
                 responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/gethp10host").Result;
 
             }

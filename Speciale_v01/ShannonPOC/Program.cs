@@ -24,7 +24,7 @@ namespace ShannonPOC
         static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPotPOCRansomwareDownloader\bin\Release\HoneyPotPOCRansomwareDownloader.exe";
 
         static double entropyThreshold = 0.9;
-        static int thresholdToReaction = 5;
+        static int thresholdToReaction = 2;
         static int secondsInThreshold = 60;
 
         static void Main(string[] args)
@@ -48,16 +48,24 @@ namespace ShannonPOC
             */
             // FileMon.CreateFileWatcher(path);
             //Console.WriteLine(FilemonEventHandler.returnFilePath(path));
-
+            Thread.Sleep(30000);
 
             shannonEntropyFileMonDetection();
 
-            Console.ReadLine();
         }
 
         public static void shannonEntropyFileMonDetection()
         {
             Logger.getPoCRansomware();
+
+            Thread.Sleep(1000);
+
+            Logger.postPoCFetched();
+
+            while (!Logger.getHasFetched())
+            {
+                Thread.Sleep(500);
+            }
 
             Logger.setRansomwareDownloaderPath(RANSOMWAREDOWNLOADERPATH);
 
@@ -104,7 +112,7 @@ namespace ShannonPOC
             //Start filemon
             //When filemon sees a reaction it posts to filemoneventhandler
             //Filemoneventhandler then deems if it is nessesary to take action, using actiontaker
-            FileMon.CreateFileWatcher(PATH);
+            Console.WriteLine(Logger.getNAMEONTEST());
 
             //Start logger
             //TODO fix call to server such that it is not honeypotpoc that is called
@@ -112,6 +120,8 @@ namespace ShannonPOC
             
             Logger.postPoCPosted();
             Logger.postPoCTested();
+
+            Thread.Sleep(30000);
             
         }
     }

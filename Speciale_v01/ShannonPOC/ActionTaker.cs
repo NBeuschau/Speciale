@@ -138,5 +138,9 @@ namespace ShannonPOC
         {
             return firstKilledProcessTime;
         }
+        public static void terminateProcmon()
+        {
+            ProcMon.procmonTerminator(pathToBackingFile, BACKINGNAME + INDEXER);
+        }
     }
 }

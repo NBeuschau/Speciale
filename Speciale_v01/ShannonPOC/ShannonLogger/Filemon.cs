@@ -17,6 +17,8 @@ namespace ShannonPOC.ShannonLogger
         public static int temp = 0;
         public static Hashtable eventTimeLog = new Hashtable();
         private static Boolean stopAddingToLog = false;
+        private static FileSystemWatcher watcher = new FileSystemWatcher();
+
         public static void CreateFileWatcher(string path)
         {
             //FileSystemWatcher can monitor changes in files
@@ -79,6 +81,10 @@ namespace ShannonPOC.ShannonLogger
         public static void setStopAddingToLog(Boolean b)
         {
             stopAddingToLog = b;
+        }
+        public static void setWatcherToStop()
+        {
+            watcher.EnableRaisingEvents = false;
         }
     }
 }

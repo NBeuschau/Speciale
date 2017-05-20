@@ -33,13 +33,12 @@ namespace ShannonPOC
 
             }
 
-            //TODO Find ud af threshold
-            if(changedFileEntropy-originalFileEntropy > 0.05 && changedFileEntropy > 0.9)
+            if(changedFileEntropy-originalFileEntropy > 0.05 && changedFileEntropy > entropyThreshold)
             {
                 //React
                 react(e);
             }
-            else if (changedFileEntropy > 0.9 && originalFileEntropy < 0.9)
+            else if (changedFileEntropy > entropyThreshold && originalFileEntropy < 0.9)
             {
                 //React
                 react(e);
@@ -82,8 +81,12 @@ namespace ShannonPOC
             else
             {
                 //TODO find threshold på nye filer og om entropien er for høj
+                ShannonEntropy.removeKeyFromSavedEntropies(oldFilePath);
                 ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, createdFileEntropy);
-                react(e);
+                if(createdFileEntropy > entropyThreshold)
+                {
+                    react(e);
+                }
             }
         }
 
@@ -99,6 +102,7 @@ namespace ShannonPOC
 
             string fileName = returnFileName(e.FullPath);
 
+            double oldEntropy = ShannonEntropy.getSavedEntropies()[e.FullPath];
             foreach (string s in filesInDirectory)
             {
                 if (s.Contains(fileName))
@@ -106,10 +110,19 @@ namespace ShannonPOC
                     newSimilarFileIsCreated = true;
                     FileInfo newFileInfo = new FileInfo(s);
                     double newEntropy = entropyCreator.CalculateEntropy(newFileInfo);
-                    double oldEntropy = ShannonEntropy.getSavedEntropies()[e.FullPath];
 
                     //TODO  react if needed
                     react(e);
+                    if (newEntropy - oldEntropy > 0.05 && newEntropy > entropyThreshold)
+                    {
+                        //React
+                        react(e);
+                    }
+                    else if (newEntropy > entropyThreshold && oldEntropy < 0.9)
+                    {
+                        //React
+                        react(e);
+                    }
                 }
             }
 

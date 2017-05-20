@@ -18,6 +18,7 @@ namespace ShannonPOC.ShannonLogger
         private static int MINUTESOFLOGGING = 25;
         private static string NAMEONTEST = "test";
         private static Boolean MONITORSTATUS = true;
+        private static Boolean HASFETCHED = false;
         private static PerformanceCounter cpuUsageCounter;
         private static PerformanceCounter ramUsageCounter;
         private static PerformanceCounter harddiskUsageCounter;
@@ -37,16 +38,20 @@ namespace ShannonPOC.ShannonLogger
         private static List<float> harddiskList = new List<float>();
         private static List<float> threadList = new List<float>();
         private static List<float> handleList = new List<float>();
-        static string path1 = @"C:\Users\PoC\Desktop";
-        static string path2 = @"C:\Users\PoC\Documents";
-        static string path3 = @"C:\Users\PoC\Downloads";
-        static string path4 = @"C:\Users\PoC\Videos";
+        static string path1 = @"";
+        static string path2 = @"";
+        static string path3 = @"";
+        static string path4 = @"";
         static string pathFileWatch = @"C:\Users\PoC";
 
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";
         //static string path3 = @"C:\Users\viruseater1\Downloads";
         //static string path4 = @"C:\Users\viruseater1\Videos";
+
+        //Give the correct path for the hashed filesystem.
+        //This includes giving the hasher the same path as the logger.
+        static string hashedFilePath = @"C:\Software\";
 
         //Add the path to the ransomware downloader
         private static string ransomwareDownloaderPath = "";
@@ -62,37 +67,30 @@ namespace ShannonPOC.ShannonLogger
             threadCounter = new PerformanceCounter("Process", "Thread Count", "_Total");
             handleCounter = new PerformanceCounter("Process", "Handle Count", "_Total");
 
-            //Find the start timestamp
-            DateTime startTimeStamp = DateTime.Now;
-            var fw = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
-            fw.Start();
+
+            postPoCTaken();
+
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp1 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp2 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp3 = new Dictionary<string, string>();
-            Dictionary<string, string> hashedFilesAtStarttemp4 = new Dictionary<string, string>();
-            Hasher tempStartHasher1 = new Hasher();
-            hashedFilesAtStarttemp1 = tempStartHasher1.fileHasher(path1);
+            hashedFilesAtStart = testParseTXTfile(hashedFilePath);
 
-            Hasher tempStartHasher2 = new Hasher();
-            hashedFilesAtStarttemp2 = tempStartHasher2.fileHasher(path2);
 
-            Hasher tempStartHasher3 = new Hasher();
-            hashedFilesAtStarttemp3 = tempStartHasher3.fileHasher(path3);
-
-            Hasher tempStartHasher4 = new Hasher();
-            hashedFilesAtStarttemp4 = tempStartHasher4.fileHasher(path4);
+            ProcMon.setIsHasherDone(true);
+            amountOfLoops = 0;
 
             ProgramExecuter.executeProgram(ransomwareDownloaderPath);
 
 
-            hashedFilesAtStarttemp1.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp2.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp3.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
-            hashedFilesAtStarttemp4.ToList().ForEach(x => hashedFilesAtStart.Add(x.Key, x.Value));
+            var fw = new Thread(() => FileMon.CreateFileWatcher(pathFileWatch));
+            fw.Start();
+
+            var tmp = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
+            tmp.Start();
 
             ProcMon.setIsHasherDone(true);
             amountOfLoops = 0;
+
+            //Find the start timestamp
+            DateTime startTimeStamp = DateTime.Now;
 
             TimeSpan span = DateTime.Now.Subtract(startTimeStamp);
             while (span.Minutes < MINUTESOFLOGGING)
@@ -111,7 +109,12 @@ namespace ShannonPOC.ShannonLogger
                 span = DateTime.Now.Subtract(startTimeStamp);
             }
 
+            Filemon.setStopAddingToLog(true);
+            fileMonChanges = Filemon.getFilemonChanges();
 
+            Filemon.setWatcherToStop();
+            FileMon.setWatcherToStop();
+            ActionTaker.terminateProcmon();
 
 
             Dictionary<string, string> hashedFilesAtEnd = new Dictionary<string, string>();
@@ -190,9 +193,7 @@ namespace ShannonPOC.ShannonLogger
             }
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
-
-            Filemon.setStopAddingToLog(true);
-            fileMonChanges = Filemon.getFilemonChanges();
+            
             /*
             string filePath = PATH + "\\RansomwareLog.txt";
             if (!File.Exists(filePath))
@@ -357,16 +358,32 @@ namespace ShannonPOC.ShannonLogger
             var stringPayload = JsonConvert.SerializeObject(options);
             var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postpocposted", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postsh3posted", content).Result;
             var result = await response.Content.ReadAsByteArrayAsync();
         }
 
         public static void getPoCRansomware()
         {
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getpocransomware").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getsh3ransomware").Result;
 
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
+        }
+
+        public static async void postPoCFetched()
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postsh3fetched", content).Result;
+
+            HASFETCHED = true;
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
         }
 
 
@@ -410,7 +427,21 @@ namespace ShannonPOC.ShannonLogger
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postpoctested", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postsh3tested", content).Result;
+
+            var responseString = await response.Content.ReadAsByteArrayAsync();
+        }
+
+        public static async void postPoCTaken()
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"RansomwareName",  NAMEONTEST}
+            };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postsh3taken", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
@@ -448,6 +479,29 @@ namespace ShannonPOC.ShannonLogger
         public static void setPathFileWatch(string s)
         {
             pathFileWatch = s;
+        }
+
+        public static Boolean getHasFetched()
+        {
+            return HASFETCHED;
+        }
+
+        public static Dictionary<string, string> testParseTXTfile(string hashedFilePath)
+        {
+            string line;
+            string[] pairs = new string[2];
+            Dictionary<string, string> hashedFilesReturn = new Dictionary<string, string>();
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(hashedFilePath + "\\HashedFilesLog.txt");
+            while ((line = file.ReadLine()) != null)
+            {
+                pairs = line.Split('?');
+                hashedFilesReturn.Add(pairs[0], pairs[1]);
+            }
+            file.Close();
+
+
+            return hashedFilesReturn;
         }
 
 
