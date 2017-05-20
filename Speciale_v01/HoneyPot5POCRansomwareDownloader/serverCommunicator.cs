@@ -71,7 +71,7 @@ namespace HoneyPot5POCRansomwareDownloader
             var values = new Dictionary<string, string>
             {
                 {"RansomwareName",  NAMEONTEST},
-                {"Started", DateTime.Now.ToString() }
+                {"Started", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") }
             };
 
             var content = new FormUrlEncodedContent(values);

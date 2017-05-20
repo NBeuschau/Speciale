@@ -23,6 +23,7 @@ namespace HoneyPot10POCRansomwareDownloader
             Thread.Sleep(2000);
             serverCommunicator.setRansomwareFilePath();
             serverCommunicator.getPoCHost();
+            Thread.Sleep(100);
             Console.WriteLine(serverCommunicator.getNAMEONTEST());
             Thread.Sleep(100);
             //Install ransomware
