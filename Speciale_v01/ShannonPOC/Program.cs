@@ -11,15 +11,15 @@ namespace ShannonPOC
 {
     class Program
     {
-        private static string path1 = @"C:\Speciale\Test\shannon\path1";
-        private static string path2 = @"C:\Speciale\Test\shannon\path2";
-        private static string path3 = @"C:\Speciale\Test\shannon\path3";
-        private static string path4 = @"C:\Speciale\Test\shannon\path4";
+        private static string path1 = @"C:\Users\Baseline\Desktop";
+        private static string path2 = @"C:\Users\Baseline\Documents";
+        private static string path3 = @"C:\Users\Baseline\Downloads";
+        private static string path4 = @"C:\Users\Baseline\Videos";
 
-        static string PATH = @"C:\Speciale\Test\shannon";
+        static string PATH = @"C:\Users\Baseline";
         static string BACKINGNAME = "backingFromProcMon";
-        static string pathToBackingFile = @"C:\Speciale\Tools\procmon";
-        static string ProcMonPath = @"C:\Speciale\Tools\procmon\Procmon.exe";
+        static string pathToBackingFile = @"C:\procmon\backingFileTest";
+        static string ProcMonPath = @"C:\procmon\Procmon.exe";
 
         static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\ShannonRansomwareDownloader\bin\Release\ShannonRansomwareDownloader.exe";
 
