@@ -85,10 +85,7 @@ namespace ShannonPOC.ShannonLogger
 
             var tmp = new Thread(() => Filemon.CreateFileWatcher(pathFileWatch));
             tmp.Start();
-
-            ProcMon.setIsHasherDone(true);
-            amountOfLoops = 0;
-
+            
             //Find the start timestamp
             DateTime startTimeStamp = DateTime.Now;
 

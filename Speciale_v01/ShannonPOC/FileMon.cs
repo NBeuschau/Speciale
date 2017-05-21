@@ -47,9 +47,9 @@ namespace ShannonPOC
             //Cancel out appdata
             Console.WriteLine(e.FullPath + " is " + e.ChangeType);
 
-            if (e.FullPath.Contains(@"C:\Users\Baseline\Desktop") 
-                || e.FullPath.Contains(@"C:\Users\Baseline\Documents") 
-                || e.FullPath.Contains(@"C:\Users\Baseline\Downloads") 
+            if (e.FullPath.Contains(@"C:\Users\Baseline\Desktop")
+                || e.FullPath.Contains(@"C:\Users\Baseline\Documents")
+                || e.FullPath.Contains(@"C:\Users\Baseline\Downloads")
                 || e.FullPath.Contains(@"C:\Users\Baseline\Videos"))
             {
                 if (e.FullPath.Contains("."))
@@ -75,14 +75,21 @@ namespace ShannonPOC
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
             Console.WriteLine(e.OldFullPath + " is renamed to " + e.FullPath);
-            Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
-            ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
-            ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
+            if (e.FullPath.Contains(@"C:\Users\Baseline\Desktop")
+               || e.FullPath.Contains(@"C:\Users\Baseline\Documents")
+               || e.FullPath.Contains(@"C:\Users\Baseline\Downloads")
+               || e.FullPath.Contains(@"C:\Users\Baseline\Videos"))
+            {
+                Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
+                ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
+                ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
+            }
         }
 
 
         public static void setWatcherToStop()
         {
+            Console.WriteLine("Filemon not logging ransomwares anymore");
             watcher.EnableRaisingEvents = false;
         }
     }
