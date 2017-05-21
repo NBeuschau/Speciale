@@ -21,7 +21,7 @@ namespace ShannonPOC
         static string pathToBackingFile = @"C:\Speciale\Tools\procmon";
         static string ProcMonPath = @"C:\Speciale\Tools\procmon\Procmon.exe";
 
-        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\HoneyPotPOCRansomwareDownloader\bin\Release\HoneyPotPOCRansomwareDownloader.exe";
+        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\ShannonRansomwareDownloader\bin\Release\ShannonRansomwareDownloader.exe";
 
         static double entropyThreshold = 0.9;
         static int thresholdToReaction = 2;
