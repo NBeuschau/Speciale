@@ -47,19 +47,25 @@ namespace ShannonPOC
             //Cancel out appdata
             Console.WriteLine(e.FullPath + " is " + e.ChangeType);
 
-            if (e.FullPath.Contains("."))
+            if (e.FullPath.Contains(@"C:\Users\Baseline\Desktop") 
+                || e.FullPath.Contains(@"C:\Users\Baseline\Documents") 
+                || e.FullPath.Contains(@"C:\Users\Baseline\Downloads") 
+                || e.FullPath.Contains(@"C:\Users\Baseline\Videos"))
             {
-                if (e.ChangeType.ToString().Equals("Changed"))
+                if (e.FullPath.Contains("."))
                 {
-                    FilemonEventHandler.changeOccured(e);
-                }
-                else if (e.ChangeType.ToString().Equals("Created"))
-                {
-                    FilemonEventHandler.creationOccured(e);
-                }
-                else if (e.ChangeType.ToString().Equals("Deleted"))
-                {
-                    FilemonEventHandler.deletionOccured(e);
+                    if (e.ChangeType.ToString().Equals("Changed"))
+                    {
+                        FilemonEventHandler.changeOccured(e);
+                    }
+                    else if (e.ChangeType.ToString().Equals("Created"))
+                    {
+                        FilemonEventHandler.creationOccured(e);
+                    }
+                    else if (e.ChangeType.ToString().Equals("Deleted"))
+                    {
+                        FilemonEventHandler.deletionOccured(e);
+                    }
                 }
             }
         }

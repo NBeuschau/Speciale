@@ -155,7 +155,7 @@ namespace ShannonPOC
                     hasMadeFirstDetection = true;
                     firstDetected = DateTime.Now;
                 }
-                Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
+                Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType + " and the responsible process will now pay the ultimate price!");
 
                 ActionTaker.shannonReaction(e.FullPath);
             }
