@@ -80,6 +80,10 @@ namespace ShannonPOC
                || e.FullPath.Contains(@"C:\Users\Baseline\Downloads")
                || e.FullPath.Contains(@"C:\Users\Baseline\Videos"))
             {
+                while(!ShannonEntropy.getSavedEntropies().ContainsKey(e.OldFullPath))
+                {
+                    Thread.Sleep(5);
+                }
                 Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
                 ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
                 ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
