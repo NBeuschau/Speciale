@@ -64,7 +64,7 @@ namespace ShannonPOC
             }
             catch (Exception)
             {
-                return 0;
+                return -1;
             }
 
             //Make a long array the size of the range we are interested in
@@ -96,12 +96,26 @@ namespace ShannonPOC
 
         public static void removeKeyFromSavedEntropies(string key)
         {
-            savedEntropies.Remove(key);
+            if (savedEntropies.ContainsKey(key))
+            {
+                savedEntropies.Remove(key);
+            }
+            else
+            {
+                Console.WriteLine("Could not remove key "+ key +" since it does not exist in the list");
+            }
         }
 
         public static void addKeyAndDoubleToSavedEntropies(string key, double value)
         {
-            savedEntropies.Add(key, value);
+            if (!savedEntropies.ContainsKey(key))
+            {
+                savedEntropies.Add(key, value);
+            }
+            else
+            {
+                Console.WriteLine("Could nat add key " + key + " to the list since it is already there");
+            }
         }
     }
 }
