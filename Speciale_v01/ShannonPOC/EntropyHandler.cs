@@ -50,6 +50,11 @@ namespace ShannonPOC
 
             double changedFileEntropy = tempEntropyCalculator.CalculateEntropy(tempFileInf);
 
+            Console.WriteLine("File " + path + " has been changed to and has now and entropy of " + changedFileEntropy);
+            if(changedFileEntropy == -1)
+            {
+                return;
+            }
 
             List<DateTime> temp = new List<DateTime>();
             if ((changedFileEntropy - entropiesOfFiles[path]) > shannonThreshold)

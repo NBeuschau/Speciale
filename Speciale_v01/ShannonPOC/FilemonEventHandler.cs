@@ -24,6 +24,13 @@ namespace ShannonPOC
             ShannonEntropy entropyCalculator = new ShannonEntropy();
             Double changedFileEntropy = entropyCalculator.CalculateEntropy(changedFile);
             Double originalFileEntropy = 0.0;
+
+            Console.WriteLine("File " + e.FullPath + " has been changed to and has now an entropy of " + changedFileEntropy);
+            if (changedFileEntropy == -1)
+            {
+                return;
+            }
+
             try
             {
                 originalFileEntropy = savedEntropies[e.FullPath];
@@ -59,6 +66,13 @@ namespace ShannonPOC
 
             ShannonEntropy entropyCreator = new ShannonEntropy();
             double createdFileEntropy = entropyCreator.CalculateEntropy(createdFileInfo);
+
+
+            Console.WriteLine("File " + e.FullPath + " has been created and entropy is now " + createdFileEntropy);
+            if (createdFileEntropy == -1)
+            {
+                return;
+            }
 
             Boolean fileHasBeenMoved = false;
             string oldFilePath = "";
