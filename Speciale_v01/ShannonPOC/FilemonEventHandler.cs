@@ -354,6 +354,10 @@ namespace ShannonPOC
         {
             return firstDetected;
         }
+        public static void setFirstDetected()
+        {
+            firstDetected = DateTime.Now;
+        }
 
         public static void setEntropyThreshold(double d)
         {

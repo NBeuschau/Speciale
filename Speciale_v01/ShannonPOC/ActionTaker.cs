@@ -134,6 +134,11 @@ namespace ShannonPOC
             return killedProcesses;
         }
 
+        public static void setKilledProcesses()
+        {
+            firstKilledProcessTime = DateTime.Now;
+        }
+
         public static DateTime getFirstKilledTime()
         {
             return firstKilledProcessTime;

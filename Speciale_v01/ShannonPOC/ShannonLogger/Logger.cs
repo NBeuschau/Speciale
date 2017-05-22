@@ -67,6 +67,8 @@ namespace ShannonPOC.ShannonLogger
             threadCounter = new PerformanceCounter("Process", "Thread Count", "_Total");
             handleCounter = new PerformanceCounter("Process", "Handle Count", "_Total");
 
+            ActionTaker.setKilledProcesses();
+            FilemonEventHandler.setFirstDetected();
 
             postPoCTaken();
 
