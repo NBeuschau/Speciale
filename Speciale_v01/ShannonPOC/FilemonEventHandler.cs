@@ -40,16 +40,7 @@ namespace ShannonPOC
 
             }
 
-            if(changedFileEntropy-originalFileEntropy > 0.05 && changedFileEntropy > entropyThreshold)
-            {
-                //React
-                react(e);
-            }
-            else if (changedFileEntropy > entropyThreshold && originalFileEntropy < 0.9)
-            {
-                //React
-                react(e);
-            }
+            entropyHandler(e, originalFileEntropy, changedFileEntropy);
         }
 
         internal static void creationOccured(FileSystemEventArgs e)
@@ -126,17 +117,7 @@ namespace ShannonPOC
                     double newEntropy = entropyCreator.CalculateEntropy(newFileInfo);
 
                     //TODO  react if needed
-                    react(e);
-                    if (newEntropy - oldEntropy > 0.05 && newEntropy > entropyThreshold)
-                    {
-                        //React
-                        react(e);
-                    }
-                    else if (newEntropy > entropyThreshold && oldEntropy < 0.9)
-                    {
-                        //React
-                        react(e);
-                    }
+                    entropyHandler(e, oldEntropy, newEntropy);
                 }
             }
 
@@ -172,6 +153,157 @@ namespace ShannonPOC
                 Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType + " and the responsible process will now pay the ultimate price!");
 
                 ActionTaker.shannonReaction(e.FullPath);
+            }
+        }
+
+        private static void entropyHandler(FileSystemEventArgs e, double originalFileEntropy, double newFileEntropy)
+        {
+            if(originalFileEntropy < 0.1)
+            {
+               if(newFileEntropy > 0.6)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.2)
+            {
+                if(newFileEntropy > 0.65)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.3)
+            {
+                if (newFileEntropy > 0.65)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.4)
+            {
+                if (newFileEntropy > 0.7)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.5)
+            {
+                if (newFileEntropy > 0.7)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.6)
+            {
+                if (newFileEntropy > 0.8)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.7)
+            {
+                if (newFileEntropy > 0.8)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.8)
+            {
+                if (newFileEntropy > 0.85)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.9)
+            {
+                if (newFileEntropy > 0.95)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.91)
+            {
+                if (newFileEntropy > 0.97)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.92)
+            {
+                if (newFileEntropy > 0.97)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.93)
+            {
+                if (newFileEntropy > 0.975)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.94)
+            {
+                if (newFileEntropy > 0.98)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.95)
+            {
+                if (newFileEntropy > 0.98)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.96)
+            {
+                if (newFileEntropy > 0.985)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.97)
+            {
+                if (newFileEntropy > 0.99)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.98)
+            {
+                if (newFileEntropy > 0.99)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.99)
+            {
+                if (newFileEntropy > 0.995)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.999)
+            {
+                if (newFileEntropy > 0.9992)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 0.9999)
+            {
+                if (newFileEntropy > 0.9999)
+                {
+                    react(e);
+                }
+            }
+            else if (originalFileEntropy < 1)
+            {
+                if (newFileEntropy > 0.99995)
+                {
+                    react(e);
+                }
             }
         }
 

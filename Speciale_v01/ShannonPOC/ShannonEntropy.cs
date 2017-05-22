@@ -114,7 +114,7 @@ namespace ShannonPOC
             }
             else
             {
-                Console.WriteLine("Could nat add key " + key + " to the list since it is already there");
+                Console.WriteLine("Could not add key " + key + " to the list since it is already there");
             }
         }
     }

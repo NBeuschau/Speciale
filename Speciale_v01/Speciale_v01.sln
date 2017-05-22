@@ -67,6 +67,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShannonRansomwareDownloader
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shannon3Host", "Shannon3Host\Shannon3Host.csproj", "{ACC9E704-3D85-42D0-A7E0-48F062160D9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShannonEntropyComputer", "ShannonEntropyComputer\ShannonEntropyComputer.csproj", "{20982B6A-060F-4064-8C32-88E73BDF2EB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,10 @@ Global
 		{ACC9E704-3D85-42D0-A7E0-48F062160D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACC9E704-3D85-42D0-A7E0-48F062160D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACC9E704-3D85-42D0-A7E0-48F062160D9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20982B6A-060F-4064-8C32-88E73BDF2EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20982B6A-060F-4064-8C32-88E73BDF2EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20982B6A-060F-4064-8C32-88E73BDF2EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20982B6A-060F-4064-8C32-88E73BDF2EB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -347,8 +347,8 @@ namespace ShannonPOC.ShannonLogger
                 ListNewFiles = newFilesReturn,
                 ListFilemonObservations = filemonChangesReturn,
                 NameOfShutdownRansomware = killedProcessesReturn,
-                Detected = FilemonEventHandler.getFirstDetected(),
-                Shutdown = ActionTaker.getFirstKilledTime()
+                Detected = FilemonEventHandler.getFirstDetected().ToString("dd/MM/yyyy HH:mm:ss.fff"),
+                Shutdown = ActionTaker.getFirstKilledTime().ToString("dd/MM/yyyy HH:mm:ss.fff")
             };
 
 
