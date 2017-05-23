@@ -13,12 +13,12 @@ namespace Shannon5POC
     {
 
         //Remember to change the paths in filemoneventhandler as well
-        private static string path1 = @"C:\Users\Baseline\Desktop";
-        private static string path2 = @"C:\Users\Baseline\Documents";
-        private static string path3 = @"C:\Users\Baseline\Downloads";
-        private static string path4 = @"C:\Users\Baseline\Videos";
+        private static string path1 = @"C:\Users\PoC\Desktop";
+        private static string path2 = @"C:\Users\PoC\Documents";
+        private static string path3 = @"C:\Users\PoC\Downloads";
+        private static string path4 = @"C:\Users\PoC\Videos";
 
-        static string PATH = @"C:\Users\Baseline";
+        static string PATH = @"C:\PoC\Baseline";
         static string BACKINGNAME = "backingFromProcMon";
         static string pathToBackingFile = @"C:\procmon\backingFileTest";
         static string ProcMonPath = @"C:\procmon\Procmon.exe";

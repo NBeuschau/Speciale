@@ -12,12 +12,12 @@ namespace Shannon10POC
     class Program
     {
         //Remember to change this in filemon as well
-        private static string path1 = @"C:\Users\Baseline\Desktop";
-        private static string path2 = @"C:\Users\Baseline\Documents";
-        private static string path3 = @"C:\Users\Baseline\Downloads";
-        private static string path4 = @"C:\Users\Baseline\Videos";
+        private static string path1 = @"C:\PoC2\Baseline\Desktop";
+        private static string path2 = @"C:\PoC2\Baseline\Documents";
+        private static string path3 = @"C:\PoC2\Baseline\Downloads";
+        private static string path4 = @"C:\PoC2\Baseline\Videos";
 
-        static string PATH = @"C:\Users\Baseline";
+        static string PATH = @"C:\PoC2\Baseline";
         static string BACKINGNAME = "backingFromProcMon";
         static string pathToBackingFile = @"C:\procmon\backingFileTest";
         static string ProcMonPath = @"C:\procmon\Procmon.exe";

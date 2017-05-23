@@ -42,7 +42,7 @@ namespace Shannon10POC.ShannonLogger
         static string path2 = @"";
         static string path3 = @"";
         static string path4 = @"";
-        static string pathFileWatch = @"C:\Users\PoC";
+        static string pathFileWatch = @"C:\Users\PoC2";
 
         //static string path1 = @"C:\Users\viruseater1\Documents";
         //static string path2 = @"C:\Users\viruseater1\Desktop";

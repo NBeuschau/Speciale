@@ -10,7 +10,7 @@ namespace Shannon15Host
 {
     class hostPocController
     {
-        private static string nameOfMachine = "BaselineTest";
+        private static string nameOfMachine = "PocTester3";
         private static string nameofStartUpSnapshot = "sh15startup";
         private static string FULLRESPONSESTRING = "";
         private static string NAMEONTEST = "Error";
