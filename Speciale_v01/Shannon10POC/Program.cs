@@ -1,4 +1,4 @@
-﻿using ShannonPOC.ShannonLogger;
+﻿using Shannon10POC.ShannonLogger;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ShannonPOC
+namespace Shannon10POC
 {
     class Program
     {
+        //Remember to change this in filemon as well
         private static string path1 = @"C:\Users\Baseline\Desktop";
         private static string path2 = @"C:\Users\Baseline\Documents";
         private static string path3 = @"C:\Users\Baseline\Downloads";
@@ -21,10 +22,10 @@ namespace ShannonPOC
         static string pathToBackingFile = @"C:\procmon\backingFileTest";
         static string ProcMonPath = @"C:\procmon\Procmon.exe";
 
-        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\ShannonRansomwareDownloader\bin\Release\ShannonRansomwareDownloader.exe";
+        static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\Shannon10RansomwareDownloader\bin\Release\Shannon10RansomwareDownloader.exe";
 
         static double entropyThreshold = 0.9;
-        static int thresholdToReaction = 2;
+        static int thresholdToReaction = 9;
         static int secondsInThreshold = 60;
 
         static void Main(string[] args)
@@ -83,7 +84,7 @@ namespace ShannonPOC
             Logger.setPath3(path3);
             Logger.setPath4(path4);
             Logger.setPathFileWatch(PATH);
-         
+
             //Find entropy of all files
             ShannonEntropy temp1 = new ShannonEntropy();
             temp1.getEntropyOfAllFilesInPath(path1);
@@ -117,12 +118,12 @@ namespace ShannonPOC
             //Start logger
             //TODO fix call to server such that it is not honeypotpoc that is called
             Logger.LogWriter(PATH);
-            
+
             Logger.postPoCTested();
             Logger.postPoCPosted();
 
             Thread.Sleep(30000);
-            
+
         }
     }
 }
