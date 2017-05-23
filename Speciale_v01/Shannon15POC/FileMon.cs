@@ -47,10 +47,10 @@ namespace Shannon15POC
             //Cancel out appdata
             Console.WriteLine(e.FullPath + " is " + e.ChangeType);
 
-            if (e.FullPath.Contains(@"C:\Users\Baseline\Desktop")
-                || e.FullPath.Contains(@"C:\Users\Baseline\Documents")
-                || e.FullPath.Contains(@"C:\Users\Baseline\Downloads")
-                || e.FullPath.Contains(@"C:\Users\Baseline\Videos"))
+            if    (e.FullPath.Contains(@"C:\Users\PoC3\Desktop")
+                || e.FullPath.Contains(@"C:\Users\PoC3\Documents")
+                || e.FullPath.Contains(@"C:\Users\PoC3\Downloads")
+                || e.FullPath.Contains(@"C:\Users\PoC3\Videos"))
             {
                 if (e.FullPath.Contains("."))
                 {
@@ -75,10 +75,10 @@ namespace Shannon15POC
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
             Console.WriteLine(e.OldFullPath + " is renamed to " + e.FullPath);
-            if (  e.OldFullPath.Contains(@"C:\Users\Baseline\Desktop")
-               || e.OldFullPath.Contains(@"C:\Users\Baseline\Documents")
-               || e.OldFullPath.Contains(@"C:\Users\Baseline\Downloads")
-               || e.OldFullPath.Contains(@"C:\Users\Baseline\Videos"))
+            if (  e.OldFullPath.Contains(@"C:\Users\PoC3\Desktop")
+               || e.OldFullPath.Contains(@"C:\Users\PoC3\Documents")
+               || e.OldFullPath.Contains(@"C:\Users\PoC3\Downloads")
+               || e.OldFullPath.Contains(@"C:\Users\PoC3\Videos"))
             {
                 Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
                 ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);

@@ -17,7 +17,7 @@ namespace Shannon15POC
         private static string path3 = @"C:\Users\PoC3\Downloads";
         private static string path4 = @"C:\Users\PoC3\Videos";
 
-        static string PATH = @"C:\PoC3\Baseline";
+        static string PATH = @"C:\Users\PoC3";
         static string BACKINGNAME = "backingFromProcMon";
         static string pathToBackingFile = @"C:\procmon\backingFileTest";
         static string ProcMonPath = @"C:\procmon\Procmon.exe";
