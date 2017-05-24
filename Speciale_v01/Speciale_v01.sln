@@ -91,6 +91,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shannon15Host", "Shannon15H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shannon15POC", "Shannon15POC\Shannon15POC.csproj", "{0BF6467D-CE16-4A9D-89BE-47979A88993B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shannon15RansomwareDownloader", "Shannon15RansomwareDownloader\Shannon15RansomwareDownloader.csproj", "{6087C53C-6622-4808-B25F-151FEC74502B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +235,10 @@ Global
 		{0BF6467D-CE16-4A9D-89BE-47979A88993B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BF6467D-CE16-4A9D-89BE-47979A88993B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BF6467D-CE16-4A9D-89BE-47979A88993B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6087C53C-6622-4808-B25F-151FEC74502B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6087C53C-6622-4808-B25F-151FEC74502B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6087C53C-6622-4808-B25F-151FEC74502B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6087C53C-6622-4808-B25F-151FEC74502B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -268,5 +274,6 @@ Global
 		{F9BD9C9E-9CE4-490B-94FB-29F5A3CBC90D} = {C3C2FCB5-851E-406C-87D4-888C375327FF}
 		{77312588-02FB-4215-AE2F-C69D812A9788} = {E7A04255-4737-4795-B605-B3BDA5519250}
 		{0BF6467D-CE16-4A9D-89BE-47979A88993B} = {E7A04255-4737-4795-B605-B3BDA5519250}
+		{6087C53C-6622-4808-B25F-151FEC74502B} = {E7A04255-4737-4795-B605-B3BDA5519250}
 	EndGlobalSection
 EndGlobal

