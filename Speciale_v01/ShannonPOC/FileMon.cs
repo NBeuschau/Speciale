@@ -75,14 +75,17 @@ namespace ShannonPOC
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
             Console.WriteLine(e.OldFullPath + " is renamed to " + e.FullPath);
-            if (  e.OldFullPath.Contains(@"C:\Users\Baseline\Desktop")
+            if (e.OldFullPath.Contains(@"C:\Users\Baseline\Desktop")
                || e.OldFullPath.Contains(@"C:\Users\Baseline\Documents")
                || e.OldFullPath.Contains(@"C:\Users\Baseline\Downloads")
                || e.OldFullPath.Contains(@"C:\Users\Baseline\Videos"))
             {
-                Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
-                ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
-                ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
+                if (ShannonEntropy.getSavedEntropies().ContainsKey(e.OldFullPath))
+                {
+                    Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
+                    ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
+                    ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
+                }
             }
         }
 

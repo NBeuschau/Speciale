@@ -80,9 +80,12 @@ namespace Shannon15POC
                || e.OldFullPath.Contains(@"C:\Users\PoC3\Downloads")
                || e.OldFullPath.Contains(@"C:\Users\PoC3\Videos"))
             {
-                Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
-                ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
-                ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
+                if (ShannonEntropy.getSavedEntropies().ContainsKey(e.OldFullPath))
+                {
+                    Double tempEntropy = ShannonEntropy.getSavedEntropies()[e.OldFullPath];
+                    ShannonEntropy.removeKeyFromSavedEntropies(e.OldFullPath);
+                    ShannonEntropy.addKeyAndDoubleToSavedEntropies(e.FullPath, tempEntropy);
+                }
             }
         }
 
