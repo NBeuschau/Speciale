@@ -9,11 +9,11 @@ namespace DataCollector
 {
     class Program
     {
-        static string path1 = @"C:\Speciale\Test\shannon\path1";
-        static string path2 = @"C:\Speciale\Test\shannon\path2";
-        static string path3 = @"C:\Speciale\Test\shannon\path3";
-        static string path4 = @"C:\Speciale\Test\shannon\path4";
-        static string dataPath = @"C:\Speciale\Test\shannon\testytest.txt";
+        static string path1 = @"C:\Users\Baseline\Desktop";
+        static string path2 = @"C:\Users\Baseline\Documents";
+        static string path3 = @"C:\Users\Baseline\Downloads";
+        static string path4 = @"C:\Users\Baseline\Videos";
+        static string dataPath = @"C:\Users\Baseline\Desktop\BaselineFileData.txt";
 
 
         static void Main(string[] args)
