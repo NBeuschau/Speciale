@@ -15,7 +15,7 @@ namespace DatabaseCollector
         static string middlepart = "?RansomwareName=";
         static string ransomwareName = "Vipsana2";
 
-        static string fileToVirusNames = @"C:\Speciale\Relevant Data\RansomwareList.txt";
+        static string fileToVirusNames = @"RansomwareList.txt";
         static string pathToFolders = @"C:\Speciale\Relevant Data";
 
         static void Main(string[] args)
@@ -38,13 +38,6 @@ namespace DatabaseCollector
                 ServerOutputHandler.CreateReadableFileForRansomware(databaseTester,ransomwareName,ransomwareOutput,pathToFolders);
                 
             }
-
-            //For each virus name {
-
-            //Parse to proper txt file
-
-            //}
-
 
             Console.ReadLine();
         }
