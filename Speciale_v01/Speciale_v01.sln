@@ -95,6 +95,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shannon15RansomwareDownload
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCollector", "DataCollector\DataCollector.csproj", "{276AAD8A-2775-4F6E-B831-F3D895774652}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseCollector", "DatabaseCollector\DatabaseCollector.csproj", "{D69B7E30-06C6-4A64-9415-587538DCC92F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -245,6 +247,10 @@ Global
 		{276AAD8A-2775-4F6E-B831-F3D895774652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{276AAD8A-2775-4F6E-B831-F3D895774652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{276AAD8A-2775-4F6E-B831-F3D895774652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D69B7E30-06C6-4A64-9415-587538DCC92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69B7E30-06C6-4A64-9415-587538DCC92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69B7E30-06C6-4A64-9415-587538DCC92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D69B7E30-06C6-4A64-9415-587538DCC92F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

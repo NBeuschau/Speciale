@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -14,18 +15,39 @@ namespace DatabaseCollector
         static string middlepart = "?RansomwareName=";
         static string ransomwareName = "Vipsana2";
 
-        private static readonly HttpClient client = new HttpClient();
+        static string fileToVirusNames = @"C:\Speciale\Relevant Data\RansomwareList.txt";
+        static string pathToFolders = @"C:\Speciale\Relevant Data";
 
         static void Main(string[] args)
         {
-          
-            var responseString = client.GetStringAsync(databaseinputbase+databaseTester+middlepart+ransomwareName).Result;
 
-            Console.WriteLine(responseString);
+            //Read txt file with all virus name
+
+            List<string> listOfRansomwareNames = VirusFileParser.parseTxtToList(fileToVirusNames);
+            string ransomwareOutput = "";
+            foreach (var item in listOfRansomwareNames)
+            {
+                Console.WriteLine(item.Substring(1, item.Length - 2));
+                ransomwareName = item.Substring(1,item.Length-2);
+                //ransomwareOutput = ServerCommunicator.returnDatabaseOutputForRansomware(databaseinputbase + databaseTester + middlepart + ransomwareName);
+                
+                StreamReader sr = new StreamReader(@"C:\Speciale\Relevant Data\output.txt");
+
+                ransomwareOutput = sr.ReadLine();
+
+                ServerOutputHandler.CreateReadableFileForRansomware(databaseTester,ransomwareName,ransomwareOutput,pathToFolders);
+                
+            }
+
+            //For each virus name {
+
+            //Parse to proper txt file
+
+            //}
+
+
             Console.ReadLine();
         }
-
-
     }
 }
 
