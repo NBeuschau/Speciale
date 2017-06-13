@@ -72,12 +72,15 @@ namespace HoneyPotPOC.PocLogger
             postPoCTaken();
 
             Dictionary<string, string> hashedFilesAtStart = new Dictionary<string, string>();
+
+            //Get the hashed files from the txt file
             hashedFilesAtStart = testParseTXTfile(hashedFilePath);
 
 
             ProcMon.setIsHasherDone(true);
             amountOfLoops = 0;
 
+            //After the hashed files has been read the ransomware is downloaded
             programExecuter.executeProgram(ransomwareDownloaderPath);
 
 
@@ -91,6 +94,8 @@ namespace HoneyPotPOC.PocLogger
             DateTime startTimeStamp = DateTime.Now;
 
             TimeSpan span = DateTime.Now.Subtract(startTimeStamp);
+
+            //Loggs performance
             while (span.Minutes < MINUTESOFLOGGING)
             {
                 amountOfLoops++;
@@ -114,6 +119,7 @@ namespace HoneyPotPOC.PocLogger
             FileMon.setWatcherToStop();
             ActionTaker.terminateProcmon();
 
+            //Combines the hashed files from the four directories into one
             Dictionary<string, string> hashedFilesAtEnd = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtEndtemp1 = new Dictionary<string, string>();
             Dictionary<string, string> hashedFilesAtEndtemp2 = new Dictionary<string, string>();
@@ -137,11 +143,6 @@ namespace HoneyPotPOC.PocLogger
             hashedFilesAtEndtemp3.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             hashedFilesAtEndtemp4.ToList().ForEach(x => hashedFilesAtEnd.Add(x.Key, x.Value));
             
-
-
-            //Take a hash of the files at the end
-
-
 
             //Find the end timestamp
             DateTime endTimeStamp = DateTime.Now;
@@ -190,75 +191,6 @@ namespace HoneyPotPOC.PocLogger
             }
             hashedFilesAtStartKeys = hashedFilesAtStart.Keys;
             hashedFilesAtEndKeys = hashedFilesAtEnd.Keys;
-                 
-
-            /*
-            string filePath = PATH + "\\RansomwareLog.txt";
-            if (!File.Exists(filePath))
-            {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(filePath))
-                {
-                    sw.WriteLine(NAMEONTEST);
-                    sw.WriteLine(MONITORSTATUS);
-                    sw.WriteLine(startTimeStamp.ToString());
-                    sw.WriteLine(endTimeStamp.ToString());
-                    sw.WriteLine(amountOfLoops);
-                    sw.WriteLine(changedKeyList.Count);
-                    sw.WriteLine(hashedFilesAtStartKeys.Count);
-                    sw.WriteLine(hashedFilesAtEndKeys.Count);
-                    sw.WriteLine(fileMonChanges.Count);
-                    string cpuReturn = returnMonitorListAsString(cpuList);
-                    string ramReturn = returnMonitorListAsString(ramList);
-                    string harddiskReturn = returnMonitorListAsString(harddiskList);
-                    string threadReturn = returnMonitorListAsString(threadList);
-                    string handleReturn = returnMonitorListAsString(handleList);
-
-                    string changedFilesReturn = "";
-                    string deletedFilesReturn = "";
-                    string newFilesReturn = "";
-                    string filemonChangesReturn = "";
-                    string killedProcessesReturn = "";
-
-                    for (int i = 0; i < changedKeyList.Count; i++)
-                    {
-                        changedFilesReturn += changedKeyList[i];
-                        changedFilesReturn += "?";
-                    }
-                    foreach (string s in hashedFilesAtStartKeys)
-                    {
-                        deletedFilesReturn += s;
-                        deletedFilesReturn += "?";
-                    }
-                    foreach (string s in hashedFilesAtEndKeys)
-                    {
-                        newFilesReturn += s;
-                        newFilesReturn += "?";
-                    }
-                    foreach (var item in fileMonChanges)
-                    {
-                        filemonChangesReturn += item.Value + "<>" + item.Key.ToString("dd/MM/yyyy HH:mm:ss.fff");
-                        filemonChangesReturn += "?";
-                    }
-                    foreach (string s in killedProcesses)
-                    {
-                        killedProcessesReturn += s;
-                        killedProcessesReturn += "?";
-                    }
-
-                    sw.WriteLine(cpuReturn);
-                    sw.WriteLine(ramReturn);
-                    sw.WriteLine(harddiskReturn);
-                    sw.WriteLine(threadReturn);
-                    sw.WriteLine(handleReturn);
-                    sw.WriteLine(changedFilesReturn);
-                    sw.WriteLine(deletedFilesReturn);
-                    sw.WriteLine(newFilesReturn);
-                    sw.WriteLine(filemonChangesReturn);
-                    sw.WriteLine(killedProcessesReturn);
-
-                }
-            }*/
             return true;
         }
 
@@ -474,150 +406,7 @@ namespace HoneyPotPOC.PocLogger
             }
             file.Close();
 
-
             return hashedFilesReturn;
         }
-
-
-
-
-
-
-
-
-
-
-
-        /*
-
-                public static async void test()
-                {
-                    var values = new Dictionary<string, string>
-                    {
-                        {"RansomwareName", NAMEONTEST },
-                        {"MonitorStatus", "1" },
-                        {"MonitorCount", "test" },
-                        {"CountChangedFiles", "test" },
-                        {"CountDeletedFiles", "test" },
-                        {"CountNewFiles", "test" },
-                        {"CountFilemonObservations", "test" },
-                        {"CPU", "test"},
-                        {"RAM", "test"},
-                        {"HDD", "test"},
-                        {"ThreadCount", "test"},
-                        {"HandleCount", "test"},
-                        {"ListChangedFiles", "test"},
-                        {"ListDeletedFiles", "test" },
-                        {"ListNewFiles", "test"},
-                        {"ListFilemonObservations","Prut" }
-                    };
-
-                    using (var client = new HttpClient())
-                    {
-                        /*
-                        var options = new
-                        {
-                            "RansomwareName" = NAMEONTEST ,
-                        "MonitorStatus" = "1" ,
-                        {"MonitorCount", "test" },
-                        {"CountChangedFiles", "test" },
-                        {"CountDeletedFiles", "test" },
-                        {"CountNewFiles", "test" },
-                        {"CountFilemonObservations", "test" },
-                        {"CPU", "test"},
-                        {"RAM", "test"},
-                        {"HDD", "test"},
-                        {"ThreadCount", "test"},
-                        {"HandleCount", "test"},
-                        {"ListChangedFiles", "test"},
-                        {"ListDeletedFiles", "test"},
-                        {"ListNewFiles", "test"},
-                        {"ListFilemonObservations", "te"}
-                        ;}
-
-
-                        var options = new
-                        {
-                            RansomwareName = NAMEONTEST,
-                            MonitorStatus = "1",
-                            MonitorCount = "test",
-                            CountChangedFiles = "test",
-                            CountDeletedFiles = "test",
-                            CountNewFiles = "test",
-                            CountFilemonObservations = "test",
-                            CPU = "test",
-                            RAM = "test",
-                            HDD = "test",
-                            ThreadCount = "test",
-                            HandleCount = "test",
-                            ListChangedFiles = "test",
-                            ListDeletedFiles = "test",
-                            ListNewFiles = "test",
-                            ListFilemonObservations = "test"
-                        };
-
-                        var stringPayload = JsonConvert.SerializeObject(options);
-                        var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-
-                        var response = await client.PostAsync("http://192.168.8.102/v1/index.php/postbaseposted", content);
-                        var result = await response.Content.ReadAsByteArrayAsync();
-                    }
-
-                    //NYT
-                    /*
-                    using (var client = new HttpClient())
-                    {
-                        // Build the conversion options
-                        var options = new Dictionary<string, string>
-                        {
-                            { "value", html },
-                            { "apikey", ConfigurationManager.AppSettings["pdf:key"] },
-                            { "MarginLeft", "10" },
-                            { "MarginRight", "10" }
-                        };
-
-                        // THIS LINE RAISES THE EXCEPTION
-                        var content = new FormUrlEncodedContent(options);
-
-                        var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
-                        var result = await response.Content.ReadAsByteArrayAsync();
-                        return result;
-                    }
-
-                    using (var client = new HttpClient())
-                    {
-                        // Build the conversion options
-                        var options = new
-                        {
-                            value = html,
-                            apikey = ConfigurationManager.AppSettings["pdf:key"],
-                            MarginLeft = "10",
-                            MarginRight = "10"
-                        };
-
-                        // Serialize our concrete class into a JSON String
-                        var content = JsonConvert.SerializeObject(options);
-                        var content = new StringContent(stringPayload, Encoding.UTF8, "application/json");
-
-                        var response = await client.PostAsync("https://api.html2pdfrocket.com/pdf", content);
-                        var result = await response.Content.ReadAsByteArrayAsync();
-                        return result;
-                    }
-
-                    var values = new List<KeyValuePair<string, string>>();
-                    values.Add(new KeyValuePair<string, string>("data", XMLBody));
-                    var content = new FormUrlEncodedContent(values);
-                    HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
-
-
-                    StringContent content = new StringContent("data=" + HttpUtility.UrlEncode(action.Body), Encoding.UTF8, "application/x-www-form-urlencoded");
-                    HttpResponseMessage sResponse = await sClient.PostAsync(action.URL, content).ConfigureAwait(false);
-
-                    //NYT
-
-                    //var content = new FormUrlEncodedContent(values);
-
-                }
-                */
     }
 }

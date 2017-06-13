@@ -11,7 +11,6 @@ namespace HoneyPotPOC
 {
     class FileMon
     {
-
         static int MONITORTIMEOUT = 60;
         static int thresholdNum = 1;
         public static int i = 0;
@@ -21,11 +20,12 @@ namespace HoneyPotPOC
         private static DateTime firstDetectionTime = new DateTime();
         private static List<DateTime> threshold = new List<DateTime>();
         static Boolean stopLogging = false;
+        
+        //FileSystemWatcher can monitor changes in files
         private static FileSystemWatcher watcher = new FileSystemWatcher();
 
         public static void createFileWatcher(string path)
         {
-            //FileSystemWatcher can monitor changes in files
 
             //The given path dictates what directory the watcher will monitor
             watcher.Path = path;
@@ -51,7 +51,7 @@ namespace HoneyPotPOC
         }
 
 
-        //Event handeler if an object is changed
+        //Event handler if an object is changed
         private static void OnChanged(object source, FileSystemEventArgs e)
         {
             Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
@@ -71,7 +71,7 @@ namespace HoneyPotPOC
                 threshold.Remove(t);
             }
 
-
+            //If threshold is reached, it makes a reaction
             if (threshold.Count > thresholdNum)
             {
                 Console.WriteLine("Threshold reached. It's killing time");
@@ -83,20 +83,20 @@ namespace HoneyPotPOC
                 }
                 if (eventNameAndTime.ContainsKey(e.FullPath))
                 {
+                    //Report it has been changed
                     Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
                     if (MONITORTIMEOUT < (DateTime.Now.Subtract((DateTime)eventNameAndTime[e.FullPath])).TotalSeconds)
                     {
-                        Console.WriteLine("Stopping the process fucking with MY honeypot!");
-                        //Report it has been changed
+                        Console.WriteLine("Stopping the process");
                         eventNameAndTime[e.FullPath] = DateTime.Now;
                         ActionTaker.honeypotChange(e.FullPath);
                     }
                 }
                 else
                 {
+                    //Report it has been changed
                     Console.WriteLine("File: " + e.FullPath + " has been " + e.ChangeType);
                     eventNameAndTime.Add(e.FullPath, DateTime.Now);
-                    //Report it has been changed
                     ActionTaker.honeypotChange(e.FullPath);
                 }
             }

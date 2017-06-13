@@ -21,28 +21,30 @@ namespace HoneyPotPOC
         private static Boolean killedFirstProcess = false;
         private static DateTime firstKilledProcessTime = new DateTime();
 
+        //A change has been registered to a honeypot
         public static void honeypotChange(string path)
         {
-            //Thread.Sleep(2000);
-            ProcMon.procmonTerminator(pathToBackingFile, BACKINGNAME+INDEXER);
-            //Thread.Sleep(10000);
+            //Shut down procmon in order to get logfile
+            ProcMon.procmonTerminator(pathToBackingFile, BACKINGNAME + INDEXER);
 
             INDEXER++;
+            //Start up procmon with a new backingfile
             var cpmbf = new Thread(() => ProcMon.createProcmonBackingFile(pathToBackingFile, BACKINGNAME + INDEXER));
             cpmbf.Start();
 
             Thread.Sleep(3000);
+
+            //Convert the PMLfile to CSV
             ProcMon.convertPMLfileToCSV(pathToBackingFile, BACKINGNAME + (INDEXER - 1) + ".PML", "convertedFile" + (INDEXER - 1) + ".CSV");
-            //Thread.Sleep(3000);
 
             bool hasCSVbeenWritten = false;
-            Console.WriteLine("Path to CSV file: " + pathToBackingFile + "\\" + "convertedFile" +(INDEXER - 1)+ ".CSV");
+            Console.WriteLine("Path to CSV file: " + pathToBackingFile + "\\" + "convertedFile" + (INDEXER - 1) + ".CSV");
 
+            //Wait for the conversion to be completed
             while (hasCSVbeenWritten == false)
             {
                 try
                 {
-
                     using (Stream stream = new FileStream(pathToBackingFile + "\\" + "convertedFile" + (INDEXER - 1) + ".CSV", FileMode.Open))
                     {
                         hasCSVbeenWritten = true;
@@ -55,12 +57,13 @@ namespace HoneyPotPOC
                 }
                 Thread.Sleep(50);
             }
-                
-                List<CSVfileHandler> parsedData = CSVfileHandler.CSVparser(pathToBackingFile + "\\" + "convertedFile" + (INDEXER - 1) + ".CSV");
-            
+            //Parse the CSVfile
+            List<CSVfileHandler> parsedData = CSVfileHandler.CSVparser(pathToBackingFile + "\\" + "convertedFile" + (INDEXER - 1) + ".CSV");
+
+            //Kill every process that has touched a honeypot
             foreach (var item in parsedData)
             {
-                if (!item.processName.Equals("Explorer.EXE") || !item.processName.Equals("HoneyPotFilemon.exe")) 
+                if (!item.processName.Equals("Explorer.EXE") || !item.processName.Equals("HoneyPotFilemon.exe"))
                 {
                     try
                     {
@@ -84,31 +87,11 @@ namespace HoneyPotPOC
                 }
             }
 
-            try
+            if (!killedFirstProcess)
             {
-                /*
-                Console.WriteLine("Process: " + Process.GetProcessById(pID.Last()).ProcessName + " is killed due to suspicious behaviour");
-                killedProcesses.Add(Process.GetProcessById(pID.Last()).ProcessName);
-                killProcess(pID.Last());*/
-                if (!killedFirstProcess)
-                {
-                    firstKilledProcessTime = DateTime.Now;
-                    killedFirstProcess = true;
-                }
-                
+                firstKilledProcessTime = DateTime.Now;
+                killedFirstProcess = true;
             }
-            catch (Exception)
-            {
-                Console.WriteLine("Killing of  -- FAILED.");
-            }
-          
-            //Console.WriteLine("Do you wish to kill? ");
-            //string killInput = Console.ReadLine();
-            
-
-
-
-            //Dataanalysis
         }
 
         private static void killProcess(int PID)

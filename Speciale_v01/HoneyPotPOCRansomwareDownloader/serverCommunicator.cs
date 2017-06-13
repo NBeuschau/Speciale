@@ -88,6 +88,7 @@ namespace HoneyPotPOCRansomwareDownloader
             return NAMEONTEST;
         }
 
+        //Dynamic method of setting the path to the ransomware file
         public static void setRansomwareFilePath()
         {
             RANSOMWAREFILEPATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\ransomware.exe";

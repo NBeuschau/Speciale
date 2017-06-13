@@ -23,6 +23,7 @@ namespace HoneyPotPOC
             this.detail = detail;
         }
 
+        //Parse the CSVfile to a class
         public static List<CSVfileHandler> CSVparser(string path)
         {
             List<CSVfileHandler> output = new List<CSVfileHandler>();

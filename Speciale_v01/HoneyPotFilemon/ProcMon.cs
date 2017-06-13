@@ -14,8 +14,11 @@ namespace HoneyPotPOC
         private static Process cmd = new Process();
         private static string procMonPath = "";
         private static Boolean isHasherDone = false;
+
+        //Starts procmon and gives a given path for the backing file
         public static void createProcmonBackingFile(string path, string backingName)
         {
+            //Don't start procmon untill the hashing process is done
             while (!isHasherDone)
             {
                 Thread.Sleep(500);
@@ -34,6 +37,7 @@ namespace HoneyPotPOC
             cmd.StandardInput.Flush();
         }
 
+        //Shuts down procmon
         public static void procmonTerminator(string path, string backingName)
         {
             cmd.StartInfo.FileName = "cmd.exe";
@@ -50,7 +54,6 @@ namespace HoneyPotPOC
 
             while (isProcMonTerminated == false)
             {
-
                 Process[] pname = Process.GetProcessesByName("Procmon64");
                 if (pname.Length == 0)
                 {
@@ -60,38 +63,11 @@ namespace HoneyPotPOC
                 else {
                     Console.WriteLine("Procmon64 process is running!");
                 }
-                    //Console.WriteLine("Process found!");
-
-
-              /*  try
-                {
-                //    fs = file.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                  //  isProcMonTerminated = true;
-                   // fs.Dispose();
-
-                    using (Stream stream = new FileStream(path + "\\" + backingName + ".PML", FileMode.Open))
-                    {
-                        isProcMonTerminated = true;
-                        stream.Dispose();
-                    }
-                }
-                catch (IOException)
-                {
-
-                } */
                 Thread.Sleep(50);
             }
-            /*
-            bool tmp = cmd.HasExited;
-            Console.WriteLine("Has the process exited? : " + tmp);
-            while (!cmd.HasExited) {
-                tmp = cmd.HasExited;
-                Console.WriteLine("Has the process exited? : " + tmp);
-            };
-            tmp = cmd.HasExited;
-            Console.WriteLine("Has the process exited? : " + tmp);*/
         }
 
+        //Lets procmon convert PML file to CSV
         public static void convertPMLfileToCSV(string path, string PMLfile, string CSVfile)
         {
             path = path + @"\";

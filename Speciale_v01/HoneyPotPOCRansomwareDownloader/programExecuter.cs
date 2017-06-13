@@ -9,6 +9,7 @@ namespace HoneyPotPOCRansomwareDownloader
 {
     class programExecuter
     {
+        //Class to execute a program
         public static void executeProgram(string programPath)
         {
             Process.Start(programPath);
