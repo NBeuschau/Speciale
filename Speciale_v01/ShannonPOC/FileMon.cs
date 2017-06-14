@@ -71,7 +71,7 @@ namespace ShannonPOC
         }
 
 
-        //Event handeler if an object is renamed
+        //Event handler if an object is renamed
         private static void OnRenamed(object source, RenamedEventArgs e)
         {
             Console.WriteLine(e.OldFullPath + " is renamed to " + e.FullPath);

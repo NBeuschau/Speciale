@@ -11,11 +11,13 @@ namespace ShannonPOC
 {
     class Program
     {
+        //Set path for folders
         private static string path1 = @"C:\Users\Baseline\Desktop";
         private static string path2 = @"C:\Users\Baseline\Documents";
         private static string path3 = @"C:\Users\Baseline\Downloads";
         private static string path4 = @"C:\Users\Baseline\Videos";
 
+        //Set path for procmon
         static string PATH = @"C:\Users\Baseline";
         static string BACKINGNAME = "backingFromProcMon";
         static string pathToBackingFile = @"C:\procmon\backingFileTest";
@@ -23,31 +25,14 @@ namespace ShannonPOC
 
         static string RANSOMWAREDOWNLOADERPATH = @"C:\Software\ShannonRansomwareDownloader\bin\Release\ShannonRansomwareDownloader.exe";
 
+        //Set threshold and duration
         static double entropyThreshold = 0.9;
         static int thresholdToReaction = 2;
         static int secondsInThreshold = 60;
 
         static void Main(string[] args)
         {
-            //string path = @"C:\speciale";
-            /*
-            string path = @"C:\Program Files (x86)\Hearthstone\Data\Win\spells0.unity3d";
-            
-            FileInfo fil = new FileInfo(path);
-            ShannonEntropy test = new ShannonEntropy();
-
-            Console.WriteLine(test.CalculateEntropy(fil));
-                /*
-            EntropyHandler nonStatic = new EntropyHandler();
-            Dictionary<string, double> temp = nonStatic.getEntropyOfAllFilesInPath(path);
-
-            foreach (var item in temp)
-            {
-                Console.WriteLine(item.Key + " - " + item.Value);
-            }
-            */
-            // FileMon.CreateFileWatcher(path);
-            //Console.WriteLine(FilemonEventHandler.returnFilePath(path));
+            //Wait for program to start
             Thread.Sleep(30000);
 
             shannonEntropyFileMonDetection();
@@ -56,17 +41,21 @@ namespace ShannonPOC
 
         public static void shannonEntropyFileMonDetection()
         {
+            //Get name of ransomware
             Logger.getPoCRansomware();
 
             Thread.Sleep(1000);
 
+            //Post name to server that the ransomware has been fetched
             Logger.postPoCFetched();
 
+            //Wait for the server to respond
             while (!Logger.getHasFetched())
             {
                 Thread.Sleep(500);
             }
 
+            //Initialize variables
             Logger.setRansomwareDownloaderPath(RANSOMWAREDOWNLOADERPATH);
 
             ActionTaker.setBackingName(BACKINGNAME);
@@ -83,7 +72,7 @@ namespace ShannonPOC
             Logger.setPath3(path3);
             Logger.setPath4(path4);
             Logger.setPathFileWatch(PATH);
-         
+
             //Find entropy of all files
             ShannonEntropy temp1 = new ShannonEntropy();
             temp1.getEntropyOfAllFilesInPath(path1);
@@ -97,6 +86,7 @@ namespace ShannonPOC
             ShannonEntropy temp4 = new ShannonEntropy();
             temp4.getEntropyOfAllFilesInPath(path4);
 
+            //Print the entropies
             Dictionary<string, double> test = ShannonEntropy.getSavedEntropies();
             foreach (var item in test)
             {
@@ -115,14 +105,16 @@ namespace ShannonPOC
             Console.WriteLine(Logger.getNAMEONTEST());
 
             //Start logger
-            //TODO fix call to server such that it is not honeypotpoc that is called
             Logger.LogWriter(PATH);
-            
+
+            //Post to server that it has been tested
             Logger.postPoCTested();
+
+            //Post to server the results
             Logger.postPoCPosted();
 
             Thread.Sleep(30000);
-            
+
         }
-    }
+    } 
 }

@@ -9,6 +9,7 @@ namespace ShannonPOC
 {
     class FilemonEventHandler
     {
+
         private static DateTime firstDetected;
         static Boolean hasMadeFirstDetection = false;
         private static double entropyThreshold = 0.0;
