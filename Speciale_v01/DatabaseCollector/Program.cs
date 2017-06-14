@@ -10,11 +10,13 @@ namespace DatabaseCollector
 {
     class Program
     {
+        //Set variables for collecting data
         static string databaseinputbase = "http://192.168.8.102/v1/index.php/getdata";
         static string databaseTester = "hp1";
         static string middlepart = "?RansomwareName=";
         static string ransomwareName = "Vipsana2";
 
+        //Give path to files and folders
         static string fileToVirusNames = @"RansomwareList.txt";
         static string pathToFolders = @"C:\Speciale\Relevant Data";
 
@@ -29,14 +31,11 @@ namespace DatabaseCollector
             {
                 Console.WriteLine(item.Substring(1, item.Length - 2));
                 ransomwareName = item.Substring(1,item.Length-2);
-                //ransomwareOutput = ServerCommunicator.returnDatabaseOutputForRansomware(databaseinputbase + databaseTester + middlepart + ransomwareName);
+                //Get ransomware data from server
+                ransomwareOutput = ServerCommunicator.returnDatabaseOutputForRansomware(databaseinputbase + databaseTester + middlepart + ransomwareName);
                 
-                StreamReader sr = new StreamReader(@"C:\Speciale\Relevant Data\output.txt");
-
-                ransomwareOutput = sr.ReadLine();
-
+                //Create a file for the given ransomware
                 ServerOutputHandler.CreateReadableFileForRansomware(databaseTester,ransomwareName,ransomwareOutput,pathToFolders);
-                
             }
 
             Console.ReadLine();
