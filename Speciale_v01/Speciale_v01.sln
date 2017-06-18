@@ -97,6 +97,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCollector", "DataCollec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseCollector", "DatabaseCollector\DatabaseCollector.csproj", "{D69B7E30-06C6-4A64-9415-587538DCC92F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShannonFalsePositiveTest", "ShannonFalsePositiveTest\ShannonFalsePositiveTest.csproj", "{40AD804B-F860-42D4-842D-33D8BFC21D7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -251,6 +253,10 @@ Global
 		{D69B7E30-06C6-4A64-9415-587538DCC92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D69B7E30-06C6-4A64-9415-587538DCC92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D69B7E30-06C6-4A64-9415-587538DCC92F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40AD804B-F860-42D4-842D-33D8BFC21D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40AD804B-F860-42D4-842D-33D8BFC21D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40AD804B-F860-42D4-842D-33D8BFC21D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40AD804B-F860-42D4-842D-33D8BFC21D7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
